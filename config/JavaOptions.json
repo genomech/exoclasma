@@ -1,0 +1,7 @@
+{
+	"MarkDuplicates": "-XX:+UseParallelGC -XX:ParallelGCThreads=2",
+	"BaseRecalibrator": "-Xmx3G -XX:+UseParallelGC -XX:ParallelGCThreads=2",
+	"ApplyBQSR": "-Xmx3G",
+	"HaplotypeCalling": "-Xmx3G"
+	
+} 

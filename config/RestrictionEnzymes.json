@@ -1,0 +1,22 @@
+{
+	"Enzymes": {
+		"HindIII": [ "AAGCTT" ],
+		"DpnII": [ "GATC" ],
+		"MboI": [ "GATC" ],
+		"Sau3AI": [ "GATC" ],
+		"Arima": [ "GATC", "GANTC" ]
+	},
+	"WildCards": {
+		"N": "[ACGT]",
+		"M": "[AC]",
+		"R": "[AG]",
+		"W": "[AT]",
+		"Y": "[CT]",
+		"S": "[CG]",
+		"K": "[GT]",
+		"H": "[ACT]",
+		"B": "[CGT]",
+		"V": "[ACG]",
+		"D": "[AGT]"
+	}
+} 
