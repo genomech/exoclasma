@@ -30,23 +30,23 @@ def Cutadapt(InputR1, InputR2, OutputR1, OutputR2, Adapter, ReportTXT, Threads =
 def BWA(InputR1, InputR2, Reference, RGHeader, OutputBAM, Threads = multiprocessing.cpu_count()):
 	if InputR2 is None:
 		logging.info(f'Input FASTQ: "{InputR1}"; Output BAM: "{OutputBAM}"; Reference: "{Reference}"; RG Header: "{RGHeader}"')
-		Command = f'set -o pipefail; bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" | gatk/gatk SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
+		Command = f'set -o pipefail; bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" | {GATK_PATH} SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
 	else:
 		logging.info(f'Input FASTQ: "{InputR1}", "{InputR2}"; Output BAM: "{OutputBAM}"; Reference: "{Reference}"; RG Header: "{RGHeader}"')
-		Command = f'bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" "{InputR2}" | gatk/gatk SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
+		Command = f'bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" "{InputR2}" | {GATK_PATH} SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
 	BashSubprocess(Name = f'BWA.Align&Sort', Command = Command)
 
 def MergeBAMs(BAMs, OutputBAM, SortOrder):
 	TaggedBAMs = MultipleTags(Tag = '-I', List = BAMs)
-	BashSubprocess(Name = f'MergeBAMs.Merge', Command = f'gatk/gatk MergeSamFiles --USE_THREADING true -SO {SortOrder} {TaggedBAMs} -O "{OutputBAM}"')
+	BashSubprocess(Name = f'MergeBAMs.Merge', Command = f'{GATK_PATH} MergeSamFiles --USE_THREADING true -SO {SortOrder} {TaggedBAMs} -O "{OutputBAM}"')
 
 
 ## ------======| MARK DUPLICATES |======------
 
 def MarkDuplicates(InputBAM, OutputBAM, MetricsTXT):
 	logging.info(f'Input: "{InputBAM}"; Output: "{OutputBAM}"; Metrics: "{MetricsTXT}"')
-	BashSubprocess(Name = f'MarkDuplicates.RemoveAndSort', Command = f'set -o pipefail; gatk/gatk --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES true --VERBOSITY ERROR --ASSUME_SORT_ORDER queryname -M "{MetricsTXT}" -I "{InputBAM}" -O "/dev/stdout" | gatk/gatk SortSam --VERBOSITY ERROR -SO coordinate -I "/dev/stdin" -O "{OutputBAM}"')
-	BashSubprocess(Name = f'MarkDuplicates.Index', Command = f'gatk/gatk BuildBamIndex -I "{OutputBAM}"')
+	BashSubprocess(Name = f'MarkDuplicates.RemoveAndSort', Command = f'set -o pipefail; {GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES true --VERBOSITY ERROR --ASSUME_SORT_ORDER queryname -M "{MetricsTXT}" -I "{InputBAM}" -O "/dev/stdout" | {GATK_PATH} SortSam --VERBOSITY ERROR -SO coordinate -I "/dev/stdin" -O "{OutputBAM}"')
+	BashSubprocess(Name = f'MarkDuplicates.Index', Command = f'{GATK_PATH} BuildBamIndex -I "{OutputBAM}"')
 
 
 ## ------======| BQSR |======------
@@ -57,26 +57,26 @@ def ContigBaseRecalibration(Contig, InputBAM, TempDir, dbSNP, Reference):
 	# This is a bug above. BaseRecalibrator and ApplyBQSR filter reads differently, so ApplyBQSR f***s up every time it can't find RG.
 	BQSRTable = os.path.join(TempDir, f'bqsr_table_{Contig}.tsv')
 	OutputBAM = os.path.join(TempDir, f'output_{Contig}.bam')
-	BashSubprocess(Name = f'ContigBQSR.MakeTable[{Contig}]', Command = f'gatk/gatk --java-options "{CONFIG_JAVA_OPTIONS["BaseRecalibrator"]}" BaseRecalibrator --tmp-dir "{TempDir}" -L {Contig} -I "{InputBAM}" --known-sites "{dbSNP}" -O "{BQSRTable}" -R "{Reference}"')
-	BashSubprocess(Name = f'ContigBQSR.Apply[{Contig}]', Command = f'gatk/gatk --java-options "{CONFIG_JAVA_OPTIONS["ApplyBQSR"]}" ApplyBQSR {TaggedFilters} --tmp-dir "{TempDir}" -OBI false -L "{Contig}" -bqsr "{BQSRTable}" -I "{InputBAM}" -O "{OutputBAM}"')
+	BashSubprocess(Name = f'ContigBQSR.MakeTable[{Contig}]', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["BaseRecalibrator"]}" BaseRecalibrator --tmp-dir "{TempDir}" -L {Contig} -I "{InputBAM}" --known-sites "{dbSNP}" -O "{BQSRTable}" -R "{Reference}"')
+	BashSubprocess(Name = f'ContigBQSR.Apply[{Contig}]', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["ApplyBQSR"]}" ApplyBQSR {TaggedFilters} --tmp-dir "{TempDir}" -OBI false -L "{Contig}" -bqsr "{BQSRTable}" -I "{InputBAM}" -O "{OutputBAM}"')
 	return OutputBAM
 
 def BaseRecalibration(InputBAM, OutputBAM, dbSNP, Reference, ActiveContigs, Threads = multiprocessing.cpu_count()):
 	logging.info(f'Input: "{InputBAM}"; Output: "{OutputBAM}"; Known sites: "{dbSNP}"; Reference: "{Reference}"')
 	with tempfile.TemporaryDirectory() as TempDir:
-		BashSubprocess(Name = f'BaseRecalibration.PreIndex', Command = f'gatk/gatk BuildBamIndex -I "{InputBAM}"')
+		BashSubprocess(Name = f'BaseRecalibration.PreIndex', Command = f'{GATK_PATH} BuildBamIndex -I "{InputBAM}"')
 		with Threading('ContigBQSR', Threads) as pool:
 			Shards = pool.map(functools.partial(ContigBaseRecalibration, InputBAM = InputBAM, TempDir = TempDir, dbSNP = dbSNP, Reference = Reference), ActiveContigs)
 			TaggedShards = MultipleTags(Tag = '-I', List = Shards)
-		BashSubprocess(Name = f'BaseRecalibration.Merge', Command = f'gatk/gatk MergeSamFiles --USE_THREADING true -SO coordinate {TaggedShards} -O "{OutputBAM}"')
-		BashSubprocess(Name = f'BaseRecalibration.PostIndex', Command = f'gatk/gatk BuildBamIndex -I "{OutputBAM}"')
+		BashSubprocess(Name = f'BaseRecalibration.Merge', Command = f'{GATK_PATH} MergeSamFiles --USE_THREADING true -SO coordinate {TaggedShards} -O "{OutputBAM}"')
+		BashSubprocess(Name = f'BaseRecalibration.PostIndex', Command = f'{GATK_PATH} BuildBamIndex -I "{OutputBAM}"')
 
 
 ## ------======| VARIANT CALLING |======------
 
 def ContigHaplotypeCalling(Contig, InputBAM, TempDir, Reference):
 	OutputVCF = os.path.join(TempDir, f'output_{Contig}.vcf')
-	BashSubprocess(Name = f'ContigCalling.Calling[{Contig}]', Command = f'gatk/gatk --java-options "{CONFIG_JAVA_OPTIONS["HaplotypeCalling"]}" HaplotypeCaller --native-pair-hmm-threads 2 -OVI false --dont-use-soft-clipped-bases true -L "{Contig}" -I "{InputBAM}" -O "{OutputVCF}" -R "{Reference}"')
+	BashSubprocess(Name = f'ContigCalling.Calling[{Contig}]', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["HaplotypeCalling"]}" HaplotypeCaller --native-pair-hmm-threads 2 -OVI false --dont-use-soft-clipped-bases true -L "{Contig}" -I "{InputBAM}" -O "{OutputVCF}" -R "{Reference}"')
 	return OutputVCF
 
 def HaplotypeCalling(InputBAM, OutputVCF, Reference, ActiveContigs, Threads = multiprocessing.cpu_count()):
@@ -85,4 +85,4 @@ def HaplotypeCalling(InputBAM, OutputVCF, Reference, ActiveContigs, Threads = mu
 		with Threading('ContigCalling', Threads) as pool:
 			Shards = pool.map(functools.partial(ContigHaplotypeCalling, InputBAM = InputBAM, TempDir = TempDir, Reference = Reference), ActiveContigs)
 			TaggedShards = MultipleTags(Tag = '-I', List = Shards)
-		BashSubprocess(Name = f'HaplotypeCalling.Merge', Command = f'gatk/gatk MergeVcfs {TaggedShards} -O "{OutputVCF}"')
+		BashSubprocess(Name = f'HaplotypeCalling.Merge', Command = f'{GATK_PATH} MergeVcfs {TaggedShards} -O "{OutputVCF}"')

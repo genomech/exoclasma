@@ -1,0 +1,33 @@
+#!/bin/python3
+
+__author__ = "Emil Viesná"
+__version__ = "0.01a"
+__date__ = "2022/02/25"
+
+from src.SharedFunctions import *
+from src.RefseqPreparation import *
+
+def CreateParser():
+	Parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=f"exoclasma: Exo-C Sequence Analysis Tools", epilog=f"Email: regnveig@ya.ru")
+	Parser.add_argument('--version', action='version', version=__version__)
+	Subparsers = Parser.add_subparsers(title='Commands', dest='command')
+	
+	# PrepareReference
+	PrepareReferenceParser = Subparsers.add_parser('RefseqPreparation', help=f"Prepare reference sequence")
+	PrepareReferenceParser.add_argument('-f', '--fasta', required=True, type=str, help=f"Raw FASTA file. May be gzipped or bzipped")
+	PrepareReferenceParser.add_argument('-n', '--name', required=True, type=str, help=f"Name of genome assembly. Will be used as folder name and files prefix")
+	PrepareReferenceParser.add_argument('-p', '--parent', required=True, type=str, help=f"Parent dir where reference folder will be created")
+	
+	return Parser
+
+if __name__ == '__main__':
+	
+	Parser = CreateParser()
+	Namespace = Parser.parse_args(sys.argv[1:])
+	
+	if Namespace.command == "RefseqPreparation":
+		ConfigureLogger(Level = logging.DEBUG)
+		Fasta, Name, Parent = os.path.abspath(Namespace.fasta), Namespace.name, os.path.abspath(Namespace.parent)
+		RefseqPreparation(FastaPath = Fasta, GenomeName = Name, ParentDir = Parent)
+		
+	else: Parser.print_help()

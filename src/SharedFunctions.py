@@ -42,6 +42,8 @@ def Timestamp(TS): return datetime.timedelta(seconds=(time.time() - TS))
 
 ## ------======| I/O |======------
 
+def CurrentDir(): return os.path.dirname(os.path.abspath(__file__))
+
 def GzipCheck(FileName): return open(FileName, 'rb').read(2).hex() == "1f8b"
 
 def Bzip2Check(FileName): return open(FileName, 'rb').read(3).hex() == "425a68"
@@ -92,5 +94,6 @@ def BashSubprocess(Name, Command, AllowedExitCodes = list()):
 
 ## ------======| LOAD CONFIG |======------
 
-CONFIG_RESTRICTION_ENZYMES = LoadJSON("config/RestrictionEnzymes.json")
-CONFIG_JAVA_OPTIONS = LoadJSON("config/JavaOptions.json")
+CONFIG_RESTRICTION_ENZYMES = LoadJSON(os.path.join(CurrentDir(), "..", "config", "RestrictionEnzymes.json"))
+CONFIG_JAVA_OPTIONS = LoadJSON(os.path.join(CurrentDir(), "..", "config", "JavaOptions.json"))
+GATK_PATH = os.path.abspath(os.path.join(CurrentDir(), "..", "gatk", "gatk"))

@@ -30,5 +30,5 @@ def RefseqPreparation(FastaPath, GenomeName, ParentDir):
 		logging.info(f"New FASTA, ChromSizes and RestrictionSites are ready")
 		BashSubprocess(Name = f"SAMtools Index", Command = f"samtools faidx \"{NewFasta.name}\"")
 		BashSubprocess(Name = f"BWA Index", Command = f"bwa index \"{NewFasta.name}\"")
-		BashSubprocess(Name = f"GATK Index", Command = f"gatk/gatk CreateSequenceDictionary -R \"{NewFasta.name}\"")
+		BashSubprocess(Name = f"GATK Index", Command = f"{GATK_PATH} CreateSequenceDictionary -R \"{NewFasta.name}\"")
 		BashSubprocess(Name = f"Copy Files", Command = f"cp {os.path.join(TempDir, '*')} \"{OutputDir}\"")
