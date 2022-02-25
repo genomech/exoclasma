@@ -8,6 +8,13 @@ def MultipleTags(Tag, List, Quoted = True): return ' '.join([(f'{Tag} "{item}"' 
 def GetActiveContigs(InputBAM, Threads = multiprocessing.cpu_count()): 
 	BashSubprocess(Name = f'GetActiveContigs', Command = f'samtools view -@ {Threads} "{InputBAM}" | awk -F \'\\t\' \'{{ print $3 }}\' - | uniq').decode('utf-8')[:-1].split('\n')
 
+def RGTag(Instrument, Lane, Platform, Barcode, Sample, Library):
+	ID = f"D-{Instrument}.L-{Lane}"
+	PL = Platform
+	PU = f"D-{Instrument}.L-{Lane}.BC-{Barcode}"
+	LB = f"LIB-{Sample}-{Library}"
+	SM = Sample
+	return f"@RG\\tID:{ID}\\tPL:{PL}\\tPU:{PU}\\tLB:{LB}\\tSM:{SM}"
 
 ## ------======| TRIM & CONVERT FASTQ |======------
 
@@ -18,10 +25,10 @@ def Solid2Illumina(InputFQ, OutputFQ, Threads = multiprocessing.cpu_count()):
 def Cutadapt(InputR1, InputR2, OutputR1, OutputR2, Adapter, ReportTXT, Threads = multiprocessing.cpu_count()):
 	if InputR2 is None:
 		logging.info(f'Mode: Single-end; Input FASTQ: "{InputR1}"; Output FASTQ: "{OutputR1}"; Adapter: {Adapter["Name"]}')
-		Command = f'cutadapt -j {Threads} -e 0.2 -m 8 -a {Adapter["R1"]} -o "{OutputR1}" "{InputR1}" > "{ReportTXT}"'
+		Command = f'cutadapt --report minimal -j {Threads} -e 0.2 -m 8 -a {Adapter["R1"]} -o "{OutputR1}" "{InputR1}" > "{ReportTXT}"'
 	else:
 		logging.info(f'Mode: Single-end; Input FASTQ: "{InputR1}", "{InputR2}"; Output FASTQ: "{OutputR1}", "{OutputR2}"; Adapter: {Adapter["Name"]}')
-		Command = f'cutadapt -j {Threads} -e 0.2 -m 8 -a {Adapter["R1"]} -A {Adapter["R2"]} -o "{OutputR1}" -p "{OutputR2}" "{InputR1}" "{InputR2}" > "{ReportTXT}"'
+		Command = f'cutadapt --report minimal -j {Threads} -e 0.2 -m 8 -a {Adapter["R1"]} -A {Adapter["R2"]} -o "{OutputR1}" -p "{OutputR2}" "{InputR1}" "{InputR2}" > "{ReportTXT}"'
 	BashSubprocess(Name = f'Cutadapt.Trim', Command = Command)
 
 
