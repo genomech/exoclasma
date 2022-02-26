@@ -1,7 +1,10 @@
 {
+	"SortSam": "-Xmx3G",
+	"MergeSamFiles": "-Xmx3G",
 	"MarkDuplicates": "-XX:+UseParallelGC -XX:ParallelGCThreads=2",
 	"BaseRecalibrator": "-Xmx3G -XX:+UseParallelGC -XX:ParallelGCThreads=2",
 	"ApplyBQSR": "-Xmx3G",
-	"HaplotypeCalling": "-Xmx3G"
-	
+	"HaplotypeCaller": "-Xmx3G",
+	"GenotypeGVCFs": "-Xmx3G",
+	"MergeVcfs": "-Xmx3G"
 } 

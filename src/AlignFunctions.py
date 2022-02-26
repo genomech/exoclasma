@@ -35,23 +35,22 @@ def BWA(InputR1, InputR2, Reference, RGHeader, OutputBAM, ActiveContigsTXT, Thre
 	ActiveContigsCommand = f"samtools view -O SAM /dev/stdin | awk -F '\\t' '{{ print $3 }}' - | uniq > \"{ActiveContigsTXT}\";"
 	if InputR2 is None:
 		logging.info(f'Input FASTQ: "{InputR1}"; Output BAM: "{OutputBAM}"; Reference: "{Reference}"; RG Header: "{RGHeader}"')
-		Command = f'set -o pipefail; bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" | tee >( {ActiveContigsCommand} ) | {GATK_PATH} SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
+		Command = f'set -o pipefail; bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" | tee >( {ActiveContigsCommand} ) | {GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
 	else:
 		logging.info(f'Input FASTQ: "{InputR1}", "{InputR2}"; Output BAM: "{OutputBAM}"; Reference: "{Reference}"; RG Header: "{RGHeader}"')
-		Command = f'bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" "{InputR2}" | tee >( {ActiveContigsCommand} ) | {GATK_PATH} SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
+		Command = f'bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" "{InputR2}" | tee >( {ActiveContigsCommand} ) | {GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
 	BashSubprocess(Name = f'BWA.Align&Sort', Command = Command)
 
 def MergeBAMs(BAMs, OutputBAM, SortOrder):
 	TaggedBAMs = MultipleTags(Tag = '-I', List = BAMs)
-	BashSubprocess(Name = f'MergeBAMs.Merge', Command = f'{GATK_PATH} MergeSamFiles --VERBOSITY ERROR --USE_THREADING true -SO {SortOrder} {TaggedBAMs} -O "{OutputBAM}"')
+	BashSubprocess(Name = f'MergeBAMs.Merge', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MergeSamFiles"]}" MergeSamFiles --VERBOSITY ERROR --USE_THREADING true -SO {SortOrder} {TaggedBAMs} -O "{OutputBAM}"')
 
 
 ## ------======| MARK DUPLICATES |======------
 
 def MarkDuplicates(InputBAM, OutputBAM, MetricsTXT):
 	logging.info(f'Input: "{InputBAM}"; Output: "{OutputBAM}"; Metrics: "{MetricsTXT}"')
-	BashSubprocess(Name = f'MarkDuplicates.RemoveAndSort', Command = f'set -o pipefail; {GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES true --VERBOSITY ERROR --ASSUME_SORT_ORDER queryname -M "{MetricsTXT}" -I "{InputBAM}" -O "/dev/stdout" | {GATK_PATH} SortSam --VERBOSITY ERROR -SO coordinate -I "/dev/stdin" -O "{OutputBAM}"')
-	BashSubprocess(Name = f'MarkDuplicates.Index', Command = f'{GATK_PATH} BuildBamIndex -I "{OutputBAM}"')
+	BashSubprocess(Name = f'MarkDuplicates.RemoveAndSort', Command = f'set -o pipefail; {GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES true --VERBOSITY ERROR --ASSUME_SORT_ORDER queryname -M "{MetricsTXT}" -I "{InputBAM}" -O "/dev/stdout" | {GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --CREATE_INDEX true --VERBOSITY ERROR -SO coordinate -I "/dev/stdin" -O "{OutputBAM}"')
 
 
 ## ------======| BQSR |======------
@@ -73,7 +72,7 @@ def BaseRecalibration(InputBAM, OutputBAM, dbSNP, Reference, ActiveContigs, Thre
 		with Threading('ContigBQSR', Threads) as pool:
 			Shards = pool.map(functools.partial(ContigBaseRecalibration, InputBAM = InputBAM, TempDir = TempDir, dbSNP = dbSNP, Reference = Reference), ActiveContigs)
 			TaggedShards = MultipleTags(Tag = '-I', List = Shards)
-		BashSubprocess(Name = f'BaseRecalibration.Merge', Command = f'{GATK_PATH} MergeSamFiles --VERBOSITY ERROR --CREATE_MD5_FILE true --CREATE_INDEX true --USE_THREADING true -SO coordinate {TaggedShards} -O "{OutputBAM}"')
+		BashSubprocess(Name = f'BaseRecalibration.Merge', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MergeSamFiles"]}" MergeSamFiles --VERBOSITY ERROR --CREATE_MD5_FILE true --CREATE_INDEX true --USE_THREADING true -SO coordinate {TaggedShards} -O "{OutputBAM}"')
 
 
 ## ------======| VARIANT CALLING |======------
@@ -81,8 +80,8 @@ def BaseRecalibration(InputBAM, OutputBAM, dbSNP, Reference, ActiveContigs, Thre
 def ContigHaplotypeCalling(Contig, InputBAM, TempDir, Reference):
 	OutputGVCF = os.path.join(TempDir, f'output_{Contig}.g.vcf.gz')
 	OutputVCF = os.path.join(TempDir, f'output_{Contig}.vcf.gz')
-	BashSubprocess(Name = f'ContigCalling.Calling[{Contig}]', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["HaplotypeCalling"]}" HaplotypeCaller --verbosity ERROR --native-pair-hmm-threads 2 -OVI false --dont-use-soft-clipped-bases true -ERC GVCF -L "{Contig}" -I "{InputBAM}" -O "{OutputGVCF}" -R "{Reference}"')
-	BashSubprocess(Name = f'ContigCalling.Genotype[{Contig}]', Command = f'{GATK_PATH} GenotypeGVCFs --verbosity ERROR -L "{Contig}" -V "{OutputGVCF}" -O "{OutputVCF}" -R "{Reference}"')
+	BashSubprocess(Name = f'ContigCalling.Calling[{Contig}]', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["HaplotypeCaller"]}" HaplotypeCaller --verbosity ERROR --native-pair-hmm-threads 2 -OVI false --dont-use-soft-clipped-bases true -ERC GVCF -L "{Contig}" -I "{InputBAM}" -O "{OutputGVCF}" -R "{Reference}"')
+	BashSubprocess(Name = f'ContigCalling.Genotype[{Contig}]', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["GenotypeGVCFs"]}" GenotypeGVCFs --verbosity ERROR -L "{Contig}" -V "{OutputGVCF}" -O "{OutputVCF}" -R "{Reference}"')
 	return { 'VCF': OutputVCF, 'gVCF': OutputGVCF }
 
 def HaplotypeCalling(InputBAM, OutputVCF, OutputGVCF, Reference, ActiveContigs, Threads = multiprocessing.cpu_count()):
@@ -92,5 +91,5 @@ def HaplotypeCalling(InputBAM, OutputVCF, OutputGVCF, Reference, ActiveContigs, 
 			Shards = pool.map(functools.partial(ContigHaplotypeCalling, InputBAM = InputBAM, TempDir = TempDir, Reference = Reference), ActiveContigs)
 			TaggedShardsVCF = MultipleTags(Tag = '-I', List = [item['VCF'] for item in Shards])
 			TaggedShardsGVCF = MultipleTags(Tag = '-I', List = [item['gVCF'] for item in Shards])
-		BashSubprocess(Name = f'HaplotypeCalling.MergeVCF', Command = f'{GATK_PATH} MergeVcfs --CREATE_INDEX true --VERBOSITY ERROR --CREATE_MD5_FILE true {TaggedShardsVCF} -O "{OutputVCF}"')
-		BashSubprocess(Name = f'HaplotypeCalling.MergeGVCF', Command = f'{GATK_PATH} MergeVcfs --CREATE_INDEX true --VERBOSITY ERROR --CREATE_MD5_FILE true {TaggedShardsGVCF} -O "{OutputGVCF}"')
+		BashSubprocess(Name = f'HaplotypeCalling.MergeVCF', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MergeVcfs"]}" MergeVcfs --CREATE_INDEX true --VERBOSITY ERROR --CREATE_MD5_FILE true {TaggedShardsVCF} -O "{OutputVCF}"')
+		BashSubprocess(Name = f'HaplotypeCalling.MergeGVCF', Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MergeVcfs"]}" MergeVcfs --CREATE_INDEX true --VERBOSITY ERROR --CREATE_MD5_FILE true {TaggedShardsGVCF} -O "{OutputGVCF}"')
