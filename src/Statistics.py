@@ -19,5 +19,5 @@ def FastQC(InputFastQ, OutputHTML, Size = 0, Threads = multiprocessing.cpu_count
 			raise RuntimeError
 		BashSubprocess(Name = f'FastQC.Move', Command = f'cp "{HTMLTemp[0]}" "{OutputHTML}"') 
 
-def FlagStat(InputBAM, OutputJSON):
-	BashSubprocess(Name = f'FlagStat.Statistics', Command = f'samtools flagstat -O json "{InputBAM}" > "{OutputJSON}"')
+def FlagStat(InputBAM, OutputJSON, Threads = multiprocessing.cpu_count()):
+	BashSubprocess(Name = f'FlagStat.Statistics', Command = f'samtools flagstat -@ {Threads} -O json "{InputBAM}" > "{OutputJSON}"')

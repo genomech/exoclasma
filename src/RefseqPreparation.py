@@ -4,7 +4,7 @@ def SeriesReplace(String, Replacements):
 	Rep = dict((re.escape(key), value) for key, value in Replacements.items()) 
 	return re.compile("|".join(Rep.keys())).sub(lambda x: Rep[re.escape(x.group(0))], String)
 
-def RefseqPreparation(FastaPath, GenomeName, ParentDir):
+def RefseqPreparation(FastaPath, GenomeName, ParentDir, Threads = multiprocessing.cpu_count()):
 	OutputDir = os.path.join(ParentDir, GenomeName)
 	os.mkdir(OutputDir)
 	logging.info(f"Directory created: \"{OutputDir}\"")
@@ -28,7 +28,7 @@ def RefseqPreparation(FastaPath, GenomeName, ParentDir):
 					FileWrapper.close()
 				logging.debug(f"Contig \"{contig.name}\" ready")
 		logging.info(f"New FASTA, ChromSizes and RestrictionSites are ready")
-		BashSubprocess(Name = f"SAMtools Index", Command = f"samtools faidx \"{NewFasta.name}\"")
+		BashSubprocess(Name = f"SAMtools Index", Command = f"samtools faidx -@ {Threads} \"{NewFasta.name}\"")
 		BashSubprocess(Name = f"BWA Index", Command = f"bwa index \"{NewFasta.name}\"")
-		BashSubprocess(Name = f"GATK Index", Command = f"{GATK_PATH} CreateSequenceDictionary -R \"{NewFasta.name}\"")
+		BashSubprocess(Name = f"GATK Index", Command = f"{GATK_PATH} CreateSequenceDictionary --VERBOSITY ERROR -R \"{NewFasta.name}\"")
 		BashSubprocess(Name = f"Copy Files", Command = f"cp {os.path.join(TempDir, '*')} \"{OutputDir}\"")
