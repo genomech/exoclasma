@@ -38,7 +38,7 @@ def BWA(InputR1, InputR2, Reference, RGHeader, OutputBAM, ActiveContigsTXT, Thre
 		Command = f'set -o pipefail; bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" | tee >( {ActiveContigsCommand} ) | {GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
 	else:
 		logging.info(f'Input FASTQ: "{InputR1}", "{InputR2}"; Output BAM: "{OutputBAM}"; Reference: "{Reference}"; RG Header: "{RGHeader}"')
-		Command = f'bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" "{InputR2}" | tee >( {ActiveContigsCommand} ) | {GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
+		Command = f'set -o pipefail; bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" "{InputR2}" | tee >( {ActiveContigsCommand} ) | {GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
 	BashSubprocess(Name = f'BWA.Align&Sort', Command = Command)
 
 def MergeBAMs(BAMs, OutputBAM, SortOrder):

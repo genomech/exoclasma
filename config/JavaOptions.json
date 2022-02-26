@@ -1,9 +1,9 @@
 {
 	"SortSam": "-Xmx3G",
 	"MergeSamFiles": "-Xmx3G",
-	"MarkDuplicates": "-XX:+UseParallelGC -XX:ParallelGCThreads=2",
+	"MarkDuplicates": "-Xmx20G -XX:+UseParallelGC -XX:ParallelGCThreads=2",
 	"BaseRecalibrator": "-Xmx3G -XX:+UseParallelGC -XX:ParallelGCThreads=2",
-	"ApplyBQSR": "-Xmx3G",
+	"ApplyBQSR": "-Xmx3G -XX:+UseParallelGC -XX:ParallelGCThreads=2",
 	"HaplotypeCaller": "-Xmx3G",
 	"GenotypeGVCFs": "-Xmx3G",
 	"MergeVcfs": "-Xmx3G"

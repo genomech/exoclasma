@@ -5,7 +5,7 @@ __version__ = "0.01a"
 __date__ = "2022/02/25"
 
 from src.SharedFunctions import *
-from src.RefseqPreparation import *
+from src.PreparationFunctions import *
 
 def CreateParser():
 	Parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=f"exoclasma: Exo-C Sequence Analysis Tools", epilog=f"Email: regnveig@ya.ru")

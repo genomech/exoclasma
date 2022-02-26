@@ -19,5 +19,27 @@ def FastQC(InputFastQ, OutputHTML, Size = 0, Threads = multiprocessing.cpu_count
 			raise RuntimeError
 		BashSubprocess(Name = f'FastQC.Move', Command = f'cp "{HTMLTemp[0]}" "{OutputHTML}"') 
 
+
+## ------======| FLAGSTAT |======------
+
 def FlagStat(InputBAM, OutputJSON, Threads = multiprocessing.cpu_count()):
 	BashSubprocess(Name = f'FlagStat.Statistics', Command = f'samtools flagstat -@ {Threads} -O json "{InputBAM}" > "{OutputJSON}"')
+
+def LoadFlagStat(StatJSON): return LoadJSON(StatJSON)
+
+
+## ------======| MARK DUPLICATES STATS |======------
+
+def LoadMarkDuplicatesStat(StatTXT):
+	Data = ''.join(open(StatTXT, 'rt').readlines())
+	Stream = io.StringIO(Data.split('\n\n')[1])
+	Table = pandas.read_csv(Stream, sep='\t', comment='#').set_index('LIBRARY')
+	return Table.astype(object).transpose().to_dict()
+
+
+## ------======| CUTADAPT STATS |======------
+
+def CutadaptStat(StatTXT):
+	Data = pandas.read_csv(StatTXT, sep='\t')
+	return Data.transpose()[0].to_dict()
+
