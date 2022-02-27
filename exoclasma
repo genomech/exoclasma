@@ -6,6 +6,9 @@ __date__ = "2022/02/25"
 
 from src.SharedFunctions import *
 from src.PreparationFunctions import *
+from src.Statistics import *
+from src.AlignFunctions import *
+from src.AlignPipeline import *
 
 def CreateParser():
 	Parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=f"exoclasma: Exo-C Sequence Analysis Tools", epilog=f"Email: regnveig@ya.ru")
@@ -38,9 +41,9 @@ if __name__ == '__main__':
 		Fasta, Name, Parent = os.path.abspath(Namespace.fasta), Namespace.name, os.path.abspath(Namespace.parent)
 		RefseqPreparation(FastaPath = Fasta, GenomeName = Name, ParentDir = Parent)
 	
-	if Namespace.command == "CapturePreparation":
+	elif Namespace.command == "CapturePreparation":
 		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
 		Bed, Name, Parent, GenomeInfo = os.path.abspath(Namespace.bed), Namespace.name, os.path.abspath(Namespace.parent), os.path.abspath(Namespace.genomeinfo)
-		RefseqPreparation(InputBED = Bed, CaptureName = Name, ParentDir = Parent, GenomeInfoJSON = GenomeInfo)
+		CapturePreparation(InputBED = Bed, CaptureName = Name, ParentDir = Parent, GenomeInfoJSON = GenomeInfo)
 		
 	else: Parser.print_help()

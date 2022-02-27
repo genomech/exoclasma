@@ -17,6 +17,7 @@ import os
 import pandarallel
 import pandas
 import pysam
+import pytest
 import re
 import subprocess
 import sys
@@ -24,6 +25,7 @@ import tabix
 import tempfile
 import time
 import warnings
+
 
 ## ------======| LOGGING |======------
 

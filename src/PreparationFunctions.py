@@ -8,19 +8,20 @@ def SeriesReplace(String, Replacements):
 
 def CreateGenomeInfo(GenomeName, Dir):
 	ConfigJson = {
-		'NAME':       GenomeName,
+		'NAME':       '',
 		'FASTA':      f'{GenomeName}.fasta',
 		'CHROMSIZES': f'{GenomeName}.chromsizes.txt',
 		'FAI':        f'{GenomeName}.fasta.fai',
 		'BED':        f'{GenomeName}.bed',
 		'DICT':       f'{GenomeName}.dict'
 	}
-	ConfigJson = { Key: os.path.join(Dir, Value) for Key, Value in ConfigJson }
+	ConfigJson = { Key: os.path.join(Dir, Value) for Key, Value in ConfigJson.items() }
 	ConfigJson['RS'] = { Name: f'{GenomeName}.restriction_sites.{Name}.txt' for Name in CONFIG_RESTRICTION_ENZYMES["Enzymes"].keys() }
 	ConfigJson['RS'] = { Name: os.path.join(Dir, FN) for Name, FN in ConfigJson['RS'].items() }
+	ConfigJson['NAME'] = GenomeName
 	return ConfigJson
 
-def RefseqPreparation(FastaPath, GenomeName, ParentDir, Threads = multiprocessing.cpu_count()):
+def RefseqPreparation(FastaPath, GenomeName, ParentDir):
 	OutputDir = os.path.join(ParentDir, GenomeName)
 	os.mkdir(OutputDir)
 	logging.info(f'Directory created: "{OutputDir}"')
@@ -45,7 +46,7 @@ def RefseqPreparation(FastaPath, GenomeName, ParentDir, Threads = multiprocessin
 		logging.info(f"New FASTA, ChromSizes and RestrictionSites are ready")
 		BashSubprocess(
 			Name = f"SAMtools Index",
-			Command = f'samtools faidx -@ {Threads} "{FNdict["FASTA"]}"'
+			Command = f'samtools faidx "{FNdict["FASTA"]}"'
 		)
 		BashSubprocess(
 			Name = f"BWA Index",
@@ -57,7 +58,7 @@ def RefseqPreparation(FastaPath, GenomeName, ParentDir, Threads = multiprocessin
 		)
 		BashSubprocess(
 			Name = f'Genome BED',
-			Command = f'awk \'BEGIN {{ FS = "\\t" }}; {{ print $1 FS "0" FS $2 }}\' "{FaiFN}" > "{BedFN}"'
+			Command = f'awk \'BEGIN {{ FS = "\\t" }}; {{ print $1 FS "0" FS $2 }}\' "{FNdict["FAI"]}" > "{FNdict["BED"]}"'
 		)
 		JsonFN = os.path.join(TempDir, f'{GenomeName}.info.json')
 		ConfigJson = CreateGenomeInfo(GenomeName, OutputDir)
@@ -71,11 +72,12 @@ def RefseqPreparation(FastaPath, GenomeName, ParentDir, Threads = multiprocessin
 
 def CreateCaptureInfo(CaptureName, Dir):
 	ConfigJson = {
-		'NAME':     CaptureName,
+		'NAME':     '',
 		'CAP':      f'{CaptureName}.capture.bed',
 		'NOTCAP':   f'{CaptureName}.not_capture.bed'
 	}
-	ConfigJson = { Key: os.path.join(Dir, Value) for Key, Value in ConfigJson }
+	ConfigJson = { Key: os.path.join(Dir, Value) for Key, Value in ConfigJson.items() }
+	ConfigJson['NAME'] = CaptureName
 	return ConfigJson
 
 def CapturePreparation(CaptureName, InputBED, GenomeInfoJSON, ParentDir):

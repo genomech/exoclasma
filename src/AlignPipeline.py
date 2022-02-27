@@ -106,7 +106,7 @@ def BWAStage(Unit, Meta):
 		else: 
 			BashSubprocess(
 				Name = f'BWAStage.CopyBAM',
-				Command = f'cp "{Shards[0]}" "{Unit['FileNames']["PrimaryBAM"]}"'
+				Command = f'cp "{Shards[0]}" "{Unit["FileNames"]["PrimaryBAM"]}"'
 			)
 		FlagStat(InputBAM = Unit['FileNames']["PrimaryBAM"], OutputJSON = Unit['FileNames']["FlagStat"], Threads = Meta["Threads"])
 
