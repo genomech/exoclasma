@@ -37,7 +37,8 @@ def AlignProtocolAndBackup(UnitsFile):
 	if os.path.exists(Backup) and os.path.isfile(Backup):
 		Protocol = LoadJSON(Backup)
 		logging.warning(f'Resume process from backup "{Backup}"')
-	else: Protocol = LoadJSON(UnitsFile)
+	else:
+		Protocol = LoadJSON(UnitsFile)
 	Protocol['Meta']['GenomeInfo'] = LoadJSON(Protocol['Meta']['GenomeInfo'])
 	Protocol['Meta']['CaptureInfo'] = LoadJSON(Protocol['Meta']['CaptureInfo'])
 	for index in range(len(Protocol['Units'])): 
@@ -57,9 +58,21 @@ def MakeDirStage(Unit, Meta): os.mkdir(Unit['FileNames']["OutputDir"])
 def CutadaptStage(Unit, Meta):
 	for index, item in enumerate(Unit["Input"]):
 		if (item["Type"] == "fastq") and (item["Adapter"] is not None):
-			Cutadapt(InputR1 = item['R1'], InputR2 = item['R2'], OutputR1 = Unit['FileNames']['Cutadapt'][index]['R1'], OutputR2 = Unit['FileNames']['Cutadapt'][index]['R2'], Adapter = CONFIG_ADAPTERS[item["Adapter"]], ReportTXT = Unit['FileNames']['Cutadapt'][index]['Stats'], Threads = Meta["Threads"])
-			FastQC(InputFastQ = Unit['FileNames']['Cutadapt'][index]['R1'], OutputHTML = Unit['FileNames']['Cutadapt'][index]['FastQC'], Size = Meta["FastQSampleSize"], Threads = Meta["Threads"])
-		if item["Type"] == "bam": pass
+			Cutadapt(
+				InputR1 = item['R1'],
+				InputR2 = item['R2'],
+				OutputR1 = Unit['FileNames']['Cutadapt'][index]['R1'],
+				OutputR2 = Unit['FileNames']['Cutadapt'][index]['R2'],
+				Adapter = CONFIG_ADAPTERS[item["Adapter"]],
+				ReportTXT = Unit['FileNames']['Cutadapt'][index]['Stats'],
+				Threads = Meta["Threads"]
+			)
+			FastQC(
+				InputFastQ = Unit['FileNames']['Cutadapt'][index]['R1'],
+				OutputHTML = Unit['FileNames']['Cutadapt'][index]['FastQC'],
+				Size = Meta["FastQSampleSize"],
+				Threads = Meta["Threads"]
+			)
 
 def BWAStage(Unit, Meta):
 	with tempfile.TemporaryDirectory() as TempDir:
@@ -67,30 +80,87 @@ def BWAStage(Unit, Meta):
 		for index, item in enumerate(Unit["Input"]):
 			OutputBAM = os.path.join(TempDir, f"temp_{index}.bam")
 			if item["Type"] == "fastq":
-				if item["Adapter"] is not None: R1, R2 = Unit['FileNames']['Cutadapt'][index]['R1'], Unit['FileNames']['Cutadapt'][index]['R2']
-				else: R1, R2 = item['R1'], item['R2']
-				BWA(InputR1 = R1, InputR2 = R2, Reference = Meta["GenomeInfo"]['FASTA'], RGHeader = item["RG"], OutputBAM = OutputBAM, ActiveContigs = Unit['FileNames']['Cutadapt'][index]['ActiveContigs'], Threads = Meta["Threads"])
+				if item["Adapter"] is not None: 
+					R1 = Unit['FileNames']['Cutadapt'][index]['R1']
+					R2 = Unit['FileNames']['Cutadapt'][index]['R2']
+				else: 
+					R1 = item['R1']
+					R2 = item['R2']
+				BWA(
+					InputR1 = R1,
+					InputR2 = R2,
+					Reference = Meta["GenomeInfo"]['FASTA'],
+					RGHeader = item["RG"],
+					OutputBAM = OutputBAM,
+					ActiveContigs = Unit['FileNames']['Cutadapt'][index]['ActiveContigs'],
+					Threads = Meta["Threads"]
+				)
 				Shards += [ OutputBAM ]
 			if item["Type"] == "bam": pass # TODO
-		if len(Shards) > 1: MergeBAMs(BAMs = Shards, OutputBAM = Unit['FileNames']["PrimaryBAM"], SortOrder = "queryname")
-		else: BashSubprocess(Name = f'BWAStage.CopyBAM', Command = f'cp "{Shards[0]}" "{Unit['FileNames']["PrimaryBAM"]}"')
+		if len(Shards) > 1:
+			MergeBAMs(
+				BAMs = Shards,
+				OutputBAM = Unit['FileNames']["PrimaryBAM"],
+				SortOrder = "queryname"
+			)
+		else: 
+			BashSubprocess(
+				Name = f'BWAStage.CopyBAM',
+				Command = f'cp "{Shards[0]}" "{Unit['FileNames']["PrimaryBAM"]}"'
+			)
 		FlagStat(InputBAM = Unit['FileNames']["PrimaryBAM"], OutputJSON = Unit['FileNames']["FlagStat"], Threads = Meta["Threads"])
 
-def GetActiveContigs(Unit): pass # TODO
+def GetActiveContigs(Unit):
+	Data = [ LoadContigList(item['ActiveContigs']) for item in Unit['FileNames']['Cutadapt'].values() ]
+	Data = list(set([item for sublist in Data for item in sublist]))
+	return Data
 
 def MarkDuplicatesStage(Unit, Meta):
-	MarkDuplicates(InputBAM = Unit['FileNames']["PrimaryBAM"], OutputBAM = Unit['FileNames']["DuplessBAM"], MetricsTXT = Unit['FileNames']["DuplessMetrics"])
+	MarkDuplicates(
+		InputBAM = Unit['FileNames']["PrimaryBAM"],
+		OutputBAM = Unit['FileNames']["DuplessBAM"],
+		MetricsTXT = Unit['FileNames']["DuplessMetrics"]
+	)
 
 def CoverageStatsStage(Unit, Meta):
-	CoverageStats(Name = Unit['ID'], FinalBAM = Unit['FileNames']["DuplessBAM"], StatsTXT = Unit['FileNames']['CoverageStats'], CaptureInfo = Meta['CaptureInfo'], GenomeInfo = Meta['GenomeInfo'])
+	CoverageStats(
+		Name = Unit['ID'],
+		FinalBAM = Unit['FileNames']["DuplessBAM"],
+		StatsTXT = Unit['FileNames']['CoverageStats'],
+		CaptureInfo = Meta['CaptureInfo'],
+		GenomeInfo = Meta['GenomeInfo']
+	)
 
 def BaseRecalibrationStage(Unit, Meta):
-	BaseRecalibration(InputBAM = Unit['FileNames']["DuplessBAM"], OutputBAM = Unit['FileNames']["RecalBAM"], dbSNP = None, Reference = Meta["GenomeInfo"]['FASTA'], ActiveContigs = Unit['ActiveContigs'], Threads = Meta["Threads"]) # TODO dbSNP
+	BaseRecalibration(
+		InputBAM = Unit['FileNames']["DuplessBAM"],
+		OutputBAM = Unit['FileNames']["RecalBAM"],
+		dbSNP = None, # TODO dbSNP
+		Reference = Meta["GenomeInfo"]['FASTA'],
+		ActiveContigs = Unit['ActiveContigs'],
+		Threads = Meta["Threads"]
+	) 
 
 def HaplotypeCallingStage(Unit, Meta):
-	HaplotypeCalling(InputBAM = Unit['FileNames']["RecalBAM"], OutputVCF = Unit['FileNames']["VCF"], OutputGVCF = Unit['FileNames']["gVCF"], Reference = Meta["GenomeInfo"]['FASTA'], ActiveContigs = Unit['ActiveContigs'], Threads = Meta["Threads"])
+	HaplotypeCalling(
+		InputBAM = Unit['FileNames']["RecalBAM"],
+		OutputVCF = Unit['FileNames']["VCF"],
+		OutputGVCF = Unit['FileNames']["gVCF"],
+		Reference = Meta["GenomeInfo"]['FASTA'],
+		ActiveContigs = Unit['ActiveContigs'],
+		Threads = Meta["Threads"]
+	)
 
-def StatsSummaryStage(Unit, Meta): pass # TODO
+def StatsSummaryStage(Unit, Meta):
+	Result = {
+		'RefseqName':      Meta['GenomeInfo']['NAME'],
+		'CaptureName':     Meta['CaptureInfo']['NAME'],
+		'Cutadapt':        { index: CutadaptStat(item['Stats']) for index, item in Unit['FileNames']['Cutadapt'].items() },
+		'FlagStat':        LoadFlagStat(Unit['FileNames']['FlagStat']),
+		'MarkDuplicates':  LoadMarkDuplicatesStat(Unit['FileNames']['DuplessMetrics']),
+		'CoverageStats':   LoadCoverageStats(Unit['FileNames']['CoverageStats'])
+		}
+	SaveJSON(Result, Unit['FileNames']['FullStats'])
 
 # ------======| ALIGN PIPELINE |======------
 
@@ -111,6 +181,8 @@ def AlignProtocolAndBackup(UnitsFile, NoCall = False):
 		StageAndBackup(Stage = 1, Func = CutadaptStage, Parameters = Parameters)
 		StageAndBackup(Stage = 2, Func = BWAStage, Parameters = Parameters)
 		Protocol["Units"][UnitIndex]['ActiveContigs'] = GetActiveContigs(Protocol["Units"][UnitIndex])
+		ContigsString = ', '.join(Protocol["Units"][UnitIndex]['ActiveContigs'])
+		logging.info(f'Active contigs: {ContigsString}')
 		Parameters = { 'Unit': Protocol["Units"][UnitIndex], 'Meta': Protocol['Meta'] }
 		StageAndBackup(Stage = 3, Func = MarkDuplicatesStage, Parameters = Parameters)
 		StageAndBackup(Stage = 4, Func = CoverageStatsStage, Parameters = Parameters)
@@ -120,5 +192,6 @@ def AlignProtocolAndBackup(UnitsFile, NoCall = False):
 			StageAndBackup(Stage = 7, Func = HaplotypeCallingStage, Parameters = Parameters)
 		logging.info(f'Unit: "{Protocol["Units"][UnitIndex]["ID"]}"; Summary time: {Timestamp(StartTime)}')
 	HarvestStats(Protocol) # TODO
-	# TODO Remove temp
+	if Protocol['Meta']['RemoveTempFiles']:
+		for t in glob.glob(os.path.join(Unit['FileNames']["OutputDir"], '_temp.*')): os.remove(t)
 	os.remove(Protocol['Backup']['FN'])

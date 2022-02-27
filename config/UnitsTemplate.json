@@ -1,7 +1,7 @@
 {
 	"Meta": {
 		"Threads": 10,
-		"RemoveTempImmediately": false,
+		"RemoveTempFiles": false,
 		"FastQSampleSize": 1000000,
 		"GenomeInfo": ".json",
 		"CaptureInfo": ".json",

@@ -26,7 +26,8 @@ def RefseqPreparation(FastaPath, GenomeName, ParentDir, Threads = multiprocessin
 	logging.info(f'Directory created: "{OutputDir}"')
 	Fasta = SeqIO.parse(OpenAnyway(FastaPath, "rt"), "fasta")
 	logging.info(f'FASTA opened: "{FastaPath}"')
-	SearchQueries = { name: re.compile("|".join([f"({SeriesReplace(item, CONFIG_RESTRICTION_ENZYMES['WildCards'])})" for item in sequences])) for name, sequences in CONFIG_RESTRICTION_ENZYMES["Enzymes"].items() }
+	MakeRegExp = lambda x: re.compile("|".join([f"({SeriesReplace(item, CONFIG_RESTRICTION_ENZYMES['WildCards'])})" for item in x]))
+	SearchQueries = { name: MakeRegExp(sequences) for name, sequences in CONFIG_RESTRICTION_ENZYMES["Enzymes"].items() }
 	with tempfile.TemporaryDirectory() as TempDir:
 		FNdict = CreateGenomeInfo(GenomeName, TempDir)
 		with open(FNdict['FASTA'], "w") as NewFasta, open(FNdict['CHROMSIZES'], "w") as ChromSizes:
@@ -42,14 +43,29 @@ def RefseqPreparation(FastaPath, GenomeName, ParentDir, Threads = multiprocessin
 					FileWrapper.close()
 				logging.info(f'Contig "{contig.name}" ready')
 		logging.info(f"New FASTA, ChromSizes and RestrictionSites are ready")
-		BashSubprocess(Name = f"SAMtools Index", Command = f'samtools faidx -@ {Threads} "{FNdict["FASTA"]}"')
-		BashSubprocess(Name = f"BWA Index", Command = f'bwa index "{FNdict["FASTA"]}"')
-		BashSubprocess(Name = f"GATK Index", Command = f'{GATK_PATH} CreateSequenceDictionary --VERBOSITY ERROR -R "{FNdict["FASTA"]}"')
-		BashSubprocess(Name = f'Genome BED', Command = f'awk \'BEGIN {{ FS = "\\t" }}; {{ print $1 FS "0" FS $2 }}\' "{FaiFN}" > "{BedFN}"')
+		BashSubprocess(
+			Name = f"SAMtools Index",
+			Command = f'samtools faidx -@ {Threads} "{FNdict["FASTA"]}"'
+		)
+		BashSubprocess(
+			Name = f"BWA Index",
+			Command = f'bwa index "{FNdict["FASTA"]}"'
+		)
+		BashSubprocess(
+			Name = f"GATK Index",
+			Command = f'{GATK_PATH} CreateSequenceDictionary --VERBOSITY ERROR -R "{FNdict["FASTA"]}"'
+		)
+		BashSubprocess(
+			Name = f'Genome BED',
+			Command = f'awk \'BEGIN {{ FS = "\\t" }}; {{ print $1 FS "0" FS $2 }}\' "{FaiFN}" > "{BedFN}"'
+		)
 		JsonFN = os.path.join(TempDir, f'{GenomeName}.info.json')
 		ConfigJson = CreateGenomeInfo(GenomeName, OutputDir)
 		SaveJSON(ConfigJson, JsonFN)
-		BashSubprocess(Name = f"Copy Files", Command = f'cp {os.path.join(TempDir, "*")} "{OutputDir}"')
+		BashSubprocess(
+			Name = f"Copy Files",
+			Command = f'cp {os.path.join(TempDir, "*")} "{OutputDir}"'
+		)
 
 ## ------======| CAPTURE PREP |======------
 
@@ -69,9 +85,26 @@ def CapturePreparation(CaptureName, InputBED, GenomeInfoJSON, ParentDir):
 	GenomeInfo = LoadJSON(GenomeInfoJSON)
 	with tempfile.TemporaryDirectory() as TempDir:
 		FNdict = CreateCaptureInfo(CaptureName, TempDir)
-		BashSubprocess(Name = f"CapturePreparation.Filter&Sort", Command = f'set -o pipefail; bedtools intersect -a "{GenomeInfo["BED"]}" -b "{InputBED}" | bedtools sort -faidx "{GenomeInfo["FAI"]}" | sed -e \'s/$/\\t\\./\' > "{FNdict["CAP"]}"')
-		BashSubprocess(Name = f"CapturePreparation.NotCapture", Command = f'bedtools subtract -a "{GenomeInfo["BED"]}" -b "{FNdict["CAP"]}" | sed -e \'s/$/\\t\\./\' > "{FNdict["NOTCAP"]}"')
+		BashSubprocess(
+			Name = f"CapturePreparation.Filter&Sort",
+			Command = ' '.join([
+				f'set -o pipefail;',
+				f'bedtools intersect -a "{GenomeInfo["BED"]}" -b "{InputBED}" |',
+				f'bedtools sort -faidx "{GenomeInfo["FAI"]}" |',
+				f'sed -e \'s/$/\\t\\./\' > "{FNdict["CAP"]}"'
+			])
+		)
+		BashSubprocess(
+			Name = f"CapturePreparation.NotCapture",
+			Command = ' '.join([
+				f'bedtools subtract -a "{GenomeInfo["BED"]}" -b "{FNdict["CAP"]}" |',
+				f'sed -e \'s/$/\\t\\./\' > "{FNdict["NOTCAP"]}"'
+			])
+		)
 		JsonFN = os.path.join(TempDir, f'{CaptureName}.info.json')
 		ConfigJson = CreateCaptureInfo(CaptureName, OutputDir)
 		SaveJSON(ConfigJson, JsonFN)
-		BashSubprocess(Name = f"Copy Files", Command = f'cp {os.path.join(TempDir, "*")} "{OutputDir}"')
+		BashSubprocess(
+			Name = f"Copy Files",
+			Command = f'cp {os.path.join(TempDir, "*")} "{OutputDir}"'
+		)

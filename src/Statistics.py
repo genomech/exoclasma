@@ -10,20 +10,32 @@ def FastQC(InputFastQ, OutputHTML, Size = 0, Threads = multiprocessing.cpu_count
 		if Size != 0:
 			logging.info(f'Subsample: {Size}')
 			SampleFilename = os.path.join(TempDir, 'sample.fastq.gz')
-			BashSubprocess(Name = f'FastQC.Sampling', Command = f'zcat -q "{InputFastQ}" | head -{Size * 4} | gzip -c > "{SampleFilename}"')
+			BashSubprocess(
+				Name = f'FastQC.Sampling',
+				Command = f'zcat -q "{InputFastQ}" | head -{Size * 4} | gzip -c > "{SampleFilename}"'
+			)
 			AnalyzeFilename = SampleFilename
-		BashSubprocess(Name = f'FastQC.Analysis', Command = f'fastqc -o "{TempDir}" -t {Threads} "{AnalyzeFilename}"')
+		BashSubprocess(
+			Name = f'FastQC.Analysis',
+			Command = f'fastqc -o "{TempDir}" -t {Threads} "{AnalyzeFilename}"'
+		)
 		HTMLTemp = glob.glob(os.path.join(TempDir, '*.html'))
 		if len(HTMLTemp) != 1:
 			logging.error(f'Error processing file "{InputFastQ}"')
 			raise RuntimeError
-		BashSubprocess(Name = f'FastQC.Move', Command = f'cp "{HTMLTemp[0]}" "{OutputHTML}"') 
+		BashSubprocess(
+			Name = f'FastQC.Move',
+			Command = f'cp "{HTMLTemp[0]}" "{OutputHTML}"'
+		) 
 
 
 ## ------======| FLAGSTAT |======------
 
 def FlagStat(InputBAM, OutputJSON, Threads = multiprocessing.cpu_count()):
-	BashSubprocess(Name = f'FlagStat.Statistics', Command = f'samtools flagstat -@ {Threads} -O json "{InputBAM}" > "{OutputJSON}"')
+	BashSubprocess(
+		Name = f'FlagStat.Statistics',
+		Command = f'samtools flagstat -@ {Threads} -O json "{InputBAM}" > "{OutputJSON}"'
+	)
 
 def LoadFlagStat(StatJSON): return LoadJSON(StatJSON)
 
@@ -46,15 +58,29 @@ def CutadaptStat(StatTXT):
 
 ## ------======| COVERAGE & ENRICHMENT STATS |======------
 
+def LoadBedtoolsOutput(FN): pandas.read_csv(FN, sep='\t', header=None, dtype={1: int, 4: float})[[1, 4]]
+
 def CoverageStats(Name, FinalBAM, StatsTXT, CaptureInfo, GenomeInfo):
 	logging.info(f'BAM File: "{FinalBAM}"; Stats File: "{StatsTXT}"')
 	with tempfile.TemporaryDirectory() as TempDir:
 		CaptureTemp = os.path.join(TempDir, 'capture.csv')
 		NotCaptureTemp = os.path.join(TempDir, 'not_capture.csv')
-		BashSubprocess(Name = f'CoverageStats.Capture', Command = f'bedtools coverage -hist -sorted -g "{GenomeInfo["FAI"]}" -a "{CaptureInfo["CAP"]}" -b "{FinalBAM}" | grep -P "^all.*$" > "{CaptureTemp}"')
-		BashSubprocess(Name = f'CoverageStats.NotCapture', Command = f'bedtools coverage -hist -sorted -g "{GenomeInfo["FAI"]}" -a "{CaptureInfo["CAP"]}" -b "{FinalBAM}" | grep -P "^all.*$" > "{NotCaptureTemp}"')
-		CaptureData = pandas.read_csv(CaptureTemp, sep='\t', header=None, dtype={1: int, 4: float})[[1, 4]]
-		NotCaptureData = pandas.read_csv(NotCaptureTemp, sep='\t', header=None, dtype={1: int, 4: float})[[1, 4]]
+		BashSubprocess(
+			Name = f'CoverageStats.Capture',
+			Command = ' '.join([
+				f'bedtools coverage -hist -sorted -g "{GenomeInfo["FAI"]}" -a "{CaptureInfo["CAP"]}" -b "{FinalBAM}" |',
+				f'grep -P "^all.*$" > "{CaptureTemp}"'
+			])
+		)
+		BashSubprocess(
+			Name = f'CoverageStats.NotCapture',
+			Command = ' '.join([
+				f'bedtools coverage -hist -sorted -g "{GenomeInfo["FAI"]}" -a "{CaptureInfo["NOTCAP"]}" -b "{FinalBAM}" |',
+				f'grep -P "^all.*$" > "{NotCaptureTemp}"'
+			])
+		)
+		CaptureData = LoadBedtoolsOutput(CaptureTemp)
+		NotCaptureData = LoadBedtoolsOutput(NotCaptureTemp)
 	Result = {
 		"Name":                Name,
 		"Capture DP>10 [%]":   CaptureData[CaptureData[1] >= 10][4].sum() * 100,
@@ -71,3 +97,8 @@ def CoverageStats(Name, FinalBAM, StatsTXT, CaptureInfo, GenomeInfo):
 	SaveJSON(Result, StatsTXT)
 
 def LoadCoverageStats(StatJSON): return LoadJSON(StatJSON)
+
+## ------======| ACTIVE CONTIGS |======------
+
+def LoadContigList(ContigsTXT):
+	return open(ContigsTXT, 'rt').readlines()[:-1].split('\n')
