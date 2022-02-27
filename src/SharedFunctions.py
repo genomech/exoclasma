@@ -27,6 +27,8 @@ import warnings
 
 ## ------======| LOGGING |======------
 
+VERBOSITY_LEVELS = {'debug': 10, 'info': 20, 'warning': 30, 'error': 40}
+
 def ExceptionHook(Type, Value, Traceback): logging.exception(f"{Type.__name__}: {Value}", exc_info=(Type, Value, Traceback))
 
 def ConfigureLogger(LogFileName=os.devnull, Level=logging.DEBUG):
@@ -95,5 +97,9 @@ def BashSubprocess(Name, Command, AllowedExitCodes = list()):
 ## ------======| LOAD CONFIG |======------
 
 CONFIG_RESTRICTION_ENZYMES = LoadJSON(os.path.join(CurrentDir(), "..", "config", "RestrictionEnzymes.json"))
+
 CONFIG_JAVA_OPTIONS = LoadJSON(os.path.join(CurrentDir(), "..", "config", "JavaOptions.json"))
+
+CONFIG_ADAPTERS = LoadJSON(os.path.join(CurrentDir(), "..", "config", "Adapters.json"))
+
 GATK_PATH = os.path.abspath(os.path.join(CurrentDir(), "..", "gatk", "gatk"))

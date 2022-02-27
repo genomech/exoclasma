@@ -1,0 +1,27 @@
+{
+	"Meta": {
+		"Threads": 10,
+		"RemoveTempImmediately": false,
+		"FastQSampleSize": 1000000,
+		"GenomeInfo": ".json",
+		"CaptureInfo": ".json",
+		"PoolDir": "./"
+	},
+	"Units": [
+		{
+			"ID": "foo",
+			"Input": [
+				{
+					"Type": "fastq",
+					"R1": "",
+					"R2": "",
+					"Sample": "",
+					"Library": "",
+					"Format": "",
+					"Adapter": null,
+					"RG": null
+				}
+			]
+		}
+	]
+} 

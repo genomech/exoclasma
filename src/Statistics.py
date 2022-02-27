@@ -43,3 +43,31 @@ def CutadaptStat(StatTXT):
 	Data = pandas.read_csv(StatTXT, sep='\t')
 	return Data.transpose()[0].to_dict()
 
+
+## ------======| COVERAGE & ENRICHMENT STATS |======------
+
+def CoverageStats(Name, FinalBAM, StatsTXT, CaptureInfo, GenomeInfo):
+	logging.info(f'BAM File: "{FinalBAM}"; Stats File: "{StatsTXT}"')
+	with tempfile.TemporaryDirectory() as TempDir:
+		CaptureTemp = os.path.join(TempDir, 'capture.csv')
+		NotCaptureTemp = os.path.join(TempDir, 'not_capture.csv')
+		BashSubprocess(Name = f'CoverageStats.Capture', Command = f'bedtools coverage -hist -sorted -g "{GenomeInfo["FAI"]}" -a "{CaptureInfo["CAP"]}" -b "{FinalBAM}" | grep -P "^all.*$" > "{CaptureTemp}"')
+		BashSubprocess(Name = f'CoverageStats.NotCapture', Command = f'bedtools coverage -hist -sorted -g "{GenomeInfo["FAI"]}" -a "{CaptureInfo["CAP"]}" -b "{FinalBAM}" | grep -P "^all.*$" > "{NotCaptureTemp}"')
+		CaptureData = pandas.read_csv(CaptureTemp, sep='\t', header=None, dtype={1: int, 4: float})[[1, 4]]
+		NotCaptureData = pandas.read_csv(NotCaptureTemp, sep='\t', header=None, dtype={1: int, 4: float})[[1, 4]]
+	Result = {
+		"Name":                Name,
+		"Capture DP>10 [%]":   CaptureData[CaptureData[1] >= 10][4].sum() * 100,
+		"Capture Average":     CaptureData.apply(lambda x: x[1] * x[4], axis=1).sum(),
+		"NotCapture Average":  NotCaptureData.apply(lambda x: x[1] * x[4], axis=1).sum(),
+		"Enrichment Average":  None,
+		"Capture DP0 [%]":     CaptureData.loc[0, 4] * 100,
+		"NotCapture DP0 [%]":  NotCaptureData.loc[0, 4] * 100
+	}
+	try:
+		Result["Enrichment Average"] = Result["Capture Average"] / Result["NotCapture Average"]
+	except ZeroDivisionError:
+		pass
+	SaveJSON(Result, StatsTXT)
+
+def LoadCoverageStats(StatJSON): return LoadJSON(StatJSON)

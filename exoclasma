@@ -10,13 +10,21 @@ from src.PreparationFunctions import *
 def CreateParser():
 	Parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=f"exoclasma: Exo-C Sequence Analysis Tools", epilog=f"Email: regnveig@ya.ru")
 	Parser.add_argument('--version', action='version', version=__version__)
+	Parser.add_argument('-v', '--verbosity', default='info', type=str, help=f"Verbosity (debug, info, warning, or error)")
 	Subparsers = Parser.add_subparsers(title='Commands', dest='command')
 	
 	# PrepareReference
-	PrepareReferenceParser = Subparsers.add_parser('RefseqPreparation', help=f"Prepare reference sequence")
+	PrepareReferenceParser = Subparsers.add_parser('RefseqPreparation', help=f"Prepare Reference Sequence. Create genomic indices for several tools, and GenomeInfo JSON file.")
 	PrepareReferenceParser.add_argument('-f', '--fasta', required=True, type=str, help=f"Raw FASTA file. May be gzipped or bzipped")
 	PrepareReferenceParser.add_argument('-n', '--name', required=True, type=str, help=f"Name of genome assembly. Will be used as folder name and files prefix")
 	PrepareReferenceParser.add_argument('-p', '--parent', required=True, type=str, help=f"Parent dir where reference folder will be created")
+	
+	# PrepareReference
+	PrepareCaptureParser = Subparsers.add_parser('CapturePreparation', help=f"Prepare Capture BED. Filter and sort Capture BED, create NotCapture and CaptureInfo JSON files")
+	PrepareCaptureParser.add_argument('-b', '--bed', required=True, type=str, help=f"Raw BED file")
+	PrepareCaptureParser.add_argument('-n', '--name', required=True, type=str, help=f"Name of capture. Will be used as folder name and files prefix")
+	PrepareCaptureParser.add_argument('-p', '--parent', required=True, type=str, help=f"Parent dir where capture folder will be created")
+	PrepareCaptureParser.add_argument('-g', '--genomeinfo', required=True, type=str, help=f"GenomeInfo JSON file. See 'exoclasma RefseqPreparation --help' for details")
 	
 	return Parser
 
@@ -25,9 +33,16 @@ if __name__ == '__main__':
 	Parser = CreateParser()
 	Namespace = Parser.parse_args(sys.argv[1:])
 	
+	ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
+	
 	if Namespace.command == "RefseqPreparation":
-		ConfigureLogger(Level = logging.DEBUG)
+		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
 		Fasta, Name, Parent = os.path.abspath(Namespace.fasta), Namespace.name, os.path.abspath(Namespace.parent)
 		RefseqPreparation(FastaPath = Fasta, GenomeName = Name, ParentDir = Parent)
+	
+	if Namespace.command == "CapturePreparation":
+		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
+		Bed, Name, Parent, GenomeInfo = os.path.abspath(Namespace.bed), Namespace.name, os.path.abspath(Namespace.parent), os.path.abspath(Namespace.genomeinfo)
+		RefseqPreparation(InputBED = Bed, CaptureName = Name, ParentDir = Parent, GenomeInfoJSON = GenomeInfo)
 		
 	else: Parser.print_help()

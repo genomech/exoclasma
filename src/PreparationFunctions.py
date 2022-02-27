@@ -8,6 +8,7 @@ def SeriesReplace(String, Replacements):
 
 def CreateGenomeInfo(GenomeName, Dir):
 	ConfigJson = {
+		'NAME':       GenomeName,
 		'FASTA':      f'{GenomeName}.fasta',
 		'CHROMSIZES': f'{GenomeName}.chromsizes.txt',
 		'FAI':        f'{GenomeName}.fasta.fai',
@@ -54,6 +55,7 @@ def RefseqPreparation(FastaPath, GenomeName, ParentDir, Threads = multiprocessin
 
 def CreateCaptureInfo(CaptureName, Dir):
 	ConfigJson = {
+		'NAME':     CaptureName,
 		'CAP':      f'{CaptureName}.capture.bed',
 		'NOTCAP':   f'{CaptureName}.not_capture.bed'
 	}

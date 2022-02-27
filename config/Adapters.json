@@ -1,0 +1,7 @@
+{
+	"illumina": {
+		"Name": "illumina",
+		"R1": "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA",
+		"R2": "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"
+	}
+}
