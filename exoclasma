@@ -33,8 +33,6 @@ if __name__ == '__main__':
 	Parser = CreateParser()
 	Namespace = Parser.parse_args(sys.argv[1:])
 	
-	ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
-	
 	if Namespace.command == "RefseqPreparation":
 		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
 		Fasta, Name, Parent = os.path.abspath(Namespace.fasta), Namespace.name, os.path.abspath(Namespace.parent)
