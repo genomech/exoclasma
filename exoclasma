@@ -22,28 +22,33 @@ def CreateParser():
 	PrepareReferenceParser.add_argument('-n', '--name', required=True, type=str, help=f"Name of genome assembly. Will be used as folder name and files prefix")
 	PrepareReferenceParser.add_argument('-p', '--parent', required=True, type=str, help=f"Parent dir where reference folder will be created")
 	
-	# PrepareReference
+	# PrepareCapture
 	PrepareCaptureParser = Subparsers.add_parser('CapturePreparation', help=f"Prepare Capture BED. Filter and sort Capture BED, create NotCapture and CaptureInfo JSON files")
 	PrepareCaptureParser.add_argument('-b', '--bed', required=True, type=str, help=f"Raw BED file")
 	PrepareCaptureParser.add_argument('-n', '--name', required=True, type=str, help=f"Name of capture. Will be used as folder name and files prefix")
 	PrepareCaptureParser.add_argument('-p', '--parent', required=True, type=str, help=f"Parent dir where capture folder will be created")
 	PrepareCaptureParser.add_argument('-g', '--genomeinfo', required=True, type=str, help=f"GenomeInfo JSON file. See 'exoclasma RefseqPreparation --help' for details")
 	
+	# AlignPipeline
+	AlignPipelineParser = Subparsers.add_parser('AlignPipeline', help=f"Align FASTA, mark duplicates, BQSR, and variant calling")
+	AlignPipelineParser.add_argument('-u', '--units', required=True, type=str, help=f"Units JSON file.")
+	AlignPipelineParser.add_argument('-n', '--nocall', action='store_true', help=f"Do not perform BQSR and variant calling.")
+	
 	return Parser
 
 if __name__ == '__main__':
-	
 	Parser = CreateParser()
 	Namespace = Parser.parse_args(sys.argv[1:])
-	
 	if Namespace.command == "RefseqPreparation":
 		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
 		Fasta, Name, Parent = os.path.abspath(Namespace.fasta), Namespace.name, os.path.abspath(Namespace.parent)
 		RefseqPreparation(FastaPath = Fasta, GenomeName = Name, ParentDir = Parent)
-	
 	elif Namespace.command == "CapturePreparation":
 		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
 		Bed, Name, Parent, GenomeInfo = os.path.abspath(Namespace.bed), Namespace.name, os.path.abspath(Namespace.parent), os.path.abspath(Namespace.genomeinfo)
 		CapturePreparation(InputBED = Bed, CaptureName = Name, ParentDir = Parent, GenomeInfoJSON = GenomeInfo)
-		
+	elif Namespace.command == "AlignPipeline":
+		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
+		Units, NoCall, Verbosity = os.path.abspath(Namespace.units), Namespace.nocall, VERBOSITY_LEVELS[Namespace.verbosity]
+		AlignPipeline(UnitsFile = Units, Verbosity = Verbosity, NoCall = NoCall)
 	else: Parser.print_help()

@@ -1,4 +1,4 @@
-from src.SharedFunctions import *
+from .SharedFunctions import *
 
 
 ## ------======| MISC |======------
@@ -38,7 +38,7 @@ def BWA(InputR1, InputR2, Reference, RGHeader, OutputBAM, ActiveContigsTXT, Thre
 	ActiveContigsCommand = ' '.join([
 		f"samtools view -O SAM /dev/stdin |",
 		f"awk -F '\\t' '{{ print $3 }}' - |",
-		f"uniq > \"{ActiveContigsTXT}\";"
+		f"sort | uniq > \"{ActiveContigsTXT}\";"
 	])
 	if InputR2 is None:
 		logging.info(f'Input FASTQ: "{InputR1}"; Output BAM: "{OutputBAM}"; Reference: "{Reference}"; RG Header: "{RGHeader}"')
@@ -128,7 +128,7 @@ def ContigHaplotypeCalling(Contig, InputBAM, TempDir, Reference):
 	OutputVCF = os.path.join(TempDir, f'output_{Contig}.vcf.gz')
 	BashSubprocess(
 		Name = f'ContigCalling.Calling[{Contig}]',
-		Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["HaplotypeCaller"]}" HaplotypeCaller --verbosity ERROR --native-pair-hmm-threads 2 -OVI false --dont-use-soft-clipped-bases true -ERC GVCF -L "{Contig}" -I "{InputBAM}" -O "{OutputGVCF}" -R "{Reference}"'
+		Command = f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["HaplotypeCaller"]}" HaplotypeCaller -OVI true --verbosity ERROR --native-pair-hmm-threads 2 --dont-use-soft-clipped-bases true -ERC GVCF -L "{Contig}" -I "{InputBAM}" -O "{OutputGVCF}" -R "{Reference}"'
 	)
 	BashSubprocess(
 		Name = f'ContigCalling.Genotype[{Contig}]',

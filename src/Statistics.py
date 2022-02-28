@@ -1,4 +1,4 @@
-from src.SharedFunctions import *
+from .SharedFunctions import *
 
 
 ## ------======| FASTQC |======------
@@ -58,7 +58,7 @@ def CutadaptStat(StatTXT):
 
 ## ------======| COVERAGE & ENRICHMENT STATS |======------
 
-def LoadBedtoolsOutput(FN): pandas.read_csv(FN, sep='\t', header=None, dtype={1: int, 4: float})[[1, 4]]
+def LoadBedtoolsOutput(FN): return pandas.read_csv(FN, sep='\t', header=None, dtype={1: int, 4: float})[[1, 4]]
 
 def CoverageStats(Name, FinalBAM, StatsTXT, CaptureInfo, GenomeInfo):
 	logging.info(f'BAM File: "{FinalBAM}"; Stats File: "{StatsTXT}"')
@@ -82,7 +82,6 @@ def CoverageStats(Name, FinalBAM, StatsTXT, CaptureInfo, GenomeInfo):
 		CaptureData = LoadBedtoolsOutput(CaptureTemp)
 		NotCaptureData = LoadBedtoolsOutput(NotCaptureTemp)
 	Result = {
-		"Name":                Name,
 		"Capture DP>10 [%]":   CaptureData[CaptureData[1] >= 10][4].sum() * 100,
 		"Capture Average":     CaptureData.apply(lambda x: x[1] * x[4], axis=1).sum(),
 		"NotCapture Average":  NotCaptureData.apply(lambda x: x[1] * x[4], axis=1).sum(),
@@ -101,4 +100,4 @@ def LoadCoverageStats(StatJSON): return LoadJSON(StatJSON)
 ## ------======| ACTIVE CONTIGS |======------
 
 def LoadContigList(ContigsTXT):
-	return open(ContigsTXT, 'rt').readlines()[:-1].split('\n')
+	return [item for item in ''.join(open(ContigsTXT, 'rt').readlines())[:-1].split('\n') if item != '*']

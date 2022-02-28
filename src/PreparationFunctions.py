@@ -1,4 +1,4 @@
-from src.SharedFunctions import *
+from .SharedFunctions import *
 
 ## ------======| REFSEQ PREP |======------
 

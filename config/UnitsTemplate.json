@@ -3,13 +3,13 @@
 		"Threads": 10,
 		"RemoveTempFiles": false,
 		"FastQSampleSize": 1000000,
-		"GenomeInfo": ".json",
-		"CaptureInfo": ".json",
-		"PoolDir": "./"
+		"GenomeInfo": "",
+		"CaptureInfo": "",
+		"PoolDir": ""
 	},
 	"Units": [
 		{
-			"ID": "foo",
+			"ID": "",
 			"Input": [
 				{
 					"Type": "fastq",
@@ -17,11 +17,14 @@
 					"R2": "",
 					"Sample": "",
 					"Library": "",
-					"Format": "",
-					"Adapter": null,
-					"RG": null
+					"Adapter": "illumina",
+					"Instrument": "",
+					"Lane": "",
+					"Platform": "ILLUMINA",
+					"Barcode": ""
 				}
-			]
+			],
+			"Stage": 0
 		}
 	]
 } 
