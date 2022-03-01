@@ -100,7 +100,7 @@ def BWAStage(Unit, Meta):
 					Threads = Meta["Threads"]
 				)
 				Shards += [ OutputBAM ]
-			if item["Type"] == "bam": pass # TODO
+			if item["Type"] == "bam": pass
 		if len(Shards) > 1:
 			MergeBAMs(
 				BAMs = Shards,
@@ -143,7 +143,7 @@ def BaseRecalibrationStage(Unit, Meta):
 	BaseRecalibration(
 		InputBAM = Unit['FileNames']["DuplessBAM"],
 		OutputBAM = Unit['FileNames']["RecalBAM"],
-		dbSNP = None, # TODO dbSNP
+		dbSNP = None,
 		Reference = Meta["GenomeInfo"]['FASTA'],
 		ActiveContigs = Unit['ActiveContigs'],
 		Threads = Meta["Threads"]
@@ -201,6 +201,5 @@ def AlignPipeline(UnitsFile, NoCall = False, Verbosity = logging.INFO):
 			for t in glob.glob(os.path.join(Protocol["Units"][UnitIndex]['FileNames']["OutputDir"], '_temp.*')): os.remove(t)
 			logging.info(f'Temp files removed')
 		logging.info(f'Unit: "{Protocol["Units"][UnitIndex]["ID"]}"; Summary time: {Timestamp(StartTime)}')
-	# TODO Harvest Stats
 	
 	os.remove(Protocol['Backup']['FN'])

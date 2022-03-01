@@ -23,6 +23,7 @@ import sys
 import tabix
 import tempfile
 import time
+import vcf
 import warnings
 
 
