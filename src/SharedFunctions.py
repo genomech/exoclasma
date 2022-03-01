@@ -1,6 +1,7 @@
 from Bio import SeqIO
 import argparse
 import bz2
+import collections
 import contextlib
 import copy
 import datetime

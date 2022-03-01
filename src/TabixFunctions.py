@@ -49,4 +49,6 @@ def ParseVcfRow(Row):
 	Result["INFO"] = [i.split('=') for i in Result["INFO"].split(';')]
 	Result["INFO"] = dict([(i[0], True) if (len(i) == 1) else ((i[0], i[1]) if (len(i) == 2) else None) for i in Result["INFO"]])
 	return Result
-	
+
+def VcfVariantMatch(Item, Row):
+	return (Item[0] == Row[0]) and (int(Item[1]) == int(Row[1])) and (Item[2] == Row[3]) and (Item[3] in Row[4].split(','))
