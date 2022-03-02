@@ -1,0 +1,3470 @@
+{
+	"InfoFlags": [
+		"VQSR_POSITIVE_TRAIN_SITE", "VQSR_NEGATIVE_TRAIN_SITE", "segdup", "lcr", "decoy",
+		"nonpar", "rf_positive_label", "rf_negative_label", "rf_train", "transmitted_singleton",
+		"was_mixed", "has_star"
+	],
+	
+	"GQnDP_BinEdges": [
+		"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65",
+		"70", "75", "80", "85", "90", "95", "100"
+	],
+	
+	"AB_BinEdges": [
+		"0.00", "0.05", "0.10", "0.15", "0.20", "0.25", "0.30", "0.35", "0.40", "0.45",
+		"0.50", "0.55", "0.60", "0.65", "0.70", "0.75", "0.80", "0.85", "0.90", "0.95", "1.00"
+	],
+	
+	"Ages_BinEdges": [
+		"0.0", "30.0", "35.0", "40.0", "45.0", "50.0", "55.0", "60.0", "65.0", "70.0",
+		"75.0", "80.0", "inf"
+	],
+	
+	"Ages_TotalIndividualsByBin": [
+		2547, 3423, 4546, 8487, 10355, 12693, 11933, 10534, 8882, 5991, 4136, 1935
+	],
+	
+	"VepScheme": [
+		"Allele", "Consequence", "IMPACT", "SYMBOL", "Gene", "Feature_type", "Feature", "BIOTYPE",
+		"EXON", "INTRON", "HGVSc", "HGVSp", "cDNA_position", "CDS_position", "Protein_position",
+		"Amino_acids", "Codons", "Existing_variation", "ALLELE_NUM", "DISTANCE", "STRAND", "FLAGS",
+		"VARIANT_CLASS", "MINIMISED", "SYMBOL_SOURCE", "HGNC_ID", "CANONICAL", "TSL", "APPRIS",
+		"CCDS", "ENSP", "SWISSPROT", "TREMBL", "UNIPARC", "GENE_PHENO", "SIFT", "PolyPhen",
+		"DOMAINS", "HGVS_OFFSET", "GMAF", "AFR_MAF", "AMR_MAF", "EAS_MAF", "EUR_MAF", "SAS_MAF",
+		"AA_MAF", "EA_MAF", "ExAC_MAF", "ExAC_Adj_MAF", "ExAC_AFR_MAF", "ExAC_AMR_MAF", "ExAC_EAS_MAF",
+		"ExAC_FIN_MAF", "ExAC_NFE_MAF", "ExAC_OTH_MAF", "ExAC_SAS_MAF", "CLIN_SIG", "SOMATIC",
+		"PHENO", "PUBMED", "MOTIF_NAME", "MOTIF_POS", "HIGH_INF_POS", "MOTIF_SCORE_CHANGE", "LoF",
+		"LoF_filter", "LoF_flags", "LoF_info"
+	],
+	
+	"InfoTags": {
+		"ab_hist_alt_bin_freq": {
+			"Path": ["hist", "ab", "alt", "bin_freq"],
+			"Func": "gnomAD_ABHist_Parser"
+		},
+		"AC_afr_female": {
+			"Path": ["popfreq", "all", "afr", "female", "AC"],
+			"Func": "int"
+		},
+		"AC_afr_male": {
+			"Path": ["popfreq", "all", "afr", "male", "AC"],
+			"Func": "int"
+		},
+		"AC_afr": {
+			"Path": ["popfreq", "all", "afr", "all", "AC"],
+			"Func": "int"
+		},
+		"AC_amr_female": {
+			"Path": ["popfreq", "all", "amr", "female", "AC"],
+			"Func": "int"
+		},
+		"AC_amr_male": {
+			"Path": ["popfreq", "all", "amr", "male", "AC"],
+			"Func": "int"
+		},
+		"AC_amr": {
+			"Path": ["popfreq", "all", "amr", "all", "AC"],
+			"Func": "int"
+		},
+		"AC_asj_female": {
+			"Path": ["popfreq", "all", "asj", "female", "AC"],
+			"Func": "int"
+		},
+		"AC_asj_male": {
+			"Path": ["popfreq", "all", "asj", "male", "AC"],
+			"Func": "int"
+		},
+		"AC_asj": {
+			"Path": ["popfreq", "all", "asj", "all", "AC"],
+			"Func": "int"
+		},
+		"AC_eas_female": {
+			"Path": ["popfreq", "all", "eas", "female", "AC"],
+			"Func": "int"
+		},
+		"AC_eas_jpn": {
+			"Path": ["popfreq", "all", "eas", "jpn", "AC"],
+			"Func": "int"
+		},
+		"AC_eas_kor": {
+			"Path": ["popfreq", "all", "eas", "kor", "AC"],
+			"Func": "int"
+		},
+		"AC_eas_male": {
+			"Path": ["popfreq", "all", "eas", "male", "AC"],
+			"Func": "int"
+		},
+		"AC_eas": {
+			"Path": ["popfreq", "all", "eas", "all", "AC"],
+			"Func": "int"
+		},
+		"AC_eas_oea": {
+			"Path": ["popfreq", "all", "eas", "oea", "AC"],
+			"Func": "int"
+		},
+		"AC_female": {
+			"Path": ["popfreq", "all", "all", "female", "AC"],
+			"Func": "int"
+		},
+		"AC_fin_female": {
+			"Path": ["popfreq", "all", "fin", "female", "AC"],
+			"Func": "int"
+		},
+		"AC_fin_male": {
+			"Path": ["popfreq", "all", "fin", "male", "AC"],
+			"Func": "int"
+		},
+		"AC_fin": {
+			"Path": ["popfreq", "all", "fin", "all", "AC"],
+			"Func": "int"
+		},
+		"AC_male": {
+			"Path": ["popfreq", "all", "all", "male", "AC"],
+			"Func": "int"
+		},
+		"AC": {
+			"Path": ["popfreq", "all", "all", "all", "AC"],
+			"Func": "int"
+		},
+		"AC_nfe_bgr": {
+			"Path": ["popfreq", "all", "nfe", "bgr", "AC"],
+			"Func": "int"
+		},
+		"AC_nfe_est": {
+			"Path": ["popfreq", "all", "nfe", "est", "AC"],
+			"Func": "int"
+		},
+		"AC_nfe_female": {
+			"Path": ["popfreq", "all", "nfe", "female", "AC"],
+			"Func": "int"
+		},
+		"AC_nfe_male": {
+			"Path": ["popfreq", "all", "nfe", "male", "AC"],
+			"Func": "int"
+		},
+		"AC_nfe": {
+			"Path": ["popfreq", "all", "nfe", "all", "AC"],
+			"Func": "int"
+		},
+		"AC_nfe_nwe": {
+			"Path": ["popfreq", "all", "nfe", "nwe", "AC"],
+			"Func": "int"
+		},
+		"AC_nfe_onf": {
+			"Path": ["popfreq", "all", "nfe", "onf", "AC"],
+			"Func": "int"
+		},
+		"AC_nfe_seu": {
+			"Path": ["popfreq", "all", "nfe", "seu", "AC"],
+			"Func": "int"
+		},
+		"AC_nfe_swe": {
+			"Path": ["popfreq", "all", "nfe", "swe", "AC"],
+			"Func": "int"
+		},
+		"AC_oth_female": {
+			"Path": ["popfreq", "all", "oth", "female", "AC"],
+			"Func": "int"
+		},
+		"AC_oth_male": {
+			"Path": ["popfreq", "all", "oth", "male", "AC"],
+			"Func": "int"
+		},
+		"AC_oth": {
+			"Path": ["popfreq", "all", "oth", "all", "AC"],
+			"Func": "int"
+		},
+		"AC_popmax": {
+			"Path": ["popfreq", "all", "all", "popmax", "AC"],
+			"Func": "int"
+		},
+		"AC_raw": {
+			"Path": ["popfreq", "all", "all", "raw", "AC"],
+			"Func": "int"
+		},
+		"AC_sas_female": {
+			"Path": ["popfreq", "all", "sas", "female", "AC"],
+			"Func": "int"
+		},
+		"AC_sas_male": {
+			"Path": ["popfreq", "all", "sas", "male", "AC"],
+			"Func": "int"
+		},
+		"AC_sas": {
+			"Path": ["popfreq", "all", "sas", "all", "AC"],
+			"Func": "int"
+		},
+		"AF_afr_female": {
+			"Path": ["popfreq", "all", "afr", "female", "AF"],
+			"Func": "float"
+		},
+		"AF_afr_male": {
+			"Path": ["popfreq", "all", "afr", "male", "AF"],
+			"Func": "float"
+		},
+		"AF_afr": {
+			"Path": ["popfreq", "all", "afr", "all", "AF"],
+			"Func": "float"
+		},
+		"AF_amr_female": {
+			"Path": ["popfreq", "all", "amr", "female", "AF"],
+			"Func": "float"
+		},
+		"AF_amr_male": {
+			"Path": ["popfreq", "all", "amr", "male", "AF"],
+			"Func": "float"
+		},
+		"AF_amr": {
+			"Path": ["popfreq", "all", "amr", "all", "AF"],
+			"Func": "float"
+		},
+		"AF_asj_female": {
+			"Path": ["popfreq", "all", "asj", "female", "AF"],
+			"Func": "float"
+		},
+		"AF_asj_male": {
+			"Path": ["popfreq", "all", "asj", "male", "AF"],
+			"Func": "float"
+		},
+		"AF_asj": {
+			"Path": ["popfreq", "all", "asj", "all", "AF"],
+			"Func": "float"
+		},
+		"AF_eas_female": {
+			"Path": ["popfreq", "all", "eas", "female", "AF"],
+			"Func": "float"
+		},
+		"AF_eas_jpn": {
+			"Path": ["popfreq", "all", "eas", "jpn", "AF"],
+			"Func": "float"
+		},
+		"AF_eas_kor": {
+			"Path": ["popfreq", "all", "eas", "kor", "AF"],
+			"Func": "float"
+		},
+		"AF_eas_male": {
+			"Path": ["popfreq", "all", "eas", "male", "AF"],
+			"Func": "float"
+		},
+		"AF_eas": {
+			"Path": ["popfreq", "all", "eas", "all", "AF"],
+			"Func": "float"
+		},
+		"AF_eas_oea": {
+			"Path": ["popfreq", "all", "eas", "oea", "AF"],
+			"Func": "float"
+		},
+		"AF_female": {
+			"Path": ["popfreq", "all", "all", "female", "AF"],
+			"Func": "float"
+		},
+		"AF_fin_female": {
+			"Path": ["popfreq", "all", "fin", "female", "AF"],
+			"Func": "float"
+		},
+		"AF_fin_male": {
+			"Path": ["popfreq", "all", "fin", "male", "AF"],
+			"Func": "float"
+		},
+		"AF_fin": {
+			"Path": ["popfreq", "all", "fin", "all", "AF"],
+			"Func": "float"
+		},
+		"AF_male": {
+			"Path": ["popfreq", "all", "all", "male", "AF"],
+			"Func": "float"
+		},
+		"AF": {
+			"Path": ["popfreq", "all", "all","all", "AF"],
+			"Func": "float"
+		},
+		"AF_nfe_bgr": {
+			"Path": ["popfreq", "all", "nfe", "bgr", "AF"],
+			"Func": "float"
+		},
+		"AF_nfe_est": {
+			"Path": ["popfreq", "all", "nfe", "est", "AF"],
+			"Func": "float"
+		},
+		"AF_nfe_female": {
+			"Path": ["popfreq", "all", "nfe", "female", "AF"],
+			"Func": "float"
+		},
+		"AF_nfe_male": {
+			"Path": ["popfreq", "all", "nfe", "male", "AF"],
+			"Func": "float"
+		},
+		"AF_nfe": {
+			"Path": ["popfreq", "all", "nfe", "all", "AF"],
+			"Func": "float"
+		},
+		"AF_nfe_nwe": {
+			"Path": ["popfreq", "all", "nfe", "nwe", "AF"],
+			"Func": "float"
+		},
+		"AF_nfe_onf": {
+			"Path": ["popfreq", "all", "nfe", "onf", "AF"],
+			"Func": "float"
+		},
+		"AF_nfe_seu": {
+			"Path": ["popfreq", "all", "nfe", "seu", "AF"],
+			"Func": "float"
+		},
+		"AF_nfe_swe": {
+			"Path": ["popfreq", "all", "nfe", "swe", "AF"],
+			"Func": "float"
+		},
+		"AF_oth_female": {
+			"Path": ["popfreq", "all", "oth", "female", "AF"],
+			"Func": "float"
+		},
+		"AF_oth_male": {
+			"Path": ["popfreq", "all", "oth", "male", "AF"],
+			"Func": "float"
+		},
+		"AF_oth": {
+			"Path": ["popfreq", "all", "oth", "all", "AF"],
+			"Func": "float"
+		},
+		"AF_popmax": {
+			"Path": ["popfreq", "all", "all", "popmax", "AF"],
+			"Func": "float"
+		},
+		"AF_raw": {
+			"Path": ["popfreq", "all", "all", "raw", "AF"],
+			"Func": "float"
+		},
+		"AF_sas_female": {
+			"Path": ["popfreq", "all", "sas", "female", "AF"],
+			"Func": "float"
+		},
+		"AF_sas_male": {
+			"Path": ["popfreq", "all", "sas", "male", "AF"],
+			"Func": "float"
+		},
+		"AF_sas": {
+			"Path": ["popfreq", "all", "sas", "all", "AF"],
+			"Func": "float"
+		},
+		"age_hist_het_bin_freq": {
+			"Path": ["hist", "age", "het", "bin_freq"],
+			"Func": "gnomAD_AgeHist_Parser"
+		},
+		"age_hist_het_n_larger": {
+			"Path": ["hist", "age", "het", "n_larger"],
+			"Func": "int"
+		},
+		"age_hist_het_n_smaller": {
+			"Path": ["hist", "age", "het", "n_smaller"],
+			"Func": "int"
+		},
+		"age_hist_hom_bin_freq": {
+			"Path": ["hist", "age", "hom", "bin_freq"],
+			"Func": "gnomAD_AgeHist_Parser"
+		},
+		"age_hist_hom_n_larger": {
+			"Path": ["hist", "age", "hom", "n_larger"],
+			"Func": "int"
+		},
+		"age_hist_hom_n_smaller": {
+			"Path": ["hist", "age", "hom", "n_smaller"],
+			"Func": "int"
+		},
+		"allele_type": {
+			"Path": ["allele_type"],
+			"Func": "str"
+		},
+		"AN_afr_female": {
+			"Path": ["popfreq", "all", "afr", "female", "AN"],
+			"Func": "int"
+		},
+		"AN_afr_male": {
+			"Path": ["popfreq", "all", "afr", "male", "AN"],
+			"Func": "int"
+		},
+		"AN_afr": {
+			"Path": ["popfreq", "all", "afr", "all", "AN"],
+			"Func": "int"
+		},
+		"AN_amr_female": {
+			"Path": ["popfreq", "all", "amr", "female", "AN"],
+			"Func": "int"
+		},
+		"AN_amr_male": {
+			"Path": ["popfreq", "all", "amr", "male", "AN"],
+			"Func": "int"
+		},
+		"AN_amr": {
+			"Path": ["popfreq", "all", "amr", "all", "AN"],
+			"Func": "int"
+		},
+		"AN_asj_female": {
+			"Path": ["popfreq", "all", "asj", "female", "AN"],
+			"Func": "int"
+		},
+		"AN_asj_male": {
+			"Path": ["popfreq", "all", "asj", "male", "AN"],
+			"Func": "int"
+		},
+		"AN_asj": {
+			"Path": ["popfreq", "all", "asj", "all", "AN"],
+			"Func": "int"
+		},
+		"AN_eas_female": {
+			"Path": ["popfreq", "all", "eas", "female", "AN"],
+			"Func": "int"
+		},
+		"AN_eas_jpn": {
+			"Path": ["popfreq", "all", "eas", "jpn", "AN"],
+			"Func": "int"
+		},
+		"AN_eas_kor": {
+			"Path": ["popfreq", "all", "eas", "kor", "AN"],
+			"Func": "int"
+		},
+		"AN_eas_male": {
+			"Path": ["popfreq", "all", "eas", "male", "AN"],
+			"Func": "int"
+		},
+		"AN_eas": {
+			"Path": ["popfreq", "all", "eas", "all", "AN"],
+			"Func": "int"
+		},
+		"AN_eas_oea": {
+			"Path": ["popfreq", "all", "eas", "oea", "AN"],
+			"Func": "int"
+		},
+		"AN_female": {
+			"Path": ["popfreq", "all", "all", "female", "AN"],
+			"Func": "int"
+		},
+		"AN_fin_female": {
+			"Path": ["popfreq", "all", "fin", "female", "AN"],
+			"Func": "int"
+		},
+		"AN_fin_male": {
+			"Path": ["popfreq", "all", "fin", "male", "AN"],
+			"Func": "int"
+		},
+		"AN_fin": {
+			"Path": ["popfreq", "all", "fin", "all", "AN"],
+			"Func": "int"
+		},
+		"AN_male": {
+			"Path": ["popfreq", "all", "all", "male", "AN"],
+			"Func": "int"
+		},
+		"AN": {
+			"Path": ["popfreq", "all", "all", "all", "AN"],
+			"Func": "int"
+		},
+		"AN_nfe_bgr": {
+			"Path": ["popfreq", "all", "nfe", "bgr", "AN"],
+			"Func": "int"
+		},
+		"AN_nfe_est": {
+			"Path": ["popfreq", "all", "nfe", "est", "AN"],
+			"Func": "int"
+		},
+		"AN_nfe_female": {
+			"Path": ["popfreq", "all", "nfe", "female", "AN"],
+			"Func": "int"
+		},
+		"AN_nfe_male": {
+			"Path": ["popfreq", "all", "nfe", "male", "AN"],
+			"Func": "int"
+		},
+		"AN_nfe": {
+			"Path": ["popfreq", "all", "nfe", "all", "AN"],
+			"Func": "int"
+		},
+		"AN_nfe_nwe": {
+			"Path": ["popfreq", "all", "nfe", "nwe", "AN"],
+			"Func": "int"
+		},
+		"AN_nfe_onf": {
+			"Path": ["popfreq", "all", "nfe", "onf", "AN"],
+			"Func": "int"
+		},
+		"AN_nfe_seu": {
+			"Path": ["popfreq", "all", "nfe", "seu", "AN"],
+			"Func": "int"
+		},
+		"AN_nfe_swe": {
+			"Path": ["popfreq", "all", "nfe", "swe", "AN"],
+			"Func": "int"
+		},
+		"AN_oth_female": {
+			"Path": ["popfreq", "all", "oth", "female", "AN"],
+			"Func": "int"
+		},
+		"AN_oth_male": {
+			"Path": ["popfreq", "all", "oth", "male", "AN"],
+			"Func": "int"
+		},
+		"AN_oth": {
+			"Path": ["popfreq", "all", "oth", "all", "AN"],
+			"Func": "int"
+		},
+		"AN_popmax": {
+			"Path": ["popfreq", "all", "all", "popmax", "AN"],
+			"Func": "int"
+		},
+		"AN_raw": {
+			"Path": ["popfreq", "all", "all", "raw", "AN"],
+			"Func": "int"
+		},
+		"AN_sas_female": {
+			"Path": ["popfreq", "all", "sas", "female", "AN"],
+			"Func": "int"
+		},
+		"AN_sas_male": {
+			"Path": ["popfreq", "all", "sas", "male", "AN"],
+			"Func": "int"
+		},
+		"AN_sas": {
+			"Path": ["popfreq", "all", "sas", "all", "AN"],
+			"Func": "int"
+		},
+		"BaseQRankSum": {
+			"Path": ["BaseQRankSum"],
+			"Func": "float"
+		},
+		"ClippingRankSum": {
+			"Path": ["ClippingRankSum"],
+			"Func": "float"
+		},
+		"controls_AC_afr_female": {
+			"Path": ["popfreq", "controls", "afr", "female", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_afr_male": {
+			"Path": ["popfreq", "controls", "afr", "male", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_afr": {
+			"Path": ["popfreq", "controls", "afr", "all", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_amr_female": {
+			"Path": ["popfreq", "controls", "amr", "female", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_amr_male": {
+			"Path": ["popfreq", "controls", "amr", "male", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_amr": {
+			"Path": ["popfreq", "controls", "amr", "all", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_asj_female": {
+			"Path": ["popfreq", "controls", "asj", "female", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_asj_male": {
+			"Path": ["popfreq", "controls", "asj", "male", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_asj": {
+			"Path": ["popfreq", "controls", "asj", "all", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_eas_female": {
+			"Path": ["popfreq", "controls", "eas", "female", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_eas_jpn": {
+			"Path": ["popfreq", "controls", "eas", "jpn", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_eas_kor": {
+			"Path": ["popfreq", "controls", "eas", "kor", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_eas_male": {
+			"Path": ["popfreq", "controls", "eas", "male", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_eas": {
+			"Path": ["popfreq", "controls", "eas", "all", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_eas_oea": {
+			"Path": ["popfreq", "controls", "eas", "oea", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_female": {
+			"Path": ["popfreq", "controls", "all", "female", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_fin_female": {
+			"Path": ["popfreq", "controls", "fin", "female", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_fin_male": {
+			"Path": ["popfreq", "controls", "fin", "male", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_fin": {
+			"Path": ["popfreq", "controls", "fin", "all", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_male": {
+			"Path": ["popfreq", "controls", "all", "male", "AC"],
+			"Func": "int"
+		},
+		"controls_AC": {
+			"Path": ["popfreq", "controls", "all", "all", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_nfe_bgr": {
+			"Path": ["popfreq", "controls", "nfe", "bgr", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_nfe_est": {
+			"Path": ["popfreq", "controls", "nfe", "est", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_nfe_female": {
+			"Path": ["popfreq", "controls", "nfe", "female", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_nfe_male": {
+			"Path": ["popfreq", "controls", "nfe", "male", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_nfe": {
+			"Path": ["popfreq", "controls", "nfe", "all", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_nfe_nwe": {
+			"Path": ["popfreq", "controls", "nfe", "nwe", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_nfe_onf": {
+			"Path": ["popfreq", "controls", "nfe", "onf", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_nfe_seu": {
+			"Path": ["popfreq", "controls", "nfe", "seu", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_nfe_swe": {
+			"Path": ["popfreq", "controls", "nfe", "swe", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_oth_female": {
+			"Path": ["popfreq", "controls", "oth", "female", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_oth_male": {
+			"Path": ["popfreq", "controls", "oth", "male", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_oth": {
+			"Path": ["popfreq", "controls", "oth", "all", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_popmax": {
+			"Path": ["popfreq", "controls", "all", "popmax", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_raw": {
+			"Path": ["popfreq", "controls", "all", "raw", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_sas_female": {
+			"Path": ["popfreq", "controls", "sas", "female", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_sas_male": {
+			"Path": ["popfreq", "controls", "sas", "male", "AC"],
+			"Func": "int"
+		},
+		"controls_AC_sas": {
+			"Path": ["popfreq", "controls", "sas", "all", "AC"],
+			"Func": "int"
+		},
+		"controls_AF_afr_female": {
+			"Path": ["popfreq", "controls", "afr", "female", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_afr_male": {
+			"Path": ["popfreq", "controls", "afr", "male", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_afr": {
+			"Path": ["popfreq", "controls", "afr", "all", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_amr_female": {
+			"Path": ["popfreq", "controls", "amr", "female", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_amr_male": {
+			"Path": ["popfreq", "controls", "amr", "male", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_amr": {
+			"Path": ["popfreq", "controls", "amr", "all", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_asj_female": {
+			"Path": ["popfreq", "controls", "asj", "female", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_asj_male": {
+			"Path": ["popfreq", "controls", "asj", "male", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_asj": {
+			"Path": ["popfreq", "controls", "asj", "all", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_eas_female": {
+			"Path": ["popfreq", "controls", "eas", "female", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_eas_jpn": {
+			"Path": ["popfreq", "controls", "eas", "jpn", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_eas_kor": {
+			"Path": ["popfreq", "controls", "eas", "kor", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_eas_male": {
+			"Path": ["popfreq", "controls", "eas", "male", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_eas": {
+			"Path": ["popfreq", "controls", "eas", "all", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_eas_oea": {
+			"Path": ["popfreq", "controls", "eas", "oea", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_female": {
+			"Path": ["popfreq", "controls", "all", "female", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_fin_female": {
+			"Path": ["popfreq", "controls", "fin", "female", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_fin_male": {
+			"Path": ["popfreq", "controls", "fin", "male", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_fin": {
+			"Path": ["popfreq", "controls", "fin", "all", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_male": {
+			"Path": ["popfreq", "controls", "all", "male", "AF"],
+			"Func": "float"
+		},
+		"controls_AF": {
+			"Path": ["popfreq", "controls", "all", "all", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_nfe_bgr": {
+			"Path": ["popfreq", "controls", "nfe", "bgr", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_nfe_est": {
+			"Path": ["popfreq", "controls", "nfe", "est", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_nfe_female": {
+			"Path": ["popfreq", "controls", "nfe", "female", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_nfe_male": {
+			"Path": ["popfreq", "controls", "nfe", "male", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_nfe": {
+			"Path": ["popfreq", "controls", "nfe", "all", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_nfe_nwe": {
+			"Path": ["popfreq", "controls", "nfe", "nwe", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_nfe_onf": {
+			"Path": ["popfreq", "controls", "nfe", "onf", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_nfe_seu": {
+			"Path": ["popfreq", "controls", "nfe", "seu", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_nfe_swe": {
+			"Path": ["popfreq", "controls", "nfe", "swe", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_oth_female": {
+			"Path": ["popfreq", "controls", "oth", "female", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_oth_male": {
+			"Path": ["popfreq", "controls", "oth", "male", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_oth": {
+			"Path": ["popfreq", "controls", "oth", "all", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_popmax": {
+			"Path": ["popfreq", "controls", "all", "popmax", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_raw": {
+			"Path": ["popfreq", "controls", "all", "raw", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_sas_female": {
+			"Path": ["popfreq", "controls", "sas", "female", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_sas_male": {
+			"Path": ["popfreq", "controls", "sas", "male", "AF"],
+			"Func": "float"
+		},
+		"controls_AF_sas": {
+			"Path": ["popfreq", "controls", "sas", "all", "AF"],
+			"Func": "float"
+		},
+		"controls_AN_afr_female": {
+			"Path": ["popfreq", "controls", "afr", "female", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_afr_male": {
+			"Path": ["popfreq", "controls", "afr", "male", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_afr": {
+			"Path": ["popfreq", "controls", "afr", "all", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_amr_female": {
+			"Path": ["popfreq", "controls", "amr", "female", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_amr_male": {
+			"Path": ["popfreq", "controls", "amr", "male", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_amr": {
+			"Path": ["popfreq", "controls", "amr", "all", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_asj_female": {
+			"Path": ["popfreq", "controls", "asj", "female", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_asj_male": {
+			"Path": ["popfreq", "controls", "asj", "male", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_asj": {
+			"Path": ["popfreq", "controls", "asj", "all", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_eas_female": {
+			"Path": ["popfreq", "controls", "eas", "female", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_eas_jpn": {
+			"Path": ["popfreq", "controls", "eas", "jpn", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_eas_kor": {
+			"Path": ["popfreq", "controls", "eas", "kor", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_eas_male": {
+			"Path": ["popfreq", "controls", "eas", "male", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_eas": {
+			"Path": ["popfreq", "controls", "eas", "all", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_eas_oea": {
+			"Path": ["popfreq", "controls", "eas", "oea", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_female": {
+			"Path": ["popfreq", "controls", "all", "female", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_fin_female": {
+			"Path": ["popfreq", "controls", "fin", "female", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_fin_male": {
+			"Path": ["popfreq", "controls", "fin", "male", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_fin": {
+			"Path": ["popfreq", "controls", "fin", "all", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_male": {
+			"Path": ["popfreq", "controls", "all", "male", "AN"],
+			"Func": "int"
+		},
+		"controls_AN": {
+			"Path": ["popfreq", "controls", "all", "all", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_nfe_bgr": {
+			"Path": ["popfreq", "controls", "nfe", "bgr", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_nfe_est": {
+			"Path": ["popfreq", "controls", "nfe", "est", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_nfe_female": {
+			"Path": ["popfreq", "controls", "nfe", "female", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_nfe_male": {
+			"Path": ["popfreq", "controls", "nfe", "male", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_nfe": {
+			"Path": ["popfreq", "controls", "nfe", "all", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_nfe_nwe": {
+			"Path": ["popfreq", "controls", "nfe", "nwe", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_nfe_onf": {
+			"Path": ["popfreq", "controls", "nfe", "onf", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_nfe_seu": {
+			"Path": ["popfreq", "controls", "nfe", "seu", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_nfe_swe": {
+			"Path": ["popfreq", "controls", "nfe", "swe", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_oth_female": {
+			"Path": ["popfreq", "controls", "oth", "female", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_oth_male": {
+			"Path": ["popfreq", "controls", "oth", "male", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_oth": {
+			"Path": ["popfreq", "controls", "oth", "all", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_popmax": {
+			"Path": ["popfreq", "controls", "all", "popmax", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_raw": {
+			"Path": ["popfreq", "controls", "all", "raw", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_sas_female": {
+			"Path": ["popfreq", "controls", "sas", "female", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_sas_male": {
+			"Path": ["popfreq", "controls", "sas", "male", "AN"],
+			"Func": "int"
+		},
+		"controls_AN_sas": {
+			"Path": ["popfreq", "controls", "sas", "all", "AN"],
+			"Func": "int"
+		},
+		"controls_faf95_afr": {
+			"Path": ["popfreq", "controls", "afr", "all", "faf95"],
+			"Func": "float"
+		},
+		"controls_faf95_amr": {
+			"Path": ["popfreq", "controls", "amr", "all", "faf95"],
+			"Func": "float"
+		},
+		"controls_faf95_eas": {
+			"Path": ["popfreq", "controls", "eas", "all", "faf95"],
+			"Func": "float"
+		},
+		"controls_faf95": {
+			"Path": ["popfreq", "controls", "all", "all", "faf95"],
+			"Func": "float"
+		},
+		"controls_faf95_nfe": {
+			"Path": ["popfreq", "controls", "nfe", "all", "faf95"],
+			"Func": "float"
+		},
+		"controls_faf95_sas": {
+			"Path": ["popfreq", "controls", "sas", "all", "faf95"],
+			"Func": "float"
+		},
+		"controls_faf99_afr": {
+			"Path": ["popfreq", "controls", "afr", "all", "faf99"],
+			"Func": "float"
+		},
+		"controls_faf99_amr": {
+			"Path": ["popfreq", "controls", "amr", "all", "faf99"],
+			"Func": "float"
+		},
+		"controls_faf99_eas": {
+			"Path": ["popfreq", "controls", "eas", "all", "faf99"],
+			"Func": "float"
+		},
+		"controls_faf99": {
+			"Path": ["popfreq", "controls", "all", "all", "faf99"],
+			"Func": "float"
+		},
+		"controls_faf99_nfe": {
+			"Path": ["popfreq", "controls", "nfe", "all", "faf99"],
+			"Func": "float"
+		},
+		"controls_faf99_sas": {
+			"Path": ["popfreq", "controls", "sas", "all", "faf99"],
+			"Func": "float"
+		},
+		"controls_nhomalt_afr_female": {
+			"Path": ["popfreq", "controls", "afr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_afr_male": {
+			"Path": ["popfreq", "controls", "afr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_afr": {
+			"Path": ["popfreq", "controls", "afr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_amr_female": {
+			"Path": ["popfreq", "controls", "amr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_amr_male": {
+			"Path": ["popfreq", "controls", "amr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_amr": {
+			"Path": ["popfreq", "controls", "amr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_asj_female": {
+			"Path": ["popfreq", "controls", "asj", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_asj_male": {
+			"Path": ["popfreq", "controls", "asj", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_asj": {
+			"Path": ["popfreq", "controls", "asj", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_eas_female": {
+			"Path": ["popfreq", "controls", "eas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_eas_jpn": {
+			"Path": ["popfreq", "controls", "eas", "jpn", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_eas_kor": {
+			"Path": ["popfreq", "controls", "eas", "kor", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_eas_male": {
+			"Path": ["popfreq", "controls", "eas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_eas": {
+			"Path": ["popfreq", "controls", "eas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_eas_oea": {
+			"Path": ["popfreq", "controls", "eas", "oea", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_female": {
+			"Path": ["popfreq", "controls", "all", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_fin_female": {
+			"Path": ["popfreq", "controls", "fin", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_fin_male": {
+			"Path": ["popfreq", "controls", "fin", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_fin": {
+			"Path": ["popfreq", "controls", "fin", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_male": {
+			"Path": ["popfreq", "controls", "all", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt": {
+			"Path": ["popfreq", "controls", "all", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_nfe_bgr": {
+			"Path": ["popfreq", "controls", "nfe", "bgr", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_nfe_est": {
+			"Path": ["popfreq", "controls", "nfe", "est", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_nfe_female": {
+			"Path": ["popfreq", "controls", "nfe", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_nfe_male": {
+			"Path": ["popfreq", "controls", "nfe", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_nfe": {
+			"Path": ["popfreq", "controls", "nfe", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_nfe_nwe": {
+			"Path": ["popfreq", "controls", "nfe", "nwe", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_nfe_onf": {
+			"Path": ["popfreq", "controls", "nfe", "onf", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_nfe_seu": {
+			"Path": ["popfreq", "controls", "nfe", "seu", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_nfe_swe": {
+			"Path": ["popfreq", "controls", "nfe", "swe", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_oth_female": {
+			"Path": ["popfreq", "controls", "oth", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_oth_male": {
+			"Path": ["popfreq", "controls", "oth", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_oth": {
+			"Path": ["popfreq", "controls", "oth", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_popmax": {
+			"Path": ["popfreq", "controls", "all", "popmax", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_raw": {
+			"Path": ["popfreq", "controls", "all", "raw", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_sas_female": {
+			"Path": ["popfreq", "controls", "sas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_sas_male": {
+			"Path": ["popfreq", "controls", "sas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_nhomalt_sas": {
+			"Path": ["popfreq", "controls", "sas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"controls_popmax": {
+			"Path": ["popfreq", "controls", "all", "popmax", "name"],
+			"Func": "str"
+		},
+		"dp_hist_all_bin_freq": {
+			"Path": ["hist", "dp", "all", "bin_freq"],
+			"Func": "gnomAD_GQnDPHist_Parser"
+		},
+		"dp_hist_all_n_larger": {
+			"Path": ["hist", "dp", "all", "n_larger"],
+			"Func": "int"
+		},
+		"dp_hist_alt_bin_freq": {
+			"Path": ["hist", "dp", "alt", "bin_freq"],
+			"Func": "gnomAD_GQnDPHist_Parser"
+		},
+		"dp_hist_alt_n_larger": {
+			"Path": ["hist", "dp", "alt", "n_larger"],
+			"Func": "int"
+		},
+		"DP": {
+			"Path": ["DP"],
+			"Func": "int"
+		},
+		"faf95_afr": {
+			"Path": ["popfreq", "all", "afr", "all", "faf95"],
+			"Func": "float"
+		},
+		"faf95_amr": {
+			"Path": ["popfreq", "all", "amr", "all", "faf95"],
+			"Func": "float"
+		},
+		"faf95_eas": {
+			"Path": ["popfreq", "all", "eas", "all", "faf95"],
+			"Func": "float"
+		},
+		"faf95": {
+			"Path": ["popfreq", "all", "all", "all", "faf95"],
+			"Func": "float"
+		},
+		"faf95_nfe": {
+			"Path": ["popfreq", "all", "nfe", "all", "faf95"],
+			"Func": "float"
+		},
+		"faf95_sas": {
+			"Path": ["popfreq", "all", "sas", "all", "faf95"],
+			"Func": "float"
+		},
+		"faf99_afr": {
+			"Path": ["popfreq", "all", "afr", "all", "faf99"],
+			"Func": "float"
+		},
+		"faf99_amr": {
+			"Path": ["popfreq", "all", "amr", "all", "faf99"],
+			"Func": "float"
+		},
+		"faf99_eas": {
+			"Path": ["popfreq", "all", "eas", "all", "faf99"],
+			"Func": "float"
+		},
+		"faf99": {
+			"Path": ["popfreq", "all", "all", "all", "faf99"],
+			"Func": "float"
+		},
+		"faf99_nfe": {
+			"Path": ["popfreq", "all", "nfe", "all", "faf99"],
+			"Func": "float"
+		},
+		"faf99_sas": {
+			"Path": ["popfreq", "all", "sas", "all", "faf99"],
+			"Func": "float"
+		},
+		"FS": {
+			"Path": ["FS"],
+			"Func": "float"
+		},
+		"gq_hist_all_bin_freq": {
+			"Path": ["hist", "gq", "all", "bin_freq"],
+			"Func": "gnomAD_GQnDPHist_Parser"
+		},
+		"gq_hist_alt_bin_freq": {
+			"Path": ["hist", "gq", "alt", "bin_freq"],
+			"Func": "gnomAD_GQnDPHist_Parser"
+		},
+		"InbreedingCoeff": {
+			"Path": ["InbreedingCoeff"],
+			"Func": "float"
+		},
+		"MQ": {
+			"Path": ["MQ"],
+			"Func": "float"
+		},
+		"MQRankSum": {
+			"Path": ["MQRankSum"],
+			"Func": "float"
+		},
+		"n_alt_alleles": {
+			"Path": ["n_alt_alleles"],
+			"Func": "int"
+		},
+		"nhomalt_afr_female": {
+			"Path": ["popfreq", "all", "afr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_afr_male": {
+			"Path": ["popfreq", "all", "afr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_afr": {
+			"Path": ["popfreq", "all", "afr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_amr_female": {
+			"Path": ["popfreq", "all", "amr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_amr_male": {
+			"Path": ["popfreq", "all", "amr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_amr": {
+			"Path": ["popfreq", "all", "amr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_asj_female": {
+			"Path": ["popfreq", "all", "asj", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_asj_male": {
+			"Path": ["popfreq", "all", "asj", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_asj": {
+			"Path": ["popfreq", "all", "asj", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_eas_female": {
+			"Path": ["popfreq", "all", "eas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_eas_jpn": {
+			"Path": ["popfreq", "all", "eas", "jpn", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_eas_kor": {
+			"Path": ["popfreq", "all", "eas", "kor", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_eas_male": {
+			"Path": ["popfreq", "all", "eas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_eas": {
+			"Path": ["popfreq", "all", "eas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_eas_oea": {
+			"Path": ["popfreq", "all", "eas", "oea", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_female": {
+			"Path": ["popfreq", "all", "all", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_fin_female": {
+			"Path": ["popfreq", "all", "fin", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_fin_male": {
+			"Path": ["popfreq", "all", "fin", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_fin": {
+			"Path": ["popfreq", "all", "fin", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_male": {
+			"Path": ["popfreq", "all", "all", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt": {
+			"Path": ["popfreq", "all", "all", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_nfe_bgr": {
+			"Path": ["popfreq", "all", "nfe", "bgr", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_nfe_est": {
+			"Path": ["popfreq", "all", "nfe", "est", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_nfe_female": {
+			"Path": ["popfreq", "all", "nfe", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_nfe_male": {
+			"Path": ["popfreq", "all", "nfe", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_nfe": {
+			"Path": ["popfreq", "all", "nfe", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_nfe_nwe": {
+			"Path": ["popfreq", "all", "nfe", "nwe", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_nfe_onf": {
+			"Path": ["popfreq", "all", "nfe", "onf", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_nfe_seu": {
+			"Path": ["popfreq", "all", "nfe", "seu", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_nfe_swe": {
+			"Path": ["popfreq", "all", "nfe", "swe", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_oth_female": {
+			"Path": ["popfreq", "all", "oth", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_oth_male": {
+			"Path": ["popfreq", "all", "oth", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_oth": {
+			"Path": ["popfreq", "all", "oth", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_popmax": {
+			"Path": ["popfreq", "all", "all", "popmax", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_raw": {
+			"Path": ["popfreq", "all", "all", "raw", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_sas_female": {
+			"Path": ["popfreq", "all", "sas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_sas_male": {
+			"Path": ["popfreq", "all", "sas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"nhomalt_sas": {
+			"Path": ["popfreq", "all", "sas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_AC_afr_female": {
+			"Path": ["popfreq", "non_cancer", "afr", "female", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_afr_male": {
+			"Path": ["popfreq", "non_cancer", "afr", "male", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_afr": {
+			"Path": ["popfreq", "non_cancer", "afr", "all", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_amr_female": {
+			"Path": ["popfreq", "non_cancer", "amr", "female", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_amr_male": {
+			"Path": ["popfreq", "non_cancer", "amr", "male", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_amr": {
+			"Path": ["popfreq", "non_cancer", "amr", "all", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_asj_female": {
+			"Path": ["popfreq", "non_cancer", "asj", "female", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_asj_male": {
+			"Path": ["popfreq", "non_cancer", "asj", "male", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_asj": {
+			"Path": ["popfreq", "non_cancer", "asj", "all", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_eas_female": {
+			"Path": ["popfreq", "non_cancer", "eas", "female", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_eas_jpn": {
+			"Path": ["popfreq", "non_cancer", "eas", "jpn", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_eas_kor": {
+			"Path": ["popfreq", "non_cancer", "eas", "kor", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_eas_male": {
+			"Path": ["popfreq", "non_cancer", "eas", "male", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_eas": {
+			"Path": ["popfreq", "non_cancer", "eas", "all", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_eas_oea": {
+			"Path": ["popfreq", "non_cancer", "eas", "oea", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_female": {
+			"Path": ["popfreq", "non_cancer", "all", "female", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_fin_female": {
+			"Path": ["popfreq", "non_cancer", "fin", "female", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_fin_male": {
+			"Path": ["popfreq", "non_cancer", "fin", "male", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_fin": {
+			"Path": ["popfreq", "non_cancer", "fin", "all", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_male": {
+			"Path": ["popfreq", "non_cancer", "all", "male", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC": {
+			"Path": ["popfreq", "non_cancer", "all", "all", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_nfe_bgr": {
+			"Path": ["popfreq", "non_cancer", "nfe", "bgr", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_nfe_est": {
+			"Path": ["popfreq", "non_cancer", "nfe", "est", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_nfe_female": {
+			"Path": ["popfreq", "non_cancer", "nfe", "female", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_nfe_male": {
+			"Path": ["popfreq", "non_cancer", "nfe", "male", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_nfe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "all", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_nfe_nwe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "nwe", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_nfe_onf": {
+			"Path": ["popfreq", "non_cancer", "nfe", "onf", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_nfe_seu": {
+			"Path": ["popfreq", "non_cancer", "nfe", "seu", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_nfe_swe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "swe", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_oth_female": {
+			"Path": ["popfreq", "non_cancer", "oth", "female", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_oth_male": {
+			"Path": ["popfreq", "non_cancer", "oth", "male", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_oth": {
+			"Path": ["popfreq", "non_cancer", "oth", "all", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_popmax": {
+			"Path": ["popfreq", "non_cancer", "all", "popmax", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_raw": {
+			"Path": ["popfreq", "non_cancer", "all", "raw", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_sas_female": {
+			"Path": ["popfreq", "non_cancer", "sas", "female", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_sas_male": {
+			"Path": ["popfreq", "non_cancer", "sas", "male", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AC_sas": {
+			"Path": ["popfreq", "non_cancer", "sas", "all", "AC"],
+			"Func": "int"
+		},
+		"non_cancer_AF_afr_female": {
+			"Path": ["popfreq", "non_cancer", "afr", "female", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_afr_male": {
+			"Path": ["popfreq", "non_cancer", "afr", "male", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_afr": {
+			"Path": ["popfreq", "non_cancer", "afr", "all", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_amr_female": {
+			"Path": ["popfreq", "non_cancer", "amr", "female", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_amr_male": {
+			"Path": ["popfreq", "non_cancer", "amr", "male", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_amr": {
+			"Path": ["popfreq", "non_cancer", "amr", "all", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_asj_female": {
+			"Path": ["popfreq", "non_cancer", "asj", "female", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_asj_male": {
+			"Path": ["popfreq", "non_cancer", "asj", "male", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_asj": {
+			"Path": ["popfreq", "non_cancer", "asj", "all", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_eas_female": {
+			"Path": ["popfreq", "non_cancer", "eas", "female", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_eas_jpn": {
+			"Path": ["popfreq", "non_cancer", "eas", "jpn", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_eas_kor": {
+			"Path": ["popfreq", "non_cancer", "eas", "kor", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_eas_male": {
+			"Path": ["popfreq", "non_cancer", "eas", "male", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_eas": {
+			"Path": ["popfreq", "non_cancer", "eas", "all", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_eas_oea": {
+			"Path": ["popfreq", "non_cancer", "eas", "oea", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_female": {
+			"Path": ["popfreq", "non_cancer", "all", "female", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_fin_female": {
+			"Path": ["popfreq", "non_cancer", "fin", "female", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_fin_male": {
+			"Path": ["popfreq", "non_cancer", "fin", "male", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_fin": {
+			"Path": ["popfreq", "non_cancer", "fin", "all", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_male": {
+			"Path": ["popfreq", "non_cancer", "all", "male", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF": {
+			"Path": ["popfreq", "non_cancer", "all", "all", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_nfe_bgr": {
+			"Path": ["popfreq", "non_cancer", "nfe", "bgr", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_nfe_est": {
+			"Path": ["popfreq", "non_cancer", "nfe", "est", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_nfe_female": {
+			"Path": ["popfreq", "non_cancer", "nfe", "female", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_nfe_male": {
+			"Path": ["popfreq", "non_cancer", "nfe", "male", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_nfe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "all", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_nfe_nwe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "nwe", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_nfe_onf": {
+			"Path": ["popfreq", "non_cancer", "nfe", "onf", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_nfe_seu": {
+			"Path": ["popfreq", "non_cancer", "nfe", "seu", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_nfe_swe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "swe", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_oth_female": {
+			"Path": ["popfreq", "non_cancer", "oth", "female", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_oth_male": {
+			"Path": ["popfreq", "non_cancer", "oth", "male", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_oth": {
+			"Path": ["popfreq", "non_cancer", "oth", "all", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_popmax": {
+			"Path": ["popfreq", "non_cancer", "all", "popmax", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_raw": {
+			"Path": ["popfreq", "non_cancer", "all", "raw", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_sas_female": {
+			"Path": ["popfreq", "non_cancer", "sas", "female", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_sas_male": {
+			"Path": ["popfreq", "non_cancer", "sas", "male", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AF_sas": {
+			"Path": ["popfreq", "non_cancer", "sas", "all", "AF"],
+			"Func": "float"
+		},
+		"non_cancer_AN_afr_female": {
+			"Path": ["popfreq", "non_cancer", "afr", "female", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_afr_male": {
+			"Path": ["popfreq", "non_cancer", "afr", "male", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_afr": {
+			"Path": ["popfreq", "non_cancer", "afr", "all", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_amr_female": {
+			"Path": ["popfreq", "non_cancer", "amr", "female", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_amr_male": {
+			"Path": ["popfreq", "non_cancer", "amr", "male", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_amr": {
+			"Path": ["popfreq", "non_cancer", "amr", "all", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_asj_female": {
+			"Path": ["popfreq", "non_cancer", "asj", "female", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_asj_male": {
+			"Path": ["popfreq", "non_cancer", "asj", "male", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_asj": {
+			"Path": ["popfreq", "non_cancer", "asj", "all", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_eas_female": {
+			"Path": ["popfreq", "non_cancer", "eas", "female", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_eas_jpn": {
+			"Path": ["popfreq", "non_cancer", "eas", "jpn", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_eas_kor": {
+			"Path": ["popfreq", "non_cancer", "eas", "kor", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_eas_male": {
+			"Path": ["popfreq", "non_cancer", "eas", "male", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_eas": {
+			"Path": ["popfreq", "non_cancer", "eas", "all", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_eas_oea": {
+			"Path": ["popfreq", "non_cancer", "eas", "oea", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_female": {
+			"Path": ["popfreq", "non_cancer", "all", "female", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_fin_female": {
+			"Path": ["popfreq", "non_cancer", "fin", "female", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_fin_male": {
+			"Path": ["popfreq", "non_cancer", "fin", "male", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_fin": {
+			"Path": ["popfreq", "non_cancer", "fin", "all", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_male": {
+			"Path": ["popfreq", "non_cancer", "all", "male", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN": {
+			"Path": ["popfreq", "non_cancer", "all", "all", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_nfe_bgr": {
+			"Path": ["popfreq", "non_cancer", "nfe", "bgr", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_nfe_est": {
+			"Path": ["popfreq", "non_cancer", "nfe", "est", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_nfe_female": {
+			"Path": ["popfreq", "non_cancer", "nfe", "female", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_nfe_male": {
+			"Path": ["popfreq", "non_cancer", "nfe", "male", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_nfe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "all", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_nfe_nwe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "nwe", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_nfe_onf": {
+			"Path": ["popfreq", "non_cancer", "nfe", "onf", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_nfe_seu": {
+			"Path": ["popfreq", "non_cancer", "nfe", "seu", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_nfe_swe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "swe", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_oth_female": {
+			"Path": ["popfreq", "non_cancer", "oth", "female", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_oth_male": {
+			"Path": ["popfreq", "non_cancer", "oth", "male", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_oth": {
+			"Path": ["popfreq", "non_cancer", "oth", "all", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_popmax": {
+			"Path": ["popfreq", "non_cancer", "all", "popmax", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_raw": {
+			"Path": ["popfreq", "non_cancer", "all", "raw", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_sas_female": {
+			"Path": ["popfreq", "non_cancer", "sas", "female", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_sas_male": {
+			"Path": ["popfreq", "non_cancer", "sas", "male", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_AN_sas": {
+			"Path": ["popfreq", "non_cancer", "sas", "all", "AN"],
+			"Func": "int"
+		},
+		"non_cancer_faf95_afr": {
+			"Path": ["popfreq", "non_cancer", "afr", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_cancer_faf95_amr": {
+			"Path": ["popfreq", "non_cancer", "amr", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_cancer_faf95_eas": {
+			"Path": ["popfreq", "non_cancer", "eas", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_cancer_faf95": {
+			"Path": ["popfreq", "non_cancer", "all", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_cancer_faf95_nfe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_cancer_faf95_sas": {
+			"Path": ["popfreq", "non_cancer", "sas", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_cancer_faf99_afr": {
+			"Path": ["popfreq", "non_cancer", "afr", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_cancer_faf99_amr": {
+			"Path": ["popfreq", "non_cancer", "amr", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_cancer_faf99_eas": {
+			"Path": ["popfreq", "non_cancer", "eas", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_cancer_faf99": {
+			"Path": ["popfreq", "non_cancer", "all", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_cancer_faf99_nfe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_cancer_faf99_sas": {
+			"Path": ["popfreq", "non_cancer", "sas", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_cancer_nhomalt_afr_female": {
+			"Path": ["popfreq", "non_cancer", "afr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_afr_male": {
+			"Path": ["popfreq", "non_cancer", "afr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_afr": {
+			"Path": ["popfreq", "non_cancer", "afr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_amr_female": {
+			"Path": ["popfreq", "non_cancer", "amr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_amr_male": {
+			"Path": ["popfreq", "non_cancer", "amr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_amr": {
+			"Path": ["popfreq", "non_cancer", "amr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_asj_female": {
+			"Path": ["popfreq", "non_cancer", "asj", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_asj_male": {
+			"Path": ["popfreq", "non_cancer", "asj", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_asj": {
+			"Path": ["popfreq", "non_cancer", "asj", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_eas_female": {
+			"Path": ["popfreq", "non_cancer", "eas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_eas_jpn": {
+			"Path": ["popfreq", "non_cancer", "eas", "jpn", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_eas_kor": {
+			"Path": ["popfreq", "non_cancer", "eas", "kor", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_eas_male": {
+			"Path": ["popfreq", "non_cancer", "eas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_eas": {
+			"Path": ["popfreq", "non_cancer", "eas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_eas_oea": {
+			"Path": ["popfreq", "non_cancer", "eas", "oea", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_female": {
+			"Path": ["popfreq", "non_cancer", "all", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_fin_female": {
+			"Path": ["popfreq", "non_cancer", "fin", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_fin_male": {
+			"Path": ["popfreq", "non_cancer", "fin", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_fin": {
+			"Path": ["popfreq", "non_cancer", "fin", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_male": {
+			"Path": ["popfreq", "non_cancer", "all", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt": {
+			"Path": ["popfreq", "non_cancer", "all", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_nfe_bgr": {
+			"Path": ["popfreq", "non_cancer", "nfe", "bgr", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_nfe_est": {
+			"Path": ["popfreq", "non_cancer", "nfe", "est", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_nfe_female": {
+			"Path": ["popfreq", "non_cancer", "nfe", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_nfe_male": {
+			"Path": ["popfreq", "non_cancer", "nfe", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_nfe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_nfe_nwe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "nwe", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_nfe_onf": {
+			"Path": ["popfreq", "non_cancer", "nfe", "onf", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_nfe_seu": {
+			"Path": ["popfreq", "non_cancer", "nfe", "seu", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_nfe_swe": {
+			"Path": ["popfreq", "non_cancer", "nfe", "swe", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_oth_female": {
+			"Path": ["popfreq", "non_cancer", "oth", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_oth_male": {
+			"Path": ["popfreq", "non_cancer", "oth", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_oth": {
+			"Path": ["popfreq", "non_cancer", "oth", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_popmax": {
+			"Path": ["popfreq", "non_cancer", "all", "popmax", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_raw": {
+			"Path": ["popfreq", "non_cancer", "all", "raw", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_sas_female": {
+			"Path": ["popfreq", "non_cancer", "sas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_sas_male": {
+			"Path": ["popfreq", "non_cancer", "sas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_nhomalt_sas": {
+			"Path": ["popfreq", "non_cancer", "sas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_cancer_popmax": {
+			"Path": ["popfreq", "non_cancer", "all", "popmax", "name"],
+			"Func": "str"
+		},
+		"non_neuro_AC_afr_female": {
+			"Path": ["popfreq", "non_neuro", "afr", "female", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_afr_male": {
+			"Path": ["popfreq", "non_neuro", "afr", "male", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_afr": {
+			"Path": ["popfreq", "non_neuro", "afr", "all", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_amr_female": {
+			"Path": ["popfreq", "non_neuro", "amr", "female", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_amr_male": {
+			"Path": ["popfreq", "non_neuro", "amr", "male", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_amr": {
+			"Path": ["popfreq", "non_neuro", "amr", "all", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_asj_female": {
+			"Path": ["popfreq", "non_neuro", "asj", "female", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_asj_male": {
+			"Path": ["popfreq", "non_neuro", "asj", "male", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_asj": {
+			"Path": ["popfreq", "non_neuro", "asj", "all", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_eas_female": {
+			"Path": ["popfreq", "non_neuro", "eas", "female", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_eas_jpn": {
+			"Path": ["popfreq", "non_neuro", "eas", "jpn", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_eas_kor": {
+			"Path": ["popfreq", "non_neuro", "eas", "kor", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_eas_male": {
+			"Path": ["popfreq", "non_neuro", "eas", "male", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_eas": {
+			"Path": ["popfreq", "non_neuro", "eas", "all", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_eas_oea": {
+			"Path": ["popfreq", "non_neuro", "eas", "oea", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_female": {
+			"Path": ["popfreq", "non_neuro", "all", "female", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_fin_female": {
+			"Path": ["popfreq", "non_neuro", "fin", "female", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_fin_male": {
+			"Path": ["popfreq", "non_neuro", "fin", "male", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_fin": {
+			"Path": ["popfreq", "non_neuro", "fin", "all", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_male": {
+			"Path": ["popfreq", "non_neuro", "all", "male", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC": {
+			"Path": ["popfreq", "non_neuro", "all", "all", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_nfe_bgr": {
+			"Path": ["popfreq", "non_neuro", "nfe", "bgr", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_nfe_est": {
+			"Path": ["popfreq", "non_neuro", "nfe", "est", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_nfe_female": {
+			"Path": ["popfreq", "non_neuro", "nfe", "female", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_nfe_male": {
+			"Path": ["popfreq", "non_neuro", "nfe", "male", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_nfe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "all", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_nfe_nwe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "nwe", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_nfe_onf": {
+			"Path": ["popfreq", "non_neuro", "nfe", "onf", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_nfe_seu": {
+			"Path": ["popfreq", "non_neuro", "nfe", "seu", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_nfe_swe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "swe", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_oth_female": {
+			"Path": ["popfreq", "non_neuro", "oth", "female", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_oth_male": {
+			"Path": ["popfreq", "non_neuro", "oth", "male", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_oth": {
+			"Path": ["popfreq", "non_neuro", "oth", "all", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_popmax": {
+			"Path": ["popfreq", "non_neuro", "all", "popmax", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_raw": {
+			"Path": ["popfreq", "non_neuro", "all", "raw", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_sas_female": {
+			"Path": ["popfreq", "non_neuro", "sas", "female", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_sas_male": {
+			"Path": ["popfreq", "non_neuro", "sas", "male", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AC_sas": {
+			"Path": ["popfreq", "non_neuro", "sas", "all", "AC"],
+			"Func": "int"
+		},
+		"non_neuro_AF_afr_female": {
+			"Path": ["popfreq", "non_neuro", "afr", "female", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_afr_male": {
+			"Path": ["popfreq", "non_neuro", "afr", "male", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_afr": {
+			"Path": ["popfreq", "non_neuro", "afr", "all", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_amr_female": {
+			"Path": ["popfreq", "non_neuro", "amr", "female", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_amr_male": {
+			"Path": ["popfreq", "non_neuro", "amr", "male", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_amr": {
+			"Path": ["popfreq", "non_neuro", "amr", "all", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_asj_female": {
+			"Path": ["popfreq", "non_neuro", "asj", "female", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_asj_male": {
+			"Path": ["popfreq", "non_neuro", "asj", "male", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_asj": {
+			"Path": ["popfreq", "non_neuro", "asj", "all", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_eas_female": {
+			"Path": ["popfreq", "non_neuro", "eas", "female", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_eas_jpn": {
+			"Path": ["popfreq", "non_neuro", "eas", "jpn", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_eas_kor": {
+			"Path": ["popfreq", "non_neuro", "eas", "kor", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_eas_male": {
+			"Path": ["popfreq", "non_neuro", "eas", "male", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_eas": {
+			"Path": ["popfreq", "non_neuro", "eas", "all", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_eas_oea": {
+			"Path": ["popfreq", "non_neuro", "eas", "oea", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_female": {
+			"Path": ["popfreq", "non_neuro", "all", "female", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_fin_female": {
+			"Path": ["popfreq", "non_neuro", "fin", "female", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_fin_male": {
+			"Path": ["popfreq", "non_neuro", "fin", "male", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_fin": {
+			"Path": ["popfreq", "non_neuro", "fin", "all", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_male": {
+			"Path": ["popfreq", "non_neuro", "all", "male", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF": {
+			"Path": ["popfreq", "non_neuro", "all", "all", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_nfe_bgr": {
+			"Path": ["popfreq", "non_neuro", "nfe", "bgr", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_nfe_est": {
+			"Path": ["popfreq", "non_neuro", "nfe", "est", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_nfe_female": {
+			"Path": ["popfreq", "non_neuro", "nfe", "female", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_nfe_male": {
+			"Path": ["popfreq", "non_neuro", "nfe", "male", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_nfe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "all", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_nfe_nwe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "nwe", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_nfe_onf": {
+			"Path": ["popfreq", "non_neuro", "nfe", "onf", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_nfe_seu": {
+			"Path": ["popfreq", "non_neuro", "nfe", "seu", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_nfe_swe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "swe", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_oth_female": {
+			"Path": ["popfreq", "non_neuro", "oth", "female", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_oth_male": {
+			"Path": ["popfreq", "non_neuro", "oth", "male", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_oth": {
+			"Path": ["popfreq", "non_neuro", "oth", "all", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_popmax": {
+			"Path": ["popfreq", "non_neuro", "all", "popmax", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_raw": {
+			"Path": ["popfreq", "non_neuro", "all", "raw", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_sas_female": {
+			"Path": ["popfreq", "non_neuro", "sas", "female", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_sas_male": {
+			"Path": ["popfreq", "non_neuro", "sas", "male", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AF_sas": {
+			"Path": ["popfreq", "non_neuro", "sas", "all", "AF"],
+			"Func": "float"
+		},
+		"non_neuro_AN_afr_female": {
+			"Path": ["popfreq", "non_neuro", "afr", "female", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_afr_male": {
+			"Path": ["popfreq", "non_neuro", "afr", "male", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_afr": {
+			"Path": ["popfreq", "non_neuro", "afr", "all", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_amr_female": {
+			"Path": ["popfreq", "non_neuro", "amr", "female", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_amr_male": {
+			"Path": ["popfreq", "non_neuro", "amr", "male", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_amr": {
+			"Path": ["popfreq", "non_neuro", "amr", "all", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_asj_female": {
+			"Path": ["popfreq", "non_neuro", "asj", "female", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_asj_male": {
+			"Path": ["popfreq", "non_neuro", "asj", "male", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_asj": {
+			"Path": ["popfreq", "non_neuro", "asj", "all", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_eas_female": {
+			"Path": ["popfreq", "non_neuro", "eas", "female", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_eas_jpn": {
+			"Path": ["popfreq", "non_neuro", "eas", "jpn", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_eas_kor": {
+			"Path": ["popfreq", "non_neuro", "eas", "kor", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_eas_male": {
+			"Path": ["popfreq", "non_neuro", "eas", "male", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_eas": {
+			"Path": ["popfreq", "non_neuro", "eas", "all", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_eas_oea": {
+			"Path": ["popfreq", "non_neuro", "eas", "oea", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_female": {
+			"Path": ["popfreq", "non_neuro", "all", "female", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_fin_female": {
+			"Path": ["popfreq", "non_neuro", "fin", "female", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_fin_male": {
+			"Path": ["popfreq", "non_neuro", "fin", "male", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_fin": {
+			"Path": ["popfreq", "non_neuro", "fin", "all", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_male": {
+			"Path": ["popfreq", "non_neuro", "all", "male", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN": {
+			"Path": ["popfreq", "non_neuro", "all", "all", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_nfe_bgr": {
+			"Path": ["popfreq", "non_neuro", "nfe", "bgr", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_nfe_est": {
+			"Path": ["popfreq", "non_neuro", "nfe", "est", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_nfe_female": {
+			"Path": ["popfreq", "non_neuro", "nfe", "female", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_nfe_male": {
+			"Path": ["popfreq", "non_neuro", "nfe", "male", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_nfe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "all", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_nfe_nwe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "nwe", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_nfe_onf": {
+			"Path": ["popfreq", "non_neuro", "nfe", "onf", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_nfe_seu": {
+			"Path": ["popfreq", "non_neuro", "nfe", "seu", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_nfe_swe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "swe", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_oth_female": {
+			"Path": ["popfreq", "non_neuro", "oth", "female", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_oth_male": {
+			"Path": ["popfreq", "non_neuro", "oth", "male", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_oth": {
+			"Path": ["popfreq", "non_neuro", "oth", "all", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_popmax": {
+			"Path": ["popfreq", "non_neuro", "all", "popmax", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_raw": {
+			"Path": ["popfreq", "non_neuro", "all", "raw", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_sas_female": {
+			"Path": ["popfreq", "non_neuro", "sas", "female", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_sas_male": {
+			"Path": ["popfreq", "non_neuro", "sas", "male", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_AN_sas": {
+			"Path": ["popfreq", "non_neuro", "sas", "all", "AN"],
+			"Func": "int"
+		},
+		"non_neuro_faf95_afr": {
+			"Path": ["popfreq", "non_neuro", "afr", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_neuro_faf95_amr": {
+			"Path": ["popfreq", "non_neuro", "amr", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_neuro_faf95_eas": {
+			"Path": ["popfreq", "non_neuro", "eas", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_neuro_faf95": {
+			"Path": ["popfreq", "non_neuro", "all", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_neuro_faf95_nfe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_neuro_faf95_sas": {
+			"Path": ["popfreq", "non_neuro", "sas", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_neuro_faf99_afr": {
+			"Path": ["popfreq", "non_neuro", "afr", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_neuro_faf99_amr": {
+			"Path": ["popfreq", "non_neuro", "amr", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_neuro_faf99_eas": {
+			"Path": ["popfreq", "non_neuro", "eas", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_neuro_faf99": {
+			"Path": ["popfreq", "non_neuro", "all", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_neuro_faf99_nfe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_neuro_faf99_sas": {
+			"Path": ["popfreq", "non_neuro", "sas", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_neuro_nhomalt_afr_female": {
+			"Path": ["popfreq", "non_neuro", "afr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_afr_male": {
+			"Path": ["popfreq", "non_neuro", "afr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_afr": {
+			"Path": ["popfreq", "non_neuro", "afr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_amr_female": {
+			"Path": ["popfreq", "non_neuro", "amr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_amr_male": {
+			"Path": ["popfreq", "non_neuro", "amr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_amr": {
+			"Path": ["popfreq", "non_neuro", "amr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_asj_female": {
+			"Path": ["popfreq", "non_neuro", "asj", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_asj_male": {
+			"Path": ["popfreq", "non_neuro", "asj", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_asj": {
+			"Path": ["popfreq", "non_neuro", "asj", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_eas_female": {
+			"Path": ["popfreq", "non_neuro", "eas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_eas_jpn": {
+			"Path": ["popfreq", "non_neuro", "eas", "jpn", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_eas_kor": {
+			"Path": ["popfreq", "non_neuro", "eas", "kor", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_eas_male": {
+			"Path": ["popfreq", "non_neuro", "eas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_eas": {
+			"Path": ["popfreq", "non_neuro", "eas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_eas_oea": {
+			"Path": ["popfreq", "non_neuro", "eas", "oea", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_female": {
+			"Path": ["popfreq", "non_neuro", "all", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_fin_female": {
+			"Path": ["popfreq", "non_neuro", "fin", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_fin_male": {
+			"Path": ["popfreq", "non_neuro", "fin", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_fin": {
+			"Path": ["popfreq", "non_neuro", "fin", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_male": {
+			"Path": ["popfreq", "non_neuro", "all", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt": {
+			"Path": ["popfreq", "non_neuro", "all", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_nfe_bgr": {
+			"Path": ["popfreq", "non_neuro", "nfe", "bgr", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_nfe_est": {
+			"Path": ["popfreq", "non_neuro", "nfe", "est", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_nfe_female": {
+			"Path": ["popfreq", "non_neuro", "nfe", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_nfe_male": {
+			"Path": ["popfreq", "non_neuro", "nfe", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_nfe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_nfe_nwe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "nwe", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_nfe_onf": {
+			"Path": ["popfreq", "non_neuro", "nfe", "onf", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_nfe_seu": {
+			"Path": ["popfreq", "non_neuro", "nfe", "seu", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_nfe_swe": {
+			"Path": ["popfreq", "non_neuro", "nfe", "swe", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_oth_female": {
+			"Path": ["popfreq", "non_neuro", "oth", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_oth_male": {
+			"Path": ["popfreq", "non_neuro", "oth", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_oth": {
+			"Path": ["popfreq", "non_neuro", "oth", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_popmax": {
+			"Path": ["popfreq", "non_neuro", "all", "popmax", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_raw": {
+			"Path": ["popfreq", "non_neuro", "all", "raw", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_sas_female": {
+			"Path": ["popfreq", "non_neuro", "sas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_sas_male": {
+			"Path": ["popfreq", "non_neuro", "sas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_nhomalt_sas": {
+			"Path": ["popfreq", "non_neuro", "sas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_neuro_popmax": {
+			"Path": ["popfreq", "non_neuro", "all", "popmax", "name"],
+			"Func": "str"
+		},
+		"non_topmed_AC_afr_female": {
+			"Path": ["popfreq", "non_topmed", "afr", "female", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_afr_male": {
+			"Path": ["popfreq", "non_topmed", "afr", "male", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_afr": {
+			"Path": ["popfreq", "non_topmed", "afr", "all", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_amr_female": {
+			"Path": ["popfreq", "non_topmed", "amr", "female", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_amr_male": {
+			"Path": ["popfreq", "non_topmed", "amr", "male", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_amr": {
+			"Path": ["popfreq", "non_topmed", "amr", "all", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_asj_female": {
+			"Path": ["popfreq", "non_topmed", "asj", "female", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_asj_male": {
+			"Path": ["popfreq", "non_topmed", "asj", "male", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_asj": {
+			"Path": ["popfreq", "non_topmed", "asj", "all", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_eas_female": {
+			"Path": ["popfreq", "non_topmed", "eas", "female", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_eas_jpn": {
+			"Path": ["popfreq", "non_topmed", "eas", "jpn", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_eas_kor": {
+			"Path": ["popfreq", "non_topmed", "eas", "kor", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_eas_male": {
+			"Path": ["popfreq", "non_topmed", "eas", "male", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_eas": {
+			"Path": ["popfreq", "non_topmed", "eas", "all", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_eas_oea": {
+			"Path": ["popfreq", "non_topmed", "eas", "oea", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_female": {
+			"Path": ["popfreq", "non_topmed", "all", "female", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_fin_female": {
+			"Path": ["popfreq", "non_topmed", "fin", "female", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_fin_male": {
+			"Path": ["popfreq", "non_topmed", "fin", "male", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_fin": {
+			"Path": ["popfreq", "non_topmed", "fin", "all", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_male": {
+			"Path": ["popfreq", "non_topmed", "all", "male", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC": {
+			"Path": ["popfreq", "non_topmed", "all", "all", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_nfe_bgr": {
+			"Path": ["popfreq", "non_topmed", "nfe", "bgr", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_nfe_est": {
+			"Path": ["popfreq", "non_topmed", "nfe", "est", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_nfe_female": {
+			"Path": ["popfreq", "non_topmed", "nfe", "female", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_nfe_male": {
+			"Path": ["popfreq", "non_topmed", "nfe", "male", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_nfe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "all", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_nfe_nwe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "nwe", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_nfe_onf": {
+			"Path": ["popfreq", "non_topmed", "nfe", "onf", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_nfe_seu": {
+			"Path": ["popfreq", "non_topmed", "nfe", "seu", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_nfe_swe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "swe", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_oth_female": {
+			"Path": ["popfreq", "non_topmed", "oth", "female", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_oth_male": {
+			"Path": ["popfreq", "non_topmed", "oth", "male", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_oth": {
+			"Path": ["popfreq", "non_topmed", "oth", "all", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_popmax": {
+			"Path": ["popfreq", "non_topmed", "all", "popmax", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_raw": {
+			"Path": ["popfreq", "non_topmed", "all", "raw", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_sas_female": {
+			"Path": ["popfreq", "non_topmed", "sas", "female", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_sas_male": {
+			"Path": ["popfreq", "non_topmed", "sas", "male", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AC_sas": {
+			"Path": ["popfreq", "non_topmed", "sas", "all", "AC"],
+			"Func": "int"
+		},
+		"non_topmed_AF_afr_female": {
+			"Path": ["popfreq", "non_topmed", "afr", "female", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_afr_male": {
+			"Path": ["popfreq", "non_topmed", "afr", "male", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_afr": {
+			"Path": ["popfreq", "non_topmed", "afr", "all", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_amr_female": {
+			"Path": ["popfreq", "non_topmed", "amr", "female", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_amr_male": {
+			"Path": ["popfreq", "non_topmed", "amr", "male", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_amr": {
+			"Path": ["popfreq", "non_topmed", "amr", "all", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_asj_female": {
+			"Path": ["popfreq", "non_topmed", "asj", "female", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_asj_male": {
+			"Path": ["popfreq", "non_topmed", "asj", "male", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_asj": {
+			"Path": ["popfreq", "non_topmed", "asj", "all", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_eas_female": {
+			"Path": ["popfreq", "non_topmed", "eas", "female", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_eas_jpn": {
+			"Path": ["popfreq", "non_topmed", "eas", "jpn", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_eas_kor": {
+			"Path": ["popfreq", "non_topmed", "eas", "kor", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_eas_male": {
+			"Path": ["popfreq", "non_topmed", "eas", "male", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_eas": {
+			"Path": ["popfreq", "non_topmed", "eas", "all", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_eas_oea": {
+			"Path": ["popfreq", "non_topmed", "eas", "oea", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_female": {
+			"Path": ["popfreq", "non_topmed", "all", "female", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_fin_female": {
+			"Path": ["popfreq", "non_topmed", "fin", "female", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_fin_male": {
+			"Path": ["popfreq", "non_topmed", "fin", "male", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_fin": {
+			"Path": ["popfreq", "non_topmed", "fin", "all", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_male": {
+			"Path": ["popfreq", "non_topmed", "all", "male", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF": {
+			"Path": ["popfreq", "non_topmed", "all", "all", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_nfe_bgr": {
+			"Path": ["popfreq", "non_topmed", "nfe", "bgr", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_nfe_est": {
+			"Path": ["popfreq", "non_topmed", "nfe", "est", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_nfe_female": {
+			"Path": ["popfreq", "non_topmed", "nfe", "female", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_nfe_male": {
+			"Path": ["popfreq", "non_topmed", "nfe", "male", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_nfe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "all", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_nfe_nwe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "nwe", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_nfe_onf": {
+			"Path": ["popfreq", "non_topmed", "nfe", "onf", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_nfe_seu": {
+			"Path": ["popfreq", "non_topmed", "nfe", "seu", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_nfe_swe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "swe", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_oth_female": {
+			"Path": ["popfreq", "non_topmed", "oth", "female", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_oth_male": {
+			"Path": ["popfreq", "non_topmed", "oth", "male", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_oth": {
+			"Path": ["popfreq", "non_topmed", "oth", "all", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_popmax": {
+			"Path": ["popfreq", "non_topmed", "all", "popmax", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_raw": {
+			"Path": ["popfreq", "non_topmed", "all", "raw", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_sas_female": {
+			"Path": ["popfreq", "non_topmed", "sas", "female", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_sas_male": {
+			"Path": ["popfreq", "non_topmed", "sas", "male", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AF_sas": {
+			"Path": ["popfreq", "non_topmed", "sas", "all", "AF"],
+			"Func": "float"
+		},
+		"non_topmed_AN_afr_female": {
+			"Path": ["popfreq", "non_topmed", "afr", "female", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_afr_male": {
+			"Path": ["popfreq", "non_topmed", "afr", "male", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_afr": {
+			"Path": ["popfreq", "non_topmed", "afr", "all", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_amr_female": {
+			"Path": ["popfreq", "non_topmed", "amr", "female", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_amr_male": {
+			"Path": ["popfreq", "non_topmed", "amr", "male", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_amr": {
+			"Path": ["popfreq", "non_topmed", "amr", "all", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_asj_female": {
+			"Path": ["popfreq", "non_topmed", "asj", "female", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_asj_male": {
+			"Path": ["popfreq", "non_topmed", "asj", "male", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_asj": {
+			"Path": ["popfreq", "non_topmed", "asj", "all", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_eas_female": {
+			"Path": ["popfreq", "non_topmed", "eas", "female", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_eas_jpn": {
+			"Path": ["popfreq", "non_topmed", "eas", "jpn", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_eas_kor": {
+			"Path": ["popfreq", "non_topmed", "eas", "kor", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_eas_male": {
+			"Path": ["popfreq", "non_topmed", "eas", "male", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_eas": {
+			"Path": ["popfreq", "non_topmed", "eas", "all", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_eas_oea": {
+			"Path": ["popfreq", "non_topmed", "eas", "oea", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_female": {
+			"Path": ["popfreq", "non_topmed", "all", "female", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_fin_female": {
+			"Path": ["popfreq", "non_topmed", "fin", "female", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_fin_male": {
+			"Path": ["popfreq", "non_topmed", "fin", "male", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_fin": {
+			"Path": ["popfreq", "non_topmed", "fin", "all", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_male": {
+			"Path": ["popfreq", "non_topmed", "all", "male", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN": {
+			"Path": ["popfreq", "non_topmed", "all", "all", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_nfe_bgr": {
+			"Path": ["popfreq", "non_topmed", "nfe", "bgr", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_nfe_est": {
+			"Path": ["popfreq", "non_topmed", "nfe", "est", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_nfe_female": {
+			"Path": ["popfreq", "non_topmed", "nfe", "female", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_nfe_male": {
+			"Path": ["popfreq", "non_topmed", "nfe", "male", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_nfe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "all", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_nfe_nwe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "nwe", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_nfe_onf": {
+			"Path": ["popfreq", "non_topmed", "nfe", "onf", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_nfe_seu": {
+			"Path": ["popfreq", "non_topmed", "nfe", "seu", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_nfe_swe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "swe", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_oth_female": {
+			"Path": ["popfreq", "non_topmed", "oth", "female", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_oth_male": {
+			"Path": ["popfreq", "non_topmed", "oth", "male", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_oth": {
+			"Path": ["popfreq", "non_topmed", "oth", "all", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_popmax": {
+			"Path": ["popfreq", "non_topmed", "all", "popmax", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_raw": {
+			"Path": ["popfreq", "non_topmed", "all", "raw", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_sas_female": {
+			"Path": ["popfreq", "non_topmed", "sas", "female", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_sas_male": {
+			"Path": ["popfreq", "non_topmed", "sas", "male", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_AN_sas": {
+			"Path": ["popfreq", "non_topmed", "sas", "all", "AN"],
+			"Func": "int"
+		},
+		"non_topmed_faf95_afr": {
+			"Path": ["popfreq", "non_topmed", "afr", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_topmed_faf95_amr": {
+			"Path": ["popfreq", "non_topmed", "amr", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_topmed_faf95_eas": {
+			"Path": ["popfreq", "non_topmed", "eas", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_topmed_faf95": {
+			"Path": ["popfreq", "non_topmed", "all", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_topmed_faf95_nfe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_topmed_faf95_sas": {
+			"Path": ["popfreq", "non_topmed", "sas", "all", "faf95"],
+			"Func": "float"
+		},
+		"non_topmed_faf99_afr": {
+			"Path": ["popfreq", "non_topmed", "afr", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_topmed_faf99_amr": {
+			"Path": ["popfreq", "non_topmed", "amr", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_topmed_faf99_eas": {
+			"Path": ["popfreq", "non_topmed", "eas", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_topmed_faf99": {
+			"Path": ["popfreq", "non_topmed", "all", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_topmed_faf99_nfe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_topmed_faf99_sas": {
+			"Path": ["popfreq", "non_topmed", "sas", "all", "faf99"],
+			"Func": "float"
+		},
+		"non_topmed_nhomalt_afr_female": {
+			"Path": ["popfreq", "non_topmed", "afr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_afr_male": {
+			"Path": ["popfreq", "non_topmed", "afr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_afr": {
+			"Path": ["popfreq", "non_topmed", "afr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_amr_female": {
+			"Path": ["popfreq", "non_topmed", "amr", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_amr_male": {
+			"Path": ["popfreq", "non_topmed", "amr", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_amr": {
+			"Path": ["popfreq", "non_topmed", "amr", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_asj_female": {
+			"Path": ["popfreq", "non_topmed", "asj", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_asj_male": {
+			"Path": ["popfreq", "non_topmed", "asj", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_asj": {
+			"Path": ["popfreq", "non_topmed", "asj", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_eas_female": {
+			"Path": ["popfreq", "non_topmed", "eas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_eas_jpn": {
+			"Path": ["popfreq", "non_topmed", "eas", "jpn", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_eas_kor": {
+			"Path": ["popfreq", "non_topmed", "eas", "kor", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_eas_male": {
+			"Path": ["popfreq", "non_topmed", "eas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_eas": {
+			"Path": ["popfreq", "non_topmed", "eas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_eas_oea": {
+			"Path": ["popfreq", "non_topmed", "eas", "oea", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_female": {
+			"Path": ["popfreq", "non_topmed", "all", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_fin_female": {
+			"Path": ["popfreq", "non_topmed", "fin", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_fin_male": {
+			"Path": ["popfreq", "non_topmed", "fin", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_fin": {
+			"Path": ["popfreq", "non_topmed", "fin", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_male": {
+			"Path": ["popfreq", "non_topmed", "all", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt": {
+			"Path": ["popfreq", "non_topmed", "all", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_nfe_bgr": {
+			"Path": ["popfreq", "non_topmed", "nfe", "bgr", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_nfe_est": {
+			"Path": ["popfreq", "non_topmed", "nfe", "est", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_nfe_female": {
+			"Path": ["popfreq", "non_topmed", "nfe", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_nfe_male": {
+			"Path": ["popfreq", "non_topmed", "nfe", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_nfe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_nfe_nwe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "nwe", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_nfe_onf": {
+			"Path": ["popfreq", "non_topmed", "nfe", "onf", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_nfe_seu": {
+			"Path": ["popfreq", "non_topmed", "nfe", "seu", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_nfe_swe": {
+			"Path": ["popfreq", "non_topmed", "nfe", "swe", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_oth_female": {
+			"Path": ["popfreq", "non_topmed", "oth", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_oth_male": {
+			"Path": ["popfreq", "non_topmed", "oth", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_oth": {
+			"Path": ["popfreq", "non_topmed", "oth", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_popmax": {
+			"Path": ["popfreq", "non_topmed", "all", "popmax", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_raw": {
+			"Path": ["popfreq", "non_topmed", "all", "raw", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_sas_female": {
+			"Path": ["popfreq", "non_topmed", "sas", "female", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_sas_male": {
+			"Path": ["popfreq", "non_topmed", "sas", "male", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_nhomalt_sas": {
+			"Path": ["popfreq", "non_topmed", "sas", "all", "nhomalt"],
+			"Func": "int"
+		},
+		"non_topmed_popmax": {
+			"Path": ["popfreq", "non_topmed", "all", "popmax", "name"],
+			"Func": "str"
+		},
+		"pab_max": {
+			"Path": ["pab_max"],
+			"Func": "float"
+		},
+		"popmax": {
+			"Path": ["popfreq", "all", "all", "popmax", "name"],
+			"Func": "str"
+		},
+		"QD": {
+			"Path": ["QD"],
+			"Func": "float"
+		},
+		"ReadPosRankSum": {
+			"Path": ["ReadPosRankSum"],
+			"Func": "float"
+		},
+		"rf_label": {
+			"Path": ["rf", "label"],
+			"Func": "str"
+		},
+		"rf_tp_probability": {
+			"Path": ["rf", "tp_probability"],
+			"Func": "float"
+		},
+		"SOR": {
+			"Path": ["SOR"],
+			"Func": "float"
+		},
+		"variant_type": {
+			"Path": ["variant_type"],
+			"Func": "str"
+		},
+		"VQSLOD": {
+			"Path": ["VQSR", "VQSLOD"],
+			"Func": "float"
+		},
+		"VQSR_culprit": {
+			"Path": ["VQSR", "VQSR_culprit"],
+			"Func": "str"
+		},
+		"vep": {
+			"Path": ["vep"],
+			"Func": "gnomAD_VEP_Parser"
+		}
+	}
+} 

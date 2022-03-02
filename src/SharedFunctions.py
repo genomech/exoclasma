@@ -68,6 +68,13 @@ def SaveJSON(Data, FileName, Compression = "none"):
 
 def LoadJSON(FileName): return json.load(OpenAnyway(FileName, 'rt'))
 
+def RecursiveDict(PathDict):
+	Result = {}
+	Flat = [key for key in PathDict.keys() if len(key) == 1]
+	for key in Flat: Result[key[0]] = PathDict[key]
+	Unique = list(set([key[0] for key in PathDict.keys() if len(key) > 1]))
+	for Key in Unique: Result[Key] = RecursiveDict({tuple(key[1:]): value for key, value in PathDict.items() if key[0] == Key})
+	return Result
 
 ## ------======| THREADING |======------
 

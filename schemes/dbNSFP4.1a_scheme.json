@@ -1,0 +1,1473 @@
+{
+	"InfoTags": {
+		"#chr": {
+			"Path": [],
+			"Func": ""
+		},
+		"pos(1-based)": {
+			"Path": [],
+			"Func": ""
+		},
+		"ref": {
+			"Path": [],
+			"Func": ""
+		},
+		"alt": {
+			"Path": [],
+			"Func": ""
+		},
+		"aaref": {
+			"Path": [],
+			"Func": ""
+		},
+		"aaalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"rs_dbSNP151": {
+			"Path": [],
+			"Func": ""
+		},
+		"hg19_chr": {
+			"Path": [],
+			"Func": ""
+		},
+		"hg19_pos(1-based)": {
+			"Path": [],
+			"Func": ""
+		},
+		"hg18_chr": {
+			"Path": [],
+			"Func": ""
+		},
+		"hg18_pos(1-based)": {
+			"Path": [],
+			"Func": ""
+		},
+		"aapos": {
+			"Path": [],
+			"Func": ""
+		},
+		"genename": {
+			"Path": [],
+			"Func": ""
+		},
+		"Ensembl_geneid": {
+			"Path": [],
+			"Func": ""
+		},
+		"Ensembl_transcriptid": {
+			"Path": [],
+			"Func": ""
+		},
+		"Ensembl_proteinid": {
+			"Path": [],
+			"Func": ""
+		},
+		"Uniprot_acc": {
+			"Path": [],
+			"Func": ""
+		},
+		"Uniprot_entry": {
+			"Path": [],
+			"Func": ""
+		},
+		"HGVSc_ANNOVAR": {
+			"Path": [],
+			"Func": ""
+		},
+		"HGVSp_ANNOVAR": {
+			"Path": [],
+			"Func": ""
+		},
+		"HGVSc_snpEff": {
+			"Path": [],
+			"Func": ""
+		},
+		"HGVSp_snpEff": {
+			"Path": [],
+			"Func": ""
+		},
+		"HGVSc_VEP": {
+			"Path": [],
+			"Func": ""
+		},
+		"HGVSp_VEP": {
+			"Path": [],
+			"Func": ""
+		},
+		"APPRIS": {
+			"Path": [],
+			"Func": ""
+		},
+		"GENCODE_basic": {
+			"Path": [],
+			"Func": ""
+		},
+		"TSL": {
+			"Path": [],
+			"Func": ""
+		},
+		"VEP_canonical": {
+			"Path": [],
+			"Func": ""
+		},
+		"cds_strand": {
+			"Path": [],
+			"Func": ""
+		},
+		"refcodon": {
+			"Path": [],
+			"Func": ""
+		},
+		"codonpos": {
+			"Path": [],
+			"Func": ""
+		},
+		"codon_degeneracy": {
+			"Path": [],
+			"Func": ""
+		},
+		"Ancestral_allele": {
+			"Path": [],
+			"Func": ""
+		},
+		"AltaiNeandertal": {
+			"Path": [],
+			"Func": ""
+		},
+		"Denisova": {
+			"Path": [],
+			"Func": ""
+		},
+		"VindijiaNeandertal": {
+			"Path": [],
+			"Func": ""
+		},
+		"SIFT_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"SIFT_converted_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"SIFT_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"SIFT4G_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"SIFT4G_converted_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"SIFT4G_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"Polyphen2_HDIV_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"Polyphen2_HDIV_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"Polyphen2_HDIV_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"Polyphen2_HVAR_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"Polyphen2_HVAR_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"Polyphen2_HVAR_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"LRT_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"LRT_converted_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"LRT_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"LRT_Omega": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutationTaster_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutationTaster_converted_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutationTaster_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutationTaster_model": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutationTaster_AAE": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutationAssessor_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutationAssessor_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutationAssessor_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"FATHMM_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"FATHMM_converted_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"FATHMM_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"PROVEAN_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"PROVEAN_converted_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"PROVEAN_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"VEST4_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"VEST4_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"MetaSVM_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"MetaSVM_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"MetaSVM_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"MetaLR_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"MetaLR_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"MetaLR_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"Reliability_index": {
+			"Path": [],
+			"Func": ""
+		},
+		"M-CAP_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"M-CAP_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"M-CAP_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"REVEL_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"REVEL_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutPred_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutPred_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutPred_protID": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutPred_AAchange": {
+			"Path": [],
+			"Func": ""
+		},
+		"MutPred_Top5features": {
+			"Path": [],
+			"Func": ""
+		},
+		"MVP_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"MVP_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"MPC_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"MPC_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"PrimateAI_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"PrimateAI_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"PrimateAI_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"DEOGEN2_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"DEOGEN2_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"DEOGEN2_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"BayesDel_addAF_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"BayesDel_addAF_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"BayesDel_addAF_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"BayesDel_noAF_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"BayesDel_noAF_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"BayesDel_noAF_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"ClinPred_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"ClinPred_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"ClinPred_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"LIST-S2_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"LIST-S2_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"LIST-S2_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"Aloft_Fraction_transcripts_affected": {
+			"Path": [],
+			"Func": ""
+		},
+		"Aloft_prob_Tolerant": {
+			"Path": [],
+			"Func": ""
+		},
+		"Aloft_prob_Recessive": {
+			"Path": [],
+			"Func": ""
+		},
+		"Aloft_prob_Dominant": {
+			"Path": [],
+			"Func": ""
+		},
+		"Aloft_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"Aloft_Confidence": {
+			"Path": [],
+			"Func": ""
+		},
+		"CADD_raw": {
+			"Path": [],
+			"Func": ""
+		},
+		"CADD_raw_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"CADD_phred": {
+			"Path": [],
+			"Func": ""
+		},
+		"CADD_raw_hg19": {
+			"Path": [],
+			"Func": ""
+		},
+		"CADD_raw_rankscore_hg19": {
+			"Path": [],
+			"Func": ""
+		},
+		"CADD_phred_hg19": {
+			"Path": [],
+			"Func": ""
+		},
+		"DANN_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"DANN_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"fathmm-MKL_coding_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"fathmm-MKL_coding_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"fathmm-MKL_coding_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"fathmm-MKL_coding_group": {
+			"Path": [],
+			"Func": ""
+		},
+		"fathmm-XF_coding_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"fathmm-XF_coding_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"fathmm-XF_coding_pred": {
+			"Path": [],
+			"Func": ""
+		},
+		"Eigen-raw_coding": {
+			"Path": [],
+			"Func": ""
+		},
+		"Eigen-raw_coding_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"Eigen-phred_coding": {
+			"Path": [],
+			"Func": ""
+		},
+		"Eigen-PC-raw_coding": {
+			"Path": [],
+			"Func": ""
+		},
+		"Eigen-PC-raw_coding_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"Eigen-PC-phred_coding": {
+			"Path": [],
+			"Func": ""
+		},
+		"GenoCanyon_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"GenoCanyon_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"integrated_fitCons_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"integrated_fitCons_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"integrated_confidence_value": {
+			"Path": [],
+			"Func": ""
+		},
+		"GM12878_fitCons_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"GM12878_fitCons_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"GM12878_confidence_value": {
+			"Path": [],
+			"Func": ""
+		},
+		"H1-hESC_fitCons_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"H1-hESC_fitCons_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"H1-hESC_confidence_value": {
+			"Path": [],
+			"Func": ""
+		},
+		"HUVEC_fitCons_score": {
+			"Path": [],
+			"Func": ""
+		},
+		"HUVEC_fitCons_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"HUVEC_confidence_value": {
+			"Path": [],
+			"Func": ""
+		},
+		"LINSIGHT": {
+			"Path": [],
+			"Func": ""
+		},
+		"LINSIGHT_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"GERP++_NR": {
+			"Path": [],
+			"Func": ""
+		},
+		"GERP++_RS": {
+			"Path": [],
+			"Func": ""
+		},
+		"GERP++_RS_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"phyloP100way_vertebrate": {
+			"Path": [],
+			"Func": ""
+		},
+		"phyloP100way_vertebrate_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"phyloP30way_mammalian": {
+			"Path": [],
+			"Func": ""
+		},
+		"phyloP30way_mammalian_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"phyloP17way_primate": {
+			"Path": [],
+			"Func": ""
+		},
+		"phyloP17way_primate_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"phastCons100way_vertebrate": {
+			"Path": [],
+			"Func": ""
+		},
+		"phastCons100way_vertebrate_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"phastCons30way_mammalian": {
+			"Path": [],
+			"Func": ""
+		},
+		"phastCons30way_mammalian_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"phastCons17way_primate": {
+			"Path": [],
+			"Func": ""
+		},
+		"phastCons17way_primate_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"SiPhy_29way_pi": {
+			"Path": [],
+			"Func": ""
+		},
+		"SiPhy_29way_logOdds": {
+			"Path": [],
+			"Func": ""
+		},
+		"SiPhy_29way_logOdds_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"bStatistic": {
+			"Path": [],
+			"Func": ""
+		},
+		"bStatistic_converted_rankscore": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_AFR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_AFR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_EUR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_EUR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_AMR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_AMR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_EAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_EAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_SAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"1000Gp3_SAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"TWINSUK_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"TWINSUK_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ALSPAC_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ALSPAC_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"UK10K_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"UK10K_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ESP6500_AA_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ESP6500_AA_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ESP6500_EA_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ESP6500_EA_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_Adj_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_Adj_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_AFR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_AFR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_AMR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_AMR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_EAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_EAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_FIN_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_FIN_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_NFE_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_NFE_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_SAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_SAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_Adj_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_Adj_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_AFR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_AFR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_AMR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_AMR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_EAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_EAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_FIN_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_FIN_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_NFE_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_NFE_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_SAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonTCGA_SAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_Adj_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_Adj_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_AFR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_AFR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_AMR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_AMR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_EAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_EAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_FIN_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_FIN_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_NFE_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_NFE_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_SAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"ExAC_nonpsych_SAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_flag": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AFR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AFR_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AFR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AFR_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AMR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AMR_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AMR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_AMR_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_ASJ_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_ASJ_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_ASJ_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_ASJ_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_EAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_EAS_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_EAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_EAS_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_FIN_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_FIN_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_FIN_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_FIN_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_NFE_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_NFE_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_NFE_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_NFE_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_SAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_SAS_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_SAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_SAS_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_POPMAX_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_POPMAX_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_POPMAX_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_POPMAX_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AFR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AFR_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AFR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AFR_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AMR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AMR_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AMR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_AMR_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_ASJ_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_ASJ_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_ASJ_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_ASJ_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_EAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_EAS_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_EAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_EAS_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_FIN_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_FIN_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_FIN_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_FIN_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_NFE_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_NFE_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_NFE_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_NFE_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_SAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_SAS_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_SAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_SAS_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_POPMAX_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_POPMAX_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_POPMAX_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_exomes_controls_POPMAX_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_flag": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AFR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AFR_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AFR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AFR_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AMR_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AMR_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AMR_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AMR_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_ASJ_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_ASJ_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_ASJ_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_ASJ_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_EAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_EAS_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_EAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_EAS_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_FIN_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_FIN_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_FIN_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_FIN_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_NFE_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_NFE_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_NFE_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_NFE_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AMI_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AMI_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AMI_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_AMI_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_SAS_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_SAS_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_SAS_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_SAS_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_POPMAX_AC": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_POPMAX_AN": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_POPMAX_AF": {
+			"Path": [],
+			"Func": ""
+		},
+		"gnomAD_genomes_POPMAX_nhomalt": {
+			"Path": [],
+			"Func": ""
+		},
+		"clinvar_id": {
+			"Path": [],
+			"Func": ""
+		},
+		"clinvar_clnsig": {
+			"Path": [],
+			"Func": ""
+		},
+		"clinvar_trait": {
+			"Path": [],
+			"Func": ""
+		},
+		"clinvar_review": {
+			"Path": [],
+			"Func": ""
+		},
+		"clinvar_hgvs": {
+			"Path": [],
+			"Func": ""
+		},
+		"clinvar_var_source": {
+			"Path": [],
+			"Func": ""
+		},
+		"clinvar_MedGen_id": {
+			"Path": [],
+			"Func": ""
+		},
+		"clinvar_OMIM_id": {
+			"Path": [],
+			"Func": ""
+		},
+		"clinvar_Orphanet_id": {
+			"Path": [],
+			"Func": ""
+		},
+		"Interpro_domain": {
+			"Path": [],
+			"Func": ""
+		},
+		"GTEx_V8_gene": {
+			"Path": [],
+			"Func": ""
+		},
+		"GTEx_V8_tissue": {
+			"Path": [],
+			"Func": ""
+		},
+		"Geuvadis_eQTL_target_gene": {
+			"Path": [],
+			"Func": ""
+		}
+	}
+}
+ 
