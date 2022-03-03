@@ -1,1472 +1,1473 @@
 {
+	"NoneValues": ["-", ".", ",", " ", "", "NA", "./."],
 	"InfoTags": {
 		"#chr": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Coords", "hg38", "chr"],
+			"Func": "str"
 		},
 		"pos(1-based)": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Coords", "hg38", "pos(1-based)"],
+			"Func": "int"
 		},
 		"ref": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Change", "ref"],
+			"Func": "str"
 		},
 		"alt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Change", "alt"],
+			"Func": "str"
 		},
 		"aaref": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Change", "AAref"],
+			"Func": "str"
 		},
 		"aaalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Change", "AAalt"],
+			"Func": "str"
 		},
 		"rs_dbSNP151": {
-			"Path": [],
-			"Func": ""
+			"Path": ["rs_dbSNP151"],
+			"Func": "str"
 		},
 		"hg19_chr": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Coords", "hg19", "chr"],
+			"Func": "str"
 		},
 		"hg19_pos(1-based)": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Coords", "hg19", "pos(1-based)"],
+			"Func": "int"
 		},
 		"hg18_chr": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Coords", "hg18", "chr"],
+			"Func": "str"
 		},
 		"hg18_pos(1-based)": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Coords", "hg18", "pos(1-based)"],
+			"Func": "int"
 		},
 		"aapos": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Change", "AApos"],
+			"Func": "int_semicolon"
 		},
 		"genename": {
-			"Path": [],
-			"Func": ""
+			"Path": ["genename"],
+			"Func": "str_semicolon"
 		},
 		"Ensembl_geneid": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Ensembl", "geneid"],
+			"Func": "str_semicolon"
 		},
 		"Ensembl_transcriptid": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Ensembl", "transcriptid"],
+			"Func": "str_semicolon"
 		},
 		"Ensembl_proteinid": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Ensembl", "proteinid"],
+			"Func": "str_semicolon"
 		},
 		"Uniprot_acc": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Uniprot", "acc"],
+			"Func": "str_semicolon"
 		},
 		"Uniprot_entry": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Uniprot", "entry"],
+			"Func": "str_semicolon"
 		},
 		"HGVSc_ANNOVAR": {
-			"Path": [],
-			"Func": ""
+			"Path": ["HGVS", "ANNOVAR", "coding"],
+			"Func": "str_semicolon"
 		},
 		"HGVSp_ANNOVAR": {
-			"Path": [],
-			"Func": ""
+			"Path": ["HGVS", "ANNOVAR", "protein"],
+			"Func": "str_semicolon"
 		},
 		"HGVSc_snpEff": {
-			"Path": [],
-			"Func": ""
+			"Path": ["HGVS", "snpEff", "coding"],
+			"Func": "str_semicolon"
 		},
 		"HGVSp_snpEff": {
-			"Path": [],
-			"Func": ""
+			"Path": ["HGVS", "snpEff", "protein"],
+			"Func": "str_semicolon"
 		},
 		"HGVSc_VEP": {
-			"Path": [],
-			"Func": ""
+			"Path": ["HGVS", "VEP", "coding"],
+			"Func": "str_semicolon"
 		},
 		"HGVSp_VEP": {
-			"Path": [],
-			"Func": ""
+			"Path": ["HGVS", "VEP", "protein"],
+			"Func": "str_semicolon"
 		},
 		"APPRIS": {
-			"Path": [],
-			"Func": ""
+			"Path": ["APPRIS"],
+			"Func": "str_semicolon"
 		},
 		"GENCODE_basic": {
-			"Path": [],
-			"Func": ""
+			"Path": ["GENCODE_basic"],
+			"Func": "str_semicolon"
 		},
 		"TSL": {
-			"Path": [],
-			"Func": ""
+			"Path": ["TSL"],
+			"Func": "int_semicolon"
 		},
 		"VEP_canonical": {
-			"Path": [],
-			"Func": ""
+			"Path": ["HGVS", "VEP", "canonical"],
+			"Func": "str_semicolon"
 		},
 		"cds_strand": {
-			"Path": [],
-			"Func": ""
+			"Path": ["cds_strand"],
+			"Func": "str_semicolon"
 		},
 		"refcodon": {
-			"Path": [],
-			"Func": ""
+			"Path": ["refcodon", "codon"],
+			"Func": "str_semicolon"
 		},
 		"codonpos": {
-			"Path": [],
-			"Func": ""
+			"Path": ["refcodon", "pos"],
+			"Func": "int_semicolon"
 		},
 		"codon_degeneracy": {
-			"Path": [],
-			"Func": ""
+			"Path": ["refcodon", "degeneracy"],
+			"Func": "int_semicolon"
 		},
 		"Ancestral_allele": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PhyloInfo", "Ancestral_allele"],
+			"Func": "str"
 		},
 		"AltaiNeandertal": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PhyloInfo", "AltaiNeandertal"],
+			"Func": "str"
 		},
 		"Denisova": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PhyloInfo", "Denisova"],
+			"Func": "str"
 		},
 		"VindijiaNeandertal": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PhyloInfo", "VindijiaNeandertal"],
+			"Func": "str"
 		},
 		"SIFT_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "SIFT", "S"],
+			"Func": "float_semicolon"
 		},
 		"SIFT_converted_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "SIFT", "RS"],
+			"Func": "float"
 		},
 		"SIFT_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "SIFT", "P"],
+			"Func": "str_semicolon"
 		},
 		"SIFT4G_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "SIFT4G", "S"],
+			"Func": "float_semicolon"
 		},
 		"SIFT4G_converted_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "SIFT4G", "RS"],
+			"Func": "float"
 		},
 		"SIFT4G_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "SIFT4G", "P"],
+			"Func": "str_semicolon"
 		},
 		"Polyphen2_HDIV_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Polyphen2_HDIV", "S"],
+			"Func": "float_semicolon"
 		},
 		"Polyphen2_HDIV_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Polyphen2_HDIV", "RS"],
+			"Func": "float"
 		},
 		"Polyphen2_HDIV_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Polyphen2_HDIV", "P"],
+			"Func": "str_semicolon"
 		},
 		"Polyphen2_HVAR_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Polyphen2_HVAR", "S"],
+			"Func": "float_semicolon"
 		},
 		"Polyphen2_HVAR_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Polyphen2_HVAR", "RS"],
+			"Func": "float"
 		},
 		"Polyphen2_HVAR_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Polyphen2_HVAR", "P"],
+			"Func": "str_semicolon"
 		},
 		"LRT_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "LRT", "S"],
+			"Func": "float_semicolon"
 		},
 		"LRT_converted_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "LRT", "RS"],
+			"Func": "float"
 		},
 		"LRT_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "LRT", "P"],
+			"Func": "str_semicolon"
 		},
 		"LRT_Omega": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "LRT", "Omega"],
+			"Func": "float"
 		},
 		"MutationTaster_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutationTaster", "S"],
+			"Func": "float_semicolon"
 		},
 		"MutationTaster_converted_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutationTaster", "RS"],
+			"Func": "float"
 		},
 		"MutationTaster_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutationTaster", "P"],
+			"Func": "str_semicolon"
 		},
 		"MutationTaster_model": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutationTaster", "Model"],
+			"Func": "str_semicolon"
 		},
 		"MutationTaster_AAE": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutationTaster", "AAE"],
+			"Func": "str_semicolon"
 		},
 		"MutationAssessor_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutationAssessor", "S"],
+			"Func": "float_semicolon"
 		},
 		"MutationAssessor_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutationAssessor", "RS"],
+			"Func": "float"
 		},
 		"MutationAssessor_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutationAssessor", "P"],
+			"Func": "str_semicolon"
 		},
 		"FATHMM_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "FATHMM", "S"],
+			"Func": "float_semicolon"
 		},
 		"FATHMM_converted_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "FATHMM", "RS"],
+			"Func": "float"
 		},
 		"FATHMM_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "FATHMM", "P"],
+			"Func": "str_semicolon"
 		},
 		"PROVEAN_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "PROVEAN", "S"],
+			"Func": "float_semicolon"
 		},
 		"PROVEAN_converted_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "PROVEAN", "RS"],
+			"Func": "float"
 		},
 		"PROVEAN_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "PROVEAN", "P"],
+			"Func": "str_semicolon"
 		},
 		"VEST4_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "VEST4", "S"],
+			"Func": "float_semicolon"
 		},
 		"VEST4_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "VEST4", "RS"],
+			"Func": "float"
 		},
 		"MetaSVM_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MetaSVM", "S"],
+			"Func": "float_semicolon"
 		},
 		"MetaSVM_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MetaSVM", "RS"],
+			"Func": "float"
 		},
 		"MetaSVM_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MetaSVM", "P"],
+			"Func": "str_semicolon"
 		},
 		"MetaLR_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MetaLR", "S"],
+			"Func": "float_semicolon"
 		},
 		"MetaLR_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MetaLR", "RS"],
+			"Func": "float"
 		},
 		"MetaLR_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MetaLR", "P"],
+			"Func": "str_semicolon"
 		},
 		"Reliability_index": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MetaLR", "Reliability_index"],
+			"Func": "int"
 		},
 		"M-CAP_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "M-CAP", "S"],
+			"Func": "float_semicolon"
 		},
 		"M-CAP_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "M-CAP", "RS"],
+			"Func": "float"
 		},
 		"M-CAP_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "M-CAP", "P"],
+			"Func": "str_semicolon"
 		},
 		"REVEL_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "REVEL", "S"],
+			"Func": "float_semicolon"
 		},
 		"REVEL_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "REVEL", "RS"],
+			"Func": "float"
 		},
 		"MutPred_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutPred", "S"],
+			"Func": "float_semicolon"
 		},
 		"MutPred_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutPred", "RS"],
+			"Func": "float"
 		},
 		"MutPred_protID": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutPred", "protID"],
+			"Func": "str"
 		},
 		"MutPred_AAchange": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutPred", "AAchange"],
+			"Func": "str"
 		},
 		"MutPred_Top5features": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MutPred", "Top5features"],
+			"Func": "top5features"
 		},
 		"MVP_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MVP", "S"],
+			"Func": "float_semicolon"
 		},
 		"MVP_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MVP", "RS"],
+			"Func": "float"
 		},
 		"MPC_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MPC", "S"],
+			"Func": "float_semicolon"
 		},
 		"MPC_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "MPC", "RS"],
+			"Func": "float"
 		},
 		"PrimateAI_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "PrimateAI", "S"],
+			"Func": "float_semicolon"
 		},
 		"PrimateAI_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "PrimateAI", "RS"],
+			"Func": "float"
 		},
 		"PrimateAI_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "PrimateAI", "P"],
+			"Func": "str_semicolon"
 		},
 		"DEOGEN2_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "DEOGEN2", "S"],
+			"Func": "float_semicolon"
 		},
 		"DEOGEN2_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "DEOGEN2", "RS"],
+			"Func": "float"
 		},
 		"DEOGEN2_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "DEOGEN2", "P"],
+			"Func": "str_semicolon"
 		},
 		"BayesDel_addAF_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "BayesDel_addAF", "S"],
+			"Func": "float_semicolon"
 		},
 		"BayesDel_addAF_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "BayesDel_addAF", "RS"],
+			"Func": "float"
 		},
 		"BayesDel_addAF_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "BayesDel_addAF", "P"],
+			"Func": "str_semicolon"
 		},
 		"BayesDel_noAF_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "BayesDel_noAF", "S"],
+			"Func": "float_semicolon"
 		},
 		"BayesDel_noAF_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "BayesDel_noAF", "RS"],
+			"Func": "float"
 		},
 		"BayesDel_noAF_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "BayesDel_noAF", "P"],
+			"Func": "str_semicolon"
 		},
 		"ClinPred_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "ClinPred", "S"],
+			"Func": "float_semicolon"
 		},
 		"ClinPred_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "ClinPred", "RS"],
+			"Func": "float"
 		},
 		"ClinPred_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "ClinPred", "P"],
+			"Func": "str_semicolon"
 		},
 		"LIST-S2_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "LIST-S2", "S"],
+			"Func": "float_semicolon"
 		},
 		"LIST-S2_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "LIST-S2", "RS"],
+			"Func": "float"
 		},
 		"LIST-S2_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "LIST-S2", "P"],
+			"Func": "str_semicolon"
 		},
 		"Aloft_Fraction_transcripts_affected": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Aloft", "Fraction_transcripts_affected"],
+			"Func": "str_semicolon_withoutlast"
 		},
 		"Aloft_prob_Tolerant": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Aloft", "prob_Tolerant"],
+			"Func": "float_semicolon_withoutlast"
 		},
 		"Aloft_prob_Recessive": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Aloft", "prob_Recessive"],
+			"Func": "float_semicolon_withoutlast"
 		},
 		"Aloft_prob_Dominant": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Aloft", "prob_Dominant"],
+			"Func": "float_semicolon_withoutlast"
 		},
 		"Aloft_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Aloft", "P"],
+			"Func": "str_semicolon_withoutlast"
 		},
 		"Aloft_Confidence": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Aloft", "Confidence"],
+			"Func": "str_semicolon_withoutlast"
 		},
 		"CADD_raw": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "CADD", "S"],
+			"Func": "float_semicolon"
 		},
 		"CADD_raw_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "CADD", "RS"],
+			"Func": "float"
 		},
 		"CADD_phred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "CADD", "Phred"],
+			"Func": "float"
 		},
 		"CADD_raw_hg19": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "CADD_hg19", "S"],
+			"Func": "float_semicolon"
 		},
 		"CADD_raw_rankscore_hg19": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "CADD_hg19", "RS"],
+			"Func": "float"
 		},
 		"CADD_phred_hg19": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "CADD_hg19", "Phred"],
+			"Func": "float"
 		},
 		"DANN_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "DANN", "S"],
+			"Func": "float_semicolon"
 		},
 		"DANN_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "DANN", "RS"],
+			"Func": "float"
 		},
 		"fathmm-MKL_coding_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "fathmm-MKL_coding", "S"],
+			"Func": "float_semicolon"
 		},
 		"fathmm-MKL_coding_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "fathmm-MKL_coding", "RS"],
+			"Func": "float"
 		},
 		"fathmm-MKL_coding_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "fathmm-MKL_coding", "P"],
+			"Func": "str_semicolon"
 		},
 		"fathmm-MKL_coding_group": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "fathmm-MKL_coding", "group"],
+			"Func": "str"
 		},
 		"fathmm-XF_coding_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "fathmm-XF_coding", "S"],
+			"Func": "float_semicolon"
 		},
 		"fathmm-XF_coding_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "fathmm-XF_coding", "RS"],
+			"Func": "float"
 		},
 		"fathmm-XF_coding_pred": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "fathmm-XF_coding", "P"],
+			"Func": "str_semicolon"
 		},
 		"Eigen-raw_coding": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Eigen_coding", "S"],
+			"Func": "float_semicolon"
 		},
 		"Eigen-raw_coding_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Eigen_coding", "RS"],
+			"Func": "float"
 		},
 		"Eigen-phred_coding": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Eigen_coding", "Phred"],
+			"Func": "float"
 		},
 		"Eigen-PC-raw_coding": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Eigen-PC-raw_coding", "S"],
+			"Func": "float_semicolon"
 		},
 		"Eigen-PC-raw_coding_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Eigen-PC-raw_coding", "RS"],
+			"Func": "float"
 		},
 		"Eigen-PC-phred_coding": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "Eigen-PC-raw_coding", "Phred"],
+			"Func": "float"
 		},
 		"GenoCanyon_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "GenoCanyon", "S"],
+			"Func": "float_semicolon"
 		},
 		"GenoCanyon_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "GenoCanyon", "RS"],
+			"Func": "float"
 		},
 		"integrated_fitCons_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_integrated", "S"],
+			"Func": "float"
 		},
 		"integrated_fitCons_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_integrated", "RS"],
+			"Func": "float"
 		},
 		"integrated_confidence_value": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_integrated", "confidence_value"],
+			"Func": "int"
 		},
 		"GM12878_fitCons_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_GM12878", "S"],
+			"Func": "float"
 		},
 		"GM12878_fitCons_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_GM12878", "RS"],
+			"Func": "float"
 		},
 		"GM12878_confidence_value": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_GM12878", "confidence_value"],
+			"Func": "int"
 		},
 		"H1-hESC_fitCons_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_H1-hESC", "S"],
+			"Func": "float"
 		},
 		"H1-hESC_fitCons_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_H1-hESC", "RS"],
+			"Func": "float"
 		},
 		"H1-hESC_confidence_value": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_H1-hESC", "confidence_value"],
+			"Func": "int"
 		},
 		"HUVEC_fitCons_score": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_HUVEC", "S"],
+			"Func": "float"
 		},
 		"HUVEC_fitCons_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_HUVEC", "RS"],
+			"Func": "float"
 		},
 		"HUVEC_confidence_value": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "fitCons_HUVEC", "confidence_value"],
+			"Func": "int"
 		},
 		"LINSIGHT": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "LINSIGHT", "S"],
+			"Func": "float_semicolon"
 		},
 		"LINSIGHT_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["DamagePred", "LINSIGHT", "RS"],
+			"Func": "float"
 		},
 		"GERP++_NR": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "GERP++", "NR"],
+			"Func": "float"
 		},
 		"GERP++_RS": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "GERP++", "S"],
+			"Func": "float"
 		},
 		"GERP++_RS_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "GERP++", "RS"],
+			"Func": "float"
 		},
 		"phyloP100way_vertebrate": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phyloP100way_vertebrate", "S"],
+			"Func": "float"
 		},
 		"phyloP100way_vertebrate_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phyloP100way_vertebrate", "RS"],
+			"Func": "float"
 		},
 		"phyloP30way_mammalian": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phyloP30way_mammalian", "S"],
+			"Func": "float"
 		},
 		"phyloP30way_mammalian_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phyloP30way_mammalian", "RS"],
+			"Func": "float"
 		},
 		"phyloP17way_primate": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phyloP17way_primate", "S"],
+			"Func": "float"
 		},
 		"phyloP17way_primate_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phyloP17way_primate", "RS"],
+			"Func": "float"
 		},
 		"phastCons100way_vertebrate": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phastCons100way_vertebrate", "S"],
+			"Func": "float"
 		},
 		"phastCons100way_vertebrate_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phastCons100way_vertebrate", "RS"],
+			"Func": "float"
 		},
 		"phastCons30way_mammalian": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phastCons30way_mammalian", "S"],
+			"Func": "float"
 		},
 		"phastCons30way_mammalian_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phastCons30way_mammalian", "RS"],
+			"Func": "float"
 		},
 		"phastCons17way_primate": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phastCons17way_primate", "S"],
+			"Func": "float"
 		},
 		"phastCons17way_primate_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "phastCons17way_primate", "RS"],
+			"Func": "float"
 		},
 		"SiPhy_29way_pi": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "SiPhy_29way", "pi"],
+			"Func": "siphy_pi"
 		},
 		"SiPhy_29way_logOdds": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "SiPhy_29way", "S"],
+			"Func": "float"
 		},
 		"SiPhy_29way_logOdds_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "SiPhy_29way", "RS"],
+			"Func": "float"
 		},
 		"bStatistic": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "bStatistic", "S"],
+			"Func": "float"
 		},
 		"bStatistic_converted_rankscore": {
-			"Path": [],
-			"Func": ""
+			"Path": ["ConsPred", "bStatistic", "RS"],
+			"Func": "float"
 		},
 		"1000Gp3_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "ALL", "AC"],
+			"Func": "int"
 		},
 		"1000Gp3_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "ALL", "AF"],
+			"Func": "float"
 		},
 		"1000Gp3_AFR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "AFR", "AC"],
+			"Func": "int"
 		},
 		"1000Gp3_AFR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "AFR", "AF"],
+			"Func": "float"
 		},
 		"1000Gp3_EUR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "EUR", "AC"],
+			"Func": "int"
 		},
 		"1000Gp3_EUR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "EUR", "AF"],
+			"Func": "float"
 		},
 		"1000Gp3_AMR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "AMR", "AC"],
+			"Func": "int"
 		},
 		"1000Gp3_AMR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "AMR", "AF"],
+			"Func": "float"
 		},
 		"1000Gp3_EAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "EAS", "AC"],
+			"Func": "int"
 		},
 		"1000Gp3_EAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "EAS", "AF"],
+			"Func": "float"
 		},
 		"1000Gp3_SAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "SAS", "AC"],
+			"Func": "int"
 		},
 		"1000Gp3_SAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "1000Gp3", "SAS", "AF"],
+			"Func": "float"
 		},
 		"TWINSUK_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "TWINSUK", "ALL", "AC"],
+			"Func": "int"
 		},
 		"TWINSUK_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "TWINSUK", "ALL", "AF"],
+			"Func": "float"
 		},
 		"ALSPAC_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ALSPAC", "ALL", "AC"],
+			"Func": "int"
 		},
 		"ALSPAC_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ALSPAC", "ALL", "AF"],
+			"Func": "float"
 		},
 		"UK10K_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "UK10K", "ALL", "AC"],
+			"Func": "int"
 		},
 		"UK10K_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "UK10K", "ALL", "AF"],
+			"Func": "float"
 		},
 		"ESP6500_AA_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ESP6500", "AA", "AC"],
+			"Func": "int"
 		},
 		"ESP6500_AA_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ESP6500", "AA", "AF"],
+			"Func": "float"
 		},
 		"ESP6500_EA_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ESP6500", "EA", "AC"],
+			"Func": "int"
 		},
 		"ESP6500_EA_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ESP6500", "EA", "AF"],
+			"Func": "float"
 		},
 		"ExAC_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "ALL", "AC"],
+			"Func": "int"
 		},
 		"ExAC_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "ALL", "AF"],
+			"Func": "float"
 		},
 		"ExAC_Adj_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "Adj", "AC"],
+			"Func": "int"
 		},
 		"ExAC_Adj_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "Adj", "AF"],
+			"Func": "float"
 		},
 		"ExAC_AFR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "AFR", "AC"],
+			"Func": "int"
 		},
 		"ExAC_AFR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "AFR", "AF"],
+			"Func": "float"
 		},
 		"ExAC_AMR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "AMR", "AC"],
+			"Func": "int"
 		},
 		"ExAC_AMR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "AMR", "AF"],
+			"Func": "float"
 		},
 		"ExAC_EAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "EAS", "AC"],
+			"Func": "int"
 		},
 		"ExAC_EAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "EAS", "AF"],
+			"Func": "float"
 		},
 		"ExAC_FIN_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "FIN", "AC"],
+			"Func": "int"
 		},
 		"ExAC_FIN_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "FIN", "AF"],
+			"Func": "float"
 		},
 		"ExAC_NFE_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "NFE", "AC"],
+			"Func": "int"
 		},
 		"ExAC_NFE_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "NFE", "AF"],
+			"Func": "float"
 		},
 		"ExAC_SAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "SAS", "AC"],
+			"Func": "int"
 		},
 		"ExAC_SAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC", "SAS", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonTCGA_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "ALL", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonTCGA_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "ALL", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonTCGA_Adj_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "Adj", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonTCGA_Adj_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "Adj", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonTCGA_AFR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "AFR", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonTCGA_AFR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "AFR", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonTCGA_AMR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "AMR", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonTCGA_AMR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "AMR", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonTCGA_EAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "EAS", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonTCGA_EAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "EAS", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonTCGA_FIN_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "FIN", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonTCGA_FIN_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "FIN", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonTCGA_NFE_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "NFE", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonTCGA_NFE_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "NFE", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonTCGA_SAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "SAS", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonTCGA_SAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonTCGA", "SAS", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonpsych_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "ALL", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonpsych_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "ALL", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonpsych_Adj_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "Adj", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonpsych_Adj_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "Adj", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonpsych_AFR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "AFR", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonpsych_AFR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "AFR", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonpsych_AMR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "AMR", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonpsych_AMR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "AMR", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonpsych_EAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "EAS", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonpsych_EAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "EAS", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonpsych_FIN_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "FIN", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonpsych_FIN_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "FIN", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonpsych_NFE_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "NFE", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonpsych_NFE_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "NFE", "AF"],
+			"Func": "float"
 		},
 		"ExAC_nonpsych_SAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "SAS", "AC"],
+			"Func": "int"
 		},
 		"ExAC_nonpsych_SAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "ExAC_nonpsych", "SAS", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_flag": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "flag"],
+			"Func": "str"
 		},
 		"gnomAD_exomes_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "ALL", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "ALL", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "ALL", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "ALL", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_AFR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "AFR", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_AFR_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "AFR", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_AFR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "AFR", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_AFR_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "AFR", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_AMR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "AMR", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_AMR_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "AMR", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_AMR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "AMR", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_AMR_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "AMR", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_ASJ_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "ASJ", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_ASJ_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "ASJ", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_ASJ_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "ASJ", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_ASJ_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "ASJ", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_EAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "EAS", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_EAS_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "EAS", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_EAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "EAS", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_EAS_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "EAS", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_FIN_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "FIN", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_FIN_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "FIN", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_FIN_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "FIN", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_FIN_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "FIN", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_NFE_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "NFE", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_NFE_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "NFE", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_NFE_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "NFE", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_NFE_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "NFE", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_SAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "SAS", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_SAS_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "SAS", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_SAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "SAS", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_SAS_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "SAS", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_POPMAX_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "POPMAX", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_POPMAX_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "POPMAX", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_POPMAX_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "POPMAX", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_POPMAX_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "POPMAX", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "controls", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "controls", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "controls", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_controls_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes", "controls", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_AFR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "AFR", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_AFR_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "AFR", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_AFR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "AFR", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_controls_AFR_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "AFR", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_AMR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "AMR", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_AMR_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "AMR", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_AMR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "AMR", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_controls_AMR_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "AMR", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_ASJ_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "ASJ", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_ASJ_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "ASJ", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_ASJ_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "ASJ", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_controls_ASJ_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "ASJ", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_EAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "EAS", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_EAS_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "EAS", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_EAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "EAS", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_controls_EAS_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "EAS", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_FIN_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "FIN", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_FIN_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "FIN", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_FIN_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "FIN", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_controls_FIN_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "FIN", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_NFE_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "NFE", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_NFE_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "NFE", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_NFE_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "NFE", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_controls_NFE_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "NFE", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_SAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "SAS", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_SAS_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "SAS", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_SAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "SAS", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_controls_SAS_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "SAS", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_POPMAX_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "POPMAX", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_POPMAX_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "POPMAX", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_exomes_controls_POPMAX_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "POPMAX", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_exomes_controls_POPMAX_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_exomes_controls", "POPMAX", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_flag": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "flag"],
+			"Func": "str"
 		},
 		"gnomAD_genomes_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "ALL", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "ALL", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "ALL", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "ALL", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AFR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AFR", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AFR_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AFR", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AFR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AFR", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_AFR_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AFR", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AMR_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AMR", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AMR_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AMR", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AMR_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AMR", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_AMR_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AMR", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_ASJ_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "ASJ", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_ASJ_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "ASJ", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_ASJ_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "ASJ", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_ASJ_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "ASJ", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_EAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "EAS", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_EAS_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "EAS", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_EAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "EAS", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_EAS_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "EAS", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_FIN_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "FIN", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_FIN_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "FIN", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_FIN_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "FIN", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_FIN_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "FIN", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_NFE_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "NFE", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_NFE_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "NFE", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_NFE_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "NFE", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_NFE_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "NFE", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AMI_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AMI", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AMI_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AMI", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_AMI_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AMI", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_AMI_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "AMI", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_SAS_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "SAS", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_SAS_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "SAS", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_SAS_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "SAS", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_SAS_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "SAS", "nhomalt"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_POPMAX_AC": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "POPMAX", "AC"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_POPMAX_AN": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "POPMAX", "AN"],
+			"Func": "int"
 		},
 		"gnomAD_genomes_POPMAX_AF": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "POPMAX", "AF"],
+			"Func": "float"
 		},
 		"gnomAD_genomes_POPMAX_nhomalt": {
-			"Path": [],
-			"Func": ""
+			"Path": ["PopFreq", "gnomAD_genomes", "POPMAX", "nhomalt"],
+			"Func": "int"
 		},
 		"clinvar_id": {
-			"Path": [],
-			"Func": ""
+			"Path": ["clinvar", "id"],
+			"Func": "int"
 		},
 		"clinvar_clnsig": {
-			"Path": [],
-			"Func": ""
+			"Path": ["clinvar", "clnsig"],
+			"Func": "str_underline_purge"
 		},
 		"clinvar_trait": {
-			"Path": [],
-			"Func": ""
+			"Path": ["clinvar", "trait"],
+			"Func": "str_vline_underline_purge"
 		},
 		"clinvar_review": {
-			"Path": [],
-			"Func": ""
+			"Path": ["clinvar", "review"],
+			"Func": "str_underline_purge"
 		},
 		"clinvar_hgvs": {
-			"Path": [],
-			"Func": ""
+			"Path": ["clinvar", "hgvs"],
+			"Func": "str"
 		},
 		"clinvar_var_source": {
-			"Path": [],
-			"Func": ""
+			"Path": ["clinvar", "var_source"],
+			"Func": "clinvar_source"
 		},
 		"clinvar_MedGen_id": {
-			"Path": [],
-			"Func": ""
+			"Path": ["clinvar", "MedGen_id"],
+			"Func": "str_vline"
 		},
 		"clinvar_OMIM_id": {
-			"Path": [],
-			"Func": ""
+			"Path": ["clinvar", "OMIM_id"],
+			"Func": "int_vline"
 		},
 		"clinvar_Orphanet_id": {
-			"Path": [],
-			"Func": ""
+			"Path": ["clinvar", "Orphanet_id"],
+			"Func": "str_vline"
 		},
 		"Interpro_domain": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Interpro_domain"],
+			"Func": "str_semicolon_vline"
 		},
 		"GTEx_V8_gene": {
-			"Path": [],
-			"Func": ""
+			"Path": ["GTEx_V8", "gene"],
+			"Func": "str_vline"
 		},
 		"GTEx_V8_tissue": {
-			"Path": [],
-			"Func": ""
+			"Path": ["GTEx_V8", "tissue"],
+			"Func": "str_vline_underline_purge"
 		},
 		"Geuvadis_eQTL_target_gene": {
-			"Path": [],
-			"Func": ""
+			"Path": ["Geuvadis_eQTL_target_gene"],
+			"Func": "str_semicolon"
 		}
 	}
 }
