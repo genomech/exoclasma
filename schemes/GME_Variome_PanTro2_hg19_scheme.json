@@ -1,0 +1,145 @@
+{
+	"NoneValues": ["none", ".", "", "-", " ", "nan"],
+	"InfoTags": {
+		"chrom": {
+			"Path": ["chrom"],
+			"Func": "str"
+		},
+		"pos": {
+			"Path": ["pos"],
+			"Func": "int"
+		},
+		"ref": {
+			"Path": ["ref"],
+			"Func": "str"
+		},
+		"alt": {
+			"Path": ["alt"],
+			"Func": "str"
+		},
+		"AA": {
+			"Path": ["AA"],
+			"Func": "str"
+		},
+		"filter": {
+			"Path": ["filter"],
+			"Func": "str"
+		},
+		"FunctionGVS": {
+			"Path": ["FunctionGVS", "old"],
+			"Func": "str"
+		},
+		"geneFunction": {
+			"Path": ["geneFunction"],
+			"Func": "str_comma"
+		},
+		"Gene": {
+			"Path": ["Gene"],
+			"Func": "str_comma"
+		},
+		"GeneID": {
+			"Path": ["GeneID"],
+			"Func": "int"
+		},
+		"SIFT_pred": {
+			"Path": ["Pred", "SIFT"],
+			"Func": "str"
+		},
+		"GERP++": {
+			"Path": ["Pred", "GERP++"],
+			"Func": "float"
+		},
+		"AF": {
+			"Path": ["AF"],
+			"Func": "float"
+		},
+		"GME_GC": {
+			"Path": ["PopFreq", "GME_Calc"],
+			"Func": "calculate_freq"
+		},
+		"GME_AC": {
+			"Path": ["PopFreq", "GME", "AC"],
+			"Func": "int_comma"
+		},
+		"GME_AF": {
+			"Path": ["PopFreq", "GME", "AF"],
+			"Func": "float"
+		},
+		"NWA": {
+			"Path": ["PopFreq", "NWA"],
+			"Func": "calculate_freq"
+		},
+		"NEA": {
+			"Path": ["PopFreq", "NEA"],
+			"Func": "calculate_freq"
+		},
+		"AP": {
+			"Path": ["PopFreq", "AP"],
+			"Func": "calculate_freq"
+		},
+		"Israel": {
+			"Path": ["PopFreq", "Israel"],
+			"Func": "calculate_freq"
+		},
+		"SD": {
+			"Path": ["PopFreq", "SD"],
+			"Func": "calculate_freq"
+		},
+		"TP": {
+			"Path": ["PopFreq", "TP"],
+			"Func": "calculate_freq"
+		},
+		"CA": {
+			"Path": ["PopFreq", "CA"],
+			"Func": "calculate_freq"
+		},
+		"FunctionGVS_new": {
+			"Path": ["FunctionGVS", "new"],
+			"Func": "str"
+		},
+		"Priority": {
+			"Path": ["Priority"],
+			"Func": "str"
+		},
+		"Polyphen2_HVAR_pred": {
+			"Path": ["Pred", "Polyphen2_HVAR"],
+			"Func": "str"
+		},
+		"LRT_pred": {
+			"Path": ["Pred", "LRT"],
+			"Func": "str"
+		},
+		"MutationTaster_pred": {
+			"Path": ["Pred", "MutationTaster"],
+			"Func": "str"
+		},
+		"rsid": {
+			"Path": ["dbsnp", "rsid"],
+			"Func": "str"
+		},
+		"OMIM_MIM": {
+			"Path": ["OMIM", "MIM"],
+			"Func": "omim_mim"
+		},
+		"OMIM_Disease": {
+			"Path": ["OMIM", "Disease"],
+			"Func": "omim_disease"
+		},
+		"AA_AC": {
+			"Path": ["PopFreq", "AA"],
+			"Func": "second_calculate_freq"
+		},
+		"EA_AC": {
+			"Path": ["PopFreq", "EA"],
+			"Func": "second_calculate_freq"
+		},
+		"rsid_link": {
+			"Path": ["dbsnp", "link"],
+			"Func": "str"
+		},
+		"position_link": {
+			"Path": ["position_link"],
+			"Func": "str"
+		}
+	}
+} 

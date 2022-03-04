@@ -30,7 +30,7 @@ dbNSFP_Functions = {
 
 def dbNSFP_ParseLine(Row):
 	KeyList = list(dbNSFP_Scheme["InfoTags"].keys())
-	NamedRow = { KeyList[index]: item for index, item in enumerate(Row) }
+	NamedRow = { KeyList[index]: str(item) for index, item in enumerate(Row) }
 	NewInfo = {}
 	for Key, Value in NamedRow.items():
 		ParsedValue = dbNSFP_Functions[dbNSFP_Scheme["InfoTags"][Key]["Func"]](Value)
@@ -45,7 +45,7 @@ def dbNSFP_VariantMatch(Item, Row):
 	return (Item[0] == Row[7]) and (int(Item[1]) == int(Row[8])) and (Item[2] == Row[2]) and (Item[3] == Row[3]) # FIXME hg19 only
 
 def dbNSFP_QueryFunction(Item, TabixObj):
-	TabixOutput = TabixObj.query(Item[0], Item[1] - 1, Item[1])
+	TabixOutput = TabixObj.query(Item[0], Item[1], Item[1])
 	Result = []
 	for Row in TabixOutput:
 		if dbNSFP_VariantMatch(Item = Item, Row = Row):

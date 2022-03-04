@@ -27,7 +27,7 @@ def ABraOm_VariantMatch(Item, Row):
 	return (Item[0] == Row[0]) and (int(Item[1]) == int(Row[1])) and (Item[2] == Row[2]) and (Item[3] == Row[3])
 
 def ABraOm_QueryFunction(Item, TabixObj):
-	TabixOutput = TabixObj.query(Item[0], Item[1] - 1, Item[1])
+	TabixOutput = TabixObj.query(Item[0], Item[1], Item[1])
 	Result = []
 	for Row in TabixOutput:
 		if ABraOm_VariantMatch(Item = Item, Row = Row):

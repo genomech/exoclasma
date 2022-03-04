@@ -1,5 +1,5 @@
 {
-	"NoneValues": ["-", ".", ",", " ", "", "NA", "./."],
+	"NoneValues": ["-", ".", ",", " ", "", "NA", "./.", "nan"],
 	"InfoTags": {
 		"#chr": {
 			"Path": ["Coords", "hg38", "chr"],
