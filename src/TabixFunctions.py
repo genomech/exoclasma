@@ -3,6 +3,8 @@ from .SharedFunctions import *
 
 ## ------======| TABIX |======------
 
+class ParseLineError(Exception): pass
+
 def TabixThread(Chunk, FileName, QueryFunction):
 	ThreadNumber, Variants = Chunk
 	StartTime = time.time()
@@ -10,7 +12,7 @@ def TabixThread(Chunk, FileName, QueryFunction):
 	Result = []
 	for index, item in Variants:
 		Info = QueryFunction(item, TabixObj)
-		Result += [(index, Info)]
+		Result.append((index, Info))
 	logging.info(f'Name: TabixThread[{ThreadNumber}]; total time: {Timestamp(StartTime)}')
 	return Result
 

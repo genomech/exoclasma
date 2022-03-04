@@ -1,0 +1,69 @@
+{
+	"NoneValues": ["NA", "", ".", "nan"],
+	"InfoTags": {
+		"Chr": {
+			"Path": ["Chr"],
+			"Func": "str"
+		},
+		"Start": {
+			"Path": ["Start"],
+			"Func": "int"
+		},
+		"Ref": {
+			"Path": ["Ref"],
+			"Func": "str"
+		},
+		"Alt": {
+			"Path": ["Alt"],
+			"Func": "str"
+		},
+		"PredictedFunc.refGene": {
+			"Path": ["refGene", "PredictedFunc"],
+			"Func": "str"
+		},
+		"Gene.refGene": {
+			"Path": ["refGene", "Gene"],
+			"Func": "str_comma"
+		},
+		"PredConsequence.refGene": {
+			"Path": ["PredConsequence", "refGene"],
+			"Func": "str_comma"
+		},
+		"avsnp147": {
+			"Path": ["avsnp147"],
+			"Func": "str"
+		},
+		"FILTER": {
+			"Path": ["Filtering", "FILTER"],
+			"Func": "str"
+		},
+		"CEGH Filter": {
+			"Path": ["Filtering", "CEGH Filter"],
+			"Func": "str"
+		},
+		"HomozygousALT count": {
+			"Path": ["PopFreq", "HomozygousALT count"],
+			"Func": "int"
+		},
+		"Hemizygous count": {
+			"Path": ["PopFreq", "Hemizygous count"],
+			"Func": "int"
+		},
+		"Allele number": {
+			"Path": ["PopFreq", "Allele number"],
+			"Func": "int"
+		},
+		"Allele ALT count": {
+			"Path": ["PopFreq", "Allele ALT count"],
+			"Func": "int"
+		},
+		"Frequencies": {
+			"Path": ["PopFreq", "Frequencies"],
+			"Func": "float"
+		},
+		"Cohort": {
+			"Path": ["PopFreq", "Cohort"],
+			"Func": "str"
+		}
+	}
+} 

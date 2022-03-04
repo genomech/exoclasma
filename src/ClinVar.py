@@ -36,6 +36,12 @@ def ClinVarParseLine(Row):
 
 def ClinVarQueryFunction(Item, TabixObj):
 	TabixOutput = TabixObj.query(Item[0], Item[1] - 1, Item[1])
-	Result = [ ClinVarParseLine(Row = Row) for Row in TabixOutput if VcfVariantMatch(Item = Item, Row = Row) ]
+	Result = []
+	for Row in TabixOutput:
+		if VcfVariantMatch(Item = Item, Row = Row):
+			try:
+				Result.append(ClinVarParseLine(Row = Row))
+			except Exception as Exc:
+				raise ParseLineError(f"Row: {Row}; Exception Info: {Exc}")
 	return None if not Result else Result
 

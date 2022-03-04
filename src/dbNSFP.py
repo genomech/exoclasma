@@ -46,5 +46,11 @@ def dbNSFP_VariantMatch(Item, Row):
 
 def dbNSFP_QueryFunction(Item, TabixObj):
 	TabixOutput = TabixObj.query(Item[0], Item[1] - 1, Item[1])
-	Result = [ dbNSFP_ParseLine(Row = Row) for Row in TabixOutput if dbNSFP_VariantMatch(Item = Item, Row = Row) ]
+	Result = []
+	for Row in TabixOutput:
+		if dbNSFP_VariantMatch(Item = Item, Row = Row):
+			try:
+				Result.append(dbNSFP_ParseLine(Row = Row))
+			except Exception as Exc:
+				raise ParseLineError(f"Row: {Row}; Exception Info: {Exc}")
 	return None if not Result else Result

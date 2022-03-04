@@ -22,14 +22,20 @@ def dbSNPParseLine(Row):
 		if Key == 'CAF': NewInfo['CAF'] = { Alleles[index]: None if (item == '.') else float(item) for index, item in enumerate(Result['INFO']['CAF'].split(',')) }
 		if Key == 'TOPMED': NewInfo['TOPMED'] = { Alleles[index]: None if (item == '.') else float(item) for index, item in enumerate(Result['INFO']['TOPMED'].split(',')) }
 		if Key in dbSNPSimpleInt: NewInfo[Key] = int(Result['INFO'][Key])
-		if Key in dbSNPFlags: Flags += [Key]
+		if Key in dbSNPFlags: Flags.append(Key)
 		if Key == 'COMMON':
-			if Result['INFO'][Key] == 1: Flags += [Key]
+			if Result['INFO'][Key] == 1: Flags.append(Key)
 	NewInfo['Flags'] = Flags
 	Result['INFO'] = NewInfo
 	return Result
 
 def dbSNPQueryFunction(Item, TabixObj):
 	TabixOutput = TabixObj.query(Item[0], Item[1] - 1, Item[1])
-	Result = [ dbSNPParseLine(Row = Row) for Row in TabixOutput if VcfVariantMatch(Item = Item, Row = Row) ]
+	Result = []
+	for Row in TabixOutput:
+		if VcfVariantMatch(Item = Item, Row = Row):
+			try:
+				Result.append(dbSNPParseLine(Row = Row))
+			except Exception as Exc:
+				raise ParseLineError(f"Row: {Row}; Exception Info: {Exc}")
 	return None if not Result else Result
