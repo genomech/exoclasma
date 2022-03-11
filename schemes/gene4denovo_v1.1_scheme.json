@@ -1,0 +1,53 @@
+{
+	"NullValues": ["NA", "", "nan"],
+	"InfoTags": {
+		"Chr": {
+			"Path": ["Chr"],
+			"Func": "str"
+		},
+		"Start": {
+			"Path": ["Start"],
+			"Func": "int"
+		},
+		"End": {
+			"Path": ["End"],
+			"Func": "int"
+		},
+		"Ref": {
+			"Path": ["Ref"],
+			"Func": "str"
+		},
+		"Alt": {
+			"Path": ["Alt"],
+			"Func": "str"
+		},
+		"SampleCode": {
+			"Path": ["SampleCode"],
+			"Func": "str"
+		},
+		"Condition": {
+			"Path": ["Condition"],
+			"Func": "str"
+		},
+		"Type": {
+			"Path": ["Type"],
+			"Func": "str"
+		},
+		"Cite": {
+			"Path": ["Cite"],
+			"Func": "str"
+		},
+		"PMID": {
+			"Path": ["PMID"],
+			"Func": "str"
+		},
+		"Unknown1": {
+			"Path": ["Unknown1"],
+			"Func": "str"
+		},
+		"Unknown2": {
+			"Path": ["Unknown2"],
+			"Func": "str"
+		}
+	}
+}
