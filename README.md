@@ -30,4 +30,9 @@ Process Exo-C Sequencing Data and Annotate Genomic Variants
 * ABraOM ([downloads](https://abraom.ib.usp.br), [cite](https://doi.org/10.1002/humu.23220))
 * Japanese Multi Omics Reference Panel (jMorp), release 202112 ([downloads](https://jmorp.megabank.tohoku.ac.jp/), [cite](https://doi.org/10.1093/nar/gkaa1034))
 
+* GoNL version 5 - freqs ([cite](https://dx.doi.org/10.1038%2Fejhg.2013.118), [downloads](https://molgenis26.gcc.rug.nl/downloads/gonl_public/variants/release5/)), de novo ([downloads](https://molgenis26.gcc.rug.nl/downloads/gonl_public/variants/release5.2/GoNL_DNMs.txt))
+
 * gene4denovo, version 1.1 (09/09/2020) ([downloads](http://www.genemed.tech/gene4denovo))
+* Kaviar ([download](http://db.systemsbiology.net/kaviar/), [cite](https://doi.org/10.1093/bioinformatics/btr540))
+
+* ANNOVAR ([cite](http://nar.oxfordjournals.org/content/38/16/e164), [download](http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz))
