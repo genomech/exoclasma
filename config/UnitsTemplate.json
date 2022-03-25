@@ -2,6 +2,8 @@
 	"Meta": {
 		"Threads": 10,
 		"RemoveTempFiles": false,
+		"Call": true,
+		"HiC": true,
 		"FastQSampleSize": 1000000,
 		"GenomeInfo": "",
 		"CaptureInfo": "",

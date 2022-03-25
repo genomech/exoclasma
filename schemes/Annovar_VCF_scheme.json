@@ -1,0 +1,132 @@
+{
+	"NoneValues": [".", "NONE", "UNKNOWN"],
+	"InfoTags": {
+		"ANNOVAR_DATE": {
+			"Path": ["AnnovarDate"],
+			"Allelic": true,
+			"Func": "str"
+		},
+		"Func.refGene": {
+			"Path": ["refGene", "Func"],
+			"Allelic": true,
+			"Func": "str_semicolon"
+		},
+		"Gene.refGene": {
+			"Path": ["refGene", "Gene"],
+			"Allelic": true,
+			"Func": "str_semicolon"
+		},
+		"GeneDetail.refGene": {
+			"Path": ["refGene", "GeneDetail"],
+			"Allelic": true,
+			"Func": "gene_detail"
+		},
+		"ExonicFunc.refGene": {
+			"Path": ["refGene", "ExonicFunc"],
+			"Allelic": true,
+			"Func": "str_semicolon"
+		},
+		"AAChange.refGene": {
+			"Path": ["refGene", "AAChange"],
+			"Allelic": true,
+			"Func": "aa_change"
+		},
+		"ALLELE_END": {
+			"Path": ["_"],
+			"Allelic": true,
+			"Func": "str"
+		},
+		"AC": {
+			"Path": ["AC"],
+			"Allelic": false,
+			"Func": "int_comma"
+		},
+		"AF": {
+			"Path": ["AF"],
+			"Allelic": false,
+			"Func": "float_comma"
+		},
+		"AN": {
+			"Path": ["AN"],
+			"Allelic": false,
+			"Func": "int"
+		},
+		"BaseQRankSum": {
+			"Path": ["BaseQRankSum"],
+			"Allelic": false,
+			"Func": "float"
+		},
+		"DP": {
+			"Path": ["DP"],
+			"Allelic": false,
+			"Func": "int"
+		},
+		"ExcessHet": {
+			"Path": ["ExcessHet"],
+			"Allelic": false,
+			"Func": "float"
+		},
+		"FS": {
+			"Path": ["FS"],
+			"Allelic": false,
+			"Func": "float"
+		},
+		"InbreedingCoeff": {
+			"Path": ["InbreedingCoeff"],
+			"Allelic": false,
+			"Func": "float"
+		},
+		"MLEAC": {
+			"Path": ["MLEAC"],
+			"Allelic": false,
+			"Func": "int_comma"
+		},
+		"MLEAF": {
+			"Path": ["MLEAF"],
+			"Allelic": false,
+			"Func": "float_comma"
+		},
+		"MQ": {
+			"Path": ["MQ"],
+			"Allelic": false,
+			"Func": "float"
+		},
+		"MQRankSum": {
+			"Path": ["MQRankSum"],
+			"Allelic": false,
+			"Func": "float"
+		},
+		"QD": {
+			"Path": ["QD"],
+			"Allelic": false,
+			"Func": "float"
+		},
+		"ReadPosRankSum": {
+			"Path": ["ReadPosRankSum"],
+			"Allelic": false,
+			"Func": "float"
+		},
+		"SOR": {
+			"Path": ["SOR"],
+			"Allelic": false,
+			"Func": "float"
+		}
+	},
+	"FormatTags": {
+		"AD": {
+			"Func": "int_comma"
+		},
+		"DP": {
+			"Func": "int"
+		},
+		"GQ": {
+			"Func": "int"
+		},
+		"GT": {
+			"Func": "genotype"
+		},
+		"PL": {
+			"Func": "int_comma"
+		}
+	}
+}

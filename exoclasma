@@ -32,7 +32,6 @@ def CreateParser():
 	# AlignPipeline
 	AlignPipelineParser = Subparsers.add_parser('AlignPipeline', help=f"Align FASTA, mark duplicates, BQSR, and variant calling")
 	AlignPipelineParser.add_argument('-u', '--units', required=True, type=str, help=f"Units JSON file.")
-	AlignPipelineParser.add_argument('-n', '--nocall', action='store_true', help=f"Do not perform BQSR and variant calling.")
 	
 	return Parser
 
@@ -49,6 +48,6 @@ if __name__ == '__main__':
 		CapturePreparation(InputBED = Bed, CaptureName = Name, ParentDir = Parent, GenomeInfoJSON = GenomeInfo)
 	elif Namespace.command == "AlignPipeline":
 		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
-		Units, NoCall, Verbosity = os.path.abspath(Namespace.units), Namespace.nocall, VERBOSITY_LEVELS[Namespace.verbosity]
-		AlignPipeline(UnitsFile = Units, Verbosity = Verbosity, NoCall = NoCall)
+		Units, Verbosity = os.path.abspath(Namespace.units), VERBOSITY_LEVELS[Namespace.verbosity]
+		AlignPipeline(UnitsFile = Units, Verbosity = Verbosity)
 	else: Parser.print_help()

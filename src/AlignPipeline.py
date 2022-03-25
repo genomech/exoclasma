@@ -17,6 +17,7 @@ def GenerateAlignFileNames(Unit, Meta):
 		"PrimaryBAM":      f"_temp.{ID}.primary.bam",
 		"FlagStat":        f"_temp.{ID}.flagstat.json",
 		"DuplessBAM":      f"_temp.{ID}.dupless.bam",
+		"DuplessQSBAM":    f"_temp.{ID}.duplessqs.bam",
 		"DuplessMetrics":  f"_temp.{ID}.md_metrics.txt",
 		"CoverageStats":   f"_temp.{ID}.coverage.json",
 		"Contigs":         f"_temp.{ID}.contigs.json"
@@ -127,6 +128,7 @@ def MarkDuplicatesStage(Unit, Meta):
 	MarkDuplicates(
 		InputBAM = Unit['FileNames']["PrimaryBAM"],
 		OutputBAM = Unit['FileNames']["DuplessBAM"],
+		QuerySortedBAM = Unit['FileNames']["DuplessQSBAM"]
 		MetricsTXT = Unit['FileNames']["DuplessMetrics"]
 	)
 
@@ -148,6 +150,12 @@ def BaseRecalibrationStage(Unit, Meta):
 		ActiveContigs = Unit['ActiveContigs'],
 		Threads = Meta["Threads"]
 	) 
+
+def DuplessAsFinal(Unit):
+	BashSubprocess(
+		Name = f'DuplessAsFinal.Move',
+		Command = f'mv "{Unit["FileNames"]["DuplessBAM"]}" "{Unit["FileNames"]["RecalBAM"]}"'
+			)
 
 def HaplotypeCallingStage(Unit, Meta):
 	HaplotypeCalling(
@@ -172,31 +180,34 @@ def StatsSummaryStage(Unit, Meta):
 
 # ------======| ALIGN PIPELINE |======------
 
-def AlignPipeline(UnitsFile, NoCall = False, Verbosity = logging.INFO):
+def AlignPipeline(UnitsFile, Verbosity = logging.INFO):
 	Protocol = AlignProtocolAndBackup(UnitsFile)
 	for UnitIndex in range(len(Protocol["Units"])):
 		Parameters = { 'Unit': Protocol["Units"][UnitIndex], 'Meta': Protocol['Meta'] }
 		def StageAndBackup(Stage, Func, Parameters):
 			nonlocal Protocol
 			nonlocal UnitIndex
-			if Protocol["Units"][UnitIndex]["Stage"] == Stage:
+			if Stage not in Protocol["Units"][UnitIndex]["Stage"]:
 				Func(**Parameters)
-				Protocol["Units"][UnitIndex]["Stage"] += 1
+				Protocol["Units"][UnitIndex]["Stage"].append(Stage)
 				if Protocol['Backup']['Possible']: SaveJSON(Protocol, Protocol['Backup']['FN'])
 		StartTime = time.time()
-		StageAndBackup(Stage = 0, Func = MakeDirStage, Parameters = Parameters)
+		StageAndBackup(Stage = "MakeDir", Func = MakeDirStage, Parameters = Parameters)
 		ConfigureLogger(Protocol["Units"][UnitIndex]['FileNames']['Log'], Verbosity)
-		StageAndBackup(Stage = 1, Func = CutadaptStage, Parameters = Parameters)
-		StageAndBackup(Stage = 2, Func = BWAStage, Parameters = Parameters)
-		StageAndBackup(Stage = 3, Func = GetActiveContigs, Parameters = Parameters)
+		StageAndBackup(Stage = "Cutadapt", Func = CutadaptStage, Parameters = Parameters)
+		StageAndBackup(Stage = "BWA", Func = BWAStage, Parameters = Parameters)
+		StageAndBackup(Stage = "GetActiveContigs", Func = GetActiveContigs, Parameters = Parameters)
 		Protocol["Units"][UnitIndex]['ActiveContigs'] = LoadJSON(Protocol["Units"][UnitIndex]["FileNames"]["Contigs"])
 		Parameters = { 'Unit': Protocol["Units"][UnitIndex], 'Meta': Protocol['Meta'] }
-		StageAndBackup(Stage = 4, Func = MarkDuplicatesStage, Parameters = Parameters)
-		StageAndBackup(Stage = 5, Func = CoverageStatsStage, Parameters = Parameters)
-		StageAndBackup(Stage = 6, Func = StatsSummaryStage, Parameters = Parameters)
-		StageAndBackup(Stage = 7, Func = BaseRecalibrationStage, Parameters = Parameters)
-		if not NoCall:
-			StageAndBackup(Stage = 8, Func = HaplotypeCallingStage, Parameters = Parameters)
+		StageAndBackup(Stage = "MarkDuplicates", Func = MarkDuplicatesStage, Parameters = Parameters)
+		StageAndBackup(Stage = "CoverageStats", Func = CoverageStatsStage, Parameters = Parameters)
+		if Protocol['Meta']['Call']:
+			StageAndBackup(Stage = "BaseRecalibration", Func = BaseRecalibrationStage, Parameters = Parameters)
+			StageAndBackup(Stage = "HaplotypeCalling", Func = HaplotypeCallingStage, Parameters = Parameters)
+		else: DuplessAsFinal(Parameters['Unit'])
+		if Protocol['Meta']['HiC']:
+			# TODO
+		StageAndBackup(Stage = "StatsSummaryStage", Func = StatsSummaryStage, Parameters = Parameters)
 		if Protocol['Meta']['RemoveTempFiles']:
 			for t in glob.glob(os.path.join(Protocol["Units"][UnitIndex]['FileNames']["OutputDir"], '_temp.*')): os.remove(t)
 			logging.info(f'Temp files removed')

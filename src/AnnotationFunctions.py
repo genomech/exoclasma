@@ -1,4 +1,4 @@
-from SharedFunctions import *
+from .SharedFunctions import *
 
 def ANNOVAR(InputVCF, OutputVCF, AnnovarFolder, GenomeAssembly, Threads = multiprocessing.cpu_count()):
 	logging.info(f'Input VCF: "{InputVCF}"; Output VCF: "{OutputVCF}"; Genome Assembly: {GenomeAssembly}') 

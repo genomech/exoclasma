@@ -1,5 +1,6 @@
 from Bio import SeqIO
 import argparse
+import bisect
 import bz2
 import collections
 import contextlib
@@ -113,3 +114,5 @@ CONFIG_JAVA_OPTIONS = LoadJSON(os.path.join(CurrentDir(), "..", "config", "JavaO
 CONFIG_ADAPTERS = LoadJSON(os.path.join(CurrentDir(), "..", "config", "Adapters.json"))
 
 GATK_PATH = os.path.abspath(os.path.join(CurrentDir(), "..", "gatk", "gatk"))
+
+JUICERTOOLS_PATH = os.path.abspath(os.path.join(CurrentDir(), "..", "jt")) # TODO

@@ -68,17 +68,17 @@ def MergeBAMs(BAMs, OutputBAM, SortOrder):
 
 ## ------======| MARK DUPLICATES |======------
 
-def MarkDuplicates(InputBAM, OutputBAM, MetricsTXT):
+def MarkDuplicates(InputBAM, OutputBAM, QuerySortedBAM, MetricsTXT):
 	logging.info(f'Input: "{InputBAM}"; Output: "{OutputBAM}"; Metrics: "{MetricsTXT}"')
 	BashSubprocess(
 		Name = f'MarkDuplicates.RemoveAndSort',
 		Command = ' '.join([
 			f'set -o pipefail;',
 			f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES true --VERBOSITY ERROR --ASSUME_SORT_ORDER queryname -M "{MetricsTXT}" -I "{InputBAM}" -O "/dev/stdout" |',
+			f'tee >( samtools view -h -O BAM > "{QuerySortedBAM}" ) |',
 			f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --CREATE_INDEX true --VERBOSITY ERROR -SO coordinate -I "/dev/stdin" -O "{OutputBAM}"'
 		])
 	)
-
 
 ## ------======| BQSR |======------
 

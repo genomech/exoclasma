@@ -24,7 +24,14 @@ def TabixSeek(List, FileName, QueryFunction, Threads = multiprocessing.cpu_count
 
 ## ------======| VCF ROW |======------
 
-def ParseVcfRow(Row):
+def ExtractSamples(Vcf):
+	Stream = OpenAnyway(Vcf, 'rt')
+	while 1:
+		Row = next(Stream)
+		if Row[:6] == "#CHROM": break
+	return {index: item for index, item in enumerate(Row[:-1].split('\t')[9:])}
+
+def ParseVcfRow(Row, Samples = None):
 	try:
 		Qual = int(Row[5])
 	except ValueError:
@@ -48,8 +55,20 @@ def ParseVcfRow(Row):
 		"FILTER": None if (Row[6] == '.') else ([] if (Row[6] == 'PASS') else Row[6].split(';')),
 		"INFO": Row[7]
 	}
-	Result["INFO"] = [i.split('=') for i in Result["INFO"].split(';')]
-	Result["INFO"] = dict([(i[0], True) if (len(i) == 1) else ((i[0], i[1]) if (len(i) == 2) else None) for i in Result["INFO"]])
+	INFO = [i.split('=') for i in Result["INFO"].split(';')]
+	Result["INFO"] = {}
+	Tags = [item[0] for item in INFO]
+	TagsCount = {item[0]: 0 for item in INFO}
+	for item in INFO:
+		if Tags.count(item[0]) > 1:
+			tag = tuple([item[0], TagsCount[item[0]]])
+			TagsCount[item[0]] += 1
+		else: tag = item[0]
+		Result["INFO"][tag] = True if len(item) == 1 else item[1]
+	if len(Row) > 8:
+		assert Samples is not None, f"No samples!"
+		Format = Row[8].split(':')
+		Result["SAMPLES"] = { Samples[index]: { Format[i]: value for i, value in enumerate(item.split(':'))} for index, item in enumerate(Row[9:]) }
 	return Result
 
 def VcfVariantMatch(Item, Row):
