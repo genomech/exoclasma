@@ -43,7 +43,7 @@ def ConfigureLogger(LogFileName=os.devnull, Level=logging.DEBUG):
 	logging.basicConfig(level=Level, format=Formatter, handlers=Handlers)
 	sys.excepthook = ExceptionHook
 	
-def Timestamp(TS): return datetime.timedelta(seconds=(time.time() - TS))
+def Timestamp(TS): return str(datetime.timedelta(seconds=(time.time() - TS)))[:-7]
 
 
 ## ------======| I/O |======------
@@ -115,4 +115,4 @@ CONFIG_ADAPTERS = LoadJSON(os.path.join(CurrentDir(), "..", "config", "Adapters.
 
 GATK_PATH = os.path.abspath(os.path.join(CurrentDir(), "..", "gatk", "gatk"))
 
-JUICERTOOLS_PATH = os.path.abspath(os.path.join(CurrentDir(), "..", "jt")) # TODO
+JUICERTOOLS_PATH = "/Data/Tools/juicer_tools_1.22.01.jar" # TODO

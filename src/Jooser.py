@@ -3,11 +3,13 @@ from .SharedFunctions import *
 # Based on aidenlab/juicer
 
 def LoadFragmentMap(RestrSitesMap):
+	StartTime = time.time()
 	FragmentMap = {}
 	with open(RestrSitesMap, 'rt') as MapFile:
 		for Contig in MapFile:
 			List = Contig[:-1].split(' ')
 			FragmentMap[List[0]] = [int(item) for item in List[1:]]
+	logging.info(f'Fragment map loaded: "{RestrSitesMap}"; total time: {Timestamp(StartTime)}')
 	return FragmentMap
 
 def CalcDist(Item1, Item2): 
@@ -16,8 +18,16 @@ def CalcDist(Item1, Item2):
 
 def SortItems(Item1, Item2): return tuple([(item["ID"], item["Pos"]) for item in sorted([Item1, Item2], key=lambda x: (x["RefID"], x["Pos"]))])
 
+def GetDT(Record):
+	if not Record.is_duplicate: return False
+	return dict(Record.tags)['DT']
+		
+
 def ProcessQuery(Query, ChromSizes, MinMAPQ):
 	# Filter unmapped
+	DTs = [GetDT(item[1]) for item in Query["ReadBlock"]]
+	if any([item == 'SQ' for item in DTs]): return { "ReadBlock": Query["ReadBlock"], "Type": "OpticalDuplicates" }
+	if any([item == 'LB' for item in DTs]): return { "ReadBlock": Query["ReadBlock"], "Type": "PcrDuplicates" }
 	if any([item[1].is_unmapped for item in Query["ReadBlock"]]): return { "ReadBlock": Query["ReadBlock"], "Type": "Unmapped" }
 	if any([item[1].mapping_quality < MinMAPQ for item in Query["ReadBlock"]]): return { "ReadBlock": Query["ReadBlock"], "Type": "MappingQualityFailed" }
 	# Create Sorter
@@ -75,13 +85,8 @@ def JooserFunc(InputFileSAM, OutputFileTXT, StatsTXT, RestrictionSiteFile = None
 	SortCommand = f'sort -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n | gzip -c > "{OutputFileTXT}"'
 	Output = subprocess.Popen(SortCommand, shell=True, executable="/bin/bash", stdin=subprocess.PIPE)
 	if RestrictionSiteFile is not None: FragmentMap = LoadFragmentMap(RestrictionSiteFile)
-	TechInfo = {
-		"ChimericAmbiguous": pysam.AlignmentFile(ChimericAmbiguousFileSAM, "wb", template = Input),
-		"Unmapped": pysam.AlignmentFile(UnmappedSAM, "wb", template = Input),
-		"MappingQualityFailed": pysam.AlignmentFile(UnmappedSAM, "wb", template = Input)
-		}
 	ChromSizes = { Input.references[i]: Input.lengths[i] for i in range(Input.nreferences) }
-	Stats = { "SequencedReadPairs": 0, "NormalPaired": 0, "ChimericPaired": 0, "ChimericAmbiguous": 0, "MappingQualityFailed": 0, "Unmapped": 0, "Ligation": { "Motif": None, "LineCount": 0, "PresentCount": 0 } }
+	Stats = { "SequencedReadPairs": 0, "NormalPaired": 0, "ChimericPaired": 0, "ChimericAmbiguous": 0, "MappingQualityFailed": 0, "PcrDuplicates": 0, "OpticalDuplicates": 0, "Unmapped": 0, "Ligation": { "Motif": None, "LineCount": 0, "PresentCount": 0 } }
 	Query = { "ReadName": None, "ReadBlock": [] }
 	def BlockProcess():
 		Stats["SequencedReadPairs"] += 1
@@ -109,6 +114,7 @@ def JooserFunc(InputFileSAM, OutputFileTXT, StatsTXT, RestrictionSiteFile = None
 				str(Read2["Read"].query_name)
 				]) + '\n'
 			Output.stdin.write(Line.encode('utf-8'))
+	logging.info(f'Start processing')
 	while 1:
 		try:
 			Record = next(Input)
@@ -127,13 +133,15 @@ def JooserFunc(InputFileSAM, OutputFileTXT, StatsTXT, RestrictionSiteFile = None
 			Output.stdin.close()
 			Output.wait()
 			Stats["Alignable"] = Stats["ChimericPaired"] + Stats["NormalPaired"]
-			for stat in ("ChimericPaired", "ChimericAmbiguous", "NormalPaired", "Unmapped", "Alignable", "MappingQualityFailed"): Stats[stat] = { "Count": Stats[stat], "%": Stats[stat] / Stats["SequencedReadPairs"] * 100 }
+			Stats["Duplicates"] = Stats["PcrDuplicates"] + Stats["OpticalDuplicates"]
+			for stat in ("ChimericPaired", "ChimericAmbiguous", "NormalPaired", "Unmapped", "Alignable", "MappingQualityFailed", "Duplicates", "PcrDuplicates", "OpticalDuplicates"): Stats[stat] = { "Count": Stats[stat], "%": Stats[stat] / Stats["SequencedReadPairs"] * 100 }
 			Stats["Ligation"]["%"] = Stats["Ligation"]["PresentCount"] / Stats["SequencedReadPairs"] * 100 # BUG WTF?
 			# TODO Postprocessing? Library Complexity?
 			json.dump(Stats, open(StatsTXT, 'wt'), indent=4, ensure_ascii=False)
+			logging.info(f'End processing')
 			break
 
-def MakeHiCMap(MergedNoDups, GenomeInfo, RestrictionSite = None, Threads = multiprocessing.cpu_count()):
+def MakeHiCMap(MergedNoDups, OutputHIC, GenomeInfo, RestrictionSite = None, Threads = multiprocessing.cpu_count()):
 	RSString = f'' if RestrictionSite is None else f'-f "{GenomeInfo["RS"][RestrictionSite]}"'
 	BashSubprocess(
 		Name = f'MakeHiCMap.JuicerTools',

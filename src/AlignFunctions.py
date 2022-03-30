@@ -34,18 +34,12 @@ def Cutadapt(InputR1, InputR2, OutputR1, OutputR2, Adapter, ReportTXT, Threads =
 
 ## ------======| ALIGN & MERGE BAM |======------
 
-def BWA(InputR1, InputR2, Reference, RGHeader, OutputBAM, ActiveContigsTXT, Threads = multiprocessing.cpu_count()):
-	ActiveContigsCommand = ' '.join([
-		f"samtools view -O SAM /dev/stdin |",
-		f"awk -F '\\t' '{{ print $3 }}' - |",
-		f"sort | uniq > \"{ActiveContigsTXT}\";"
-	])
+def BWA(InputR1, InputR2, Reference, RGHeader, OutputBAM, Threads = multiprocessing.cpu_count()):
 	if InputR2 is None:
 		logging.info(f'Input FASTQ: "{InputR1}"; Output BAM: "{OutputBAM}"; Reference: "{Reference}"; RG Header: "{RGHeader}"')
 		Command = ' '.join([
 			f'set -o pipefail;',
 			f'bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" |',
-			f'tee >( {ActiveContigsCommand} ) |',
 			f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
 		])
 	else:
@@ -53,7 +47,6 @@ def BWA(InputR1, InputR2, Reference, RGHeader, OutputBAM, ActiveContigsTXT, Thre
 		Command = ' '.join([
 			f'set -o pipefail;',
 			f'bwa mem -R "{RGHeader}" -t {Threads} -v 1 "{Reference}" "{InputR1}" "{InputR2}" |',
-			f'tee >( {ActiveContigsCommand} ) |',
 			f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{OutputBAM}"'
 		])
 	BashSubprocess(Name = f'BWA.Align&Sort', Command = Command)
@@ -68,17 +61,28 @@ def MergeBAMs(BAMs, OutputBAM, SortOrder):
 
 ## ------======| MARK DUPLICATES |======------
 
-def MarkDuplicates(InputBAM, OutputBAM, QuerySortedBAM, MetricsTXT):
+def MarkDuplicates(InputBAM, OutputBAM, QuerySortedBAM, MetricsTXT, ActiveContigsTXT):
 	logging.info(f'Input: "{InputBAM}"; Output: "{OutputBAM}"; Metrics: "{MetricsTXT}"')
+	ActiveContigsCommand = ' '.join([
+		f"samtools view -O SAM /dev/stdin |",
+		f"awk -F '\\t' '{{ print $3 }}' - |",
+		f"sort | uniq > \"{ActiveContigsTXT}\";"
+	])
+	BashSubprocess(
+		Name = f'MarkDuplicates.Mark',
+		Command = ' '.join([
+			f'set -o pipefail;',
+			f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES false --VERBOSITY ERROR --ADD_PG_TAG_TO_READS false --TAGGING_POLICY All --ASSUME_SORT_ORDER queryname -M "{MetricsTXT}" -I "{InputBAM}" -O "{QuerySortedBAM}"'
+		])
+	)
 	BashSubprocess(
 		Name = f'MarkDuplicates.RemoveAndSort',
 		Command = ' '.join([
-			f'set -o pipefail;',
-			f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES true --VERBOSITY ERROR --ASSUME_SORT_ORDER queryname -M "{MetricsTXT}" -I "{InputBAM}" -O "/dev/stdout" |',
-			f'tee >( samtools view -h -O BAM > "{QuerySortedBAM}" ) |',
+			f'samtools view -h -F 1024 "{QuerySortedBAM}" |',
+			f'tee >( {ActiveContigsCommand} ) |',
 			f'{GATK_PATH} --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --CREATE_INDEX true --VERBOSITY ERROR -SO coordinate -I "/dev/stdin" -O "{OutputBAM}"'
-		])
-	)
+			])
+		)
 
 ## ------======| BQSR |======------
 

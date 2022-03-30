@@ -1,6 +1,7 @@
 from .SharedFunctions import *
 from .AlignFunctions import *
 from .Statistics import *
+from .Jooser import *
 
 
 # ------======| PROTOCOL PREPARATION & BACKUP |======------
@@ -13,6 +14,8 @@ def GenerateAlignFileNames(Unit, Meta):
 		"RecalBAM":        f"{ID}.bam",
 		"VCF":             f"{ID}.vcf.gz",
 		"gVCF":            f"{ID}.g.vcf.gz",
+		"MergedNoDups":    f"{ID}.merged_nodups.txt.gz",
+		"Inter30":         f"{ID}.inter30.hic",
 		"FullStats":       f"{ID}.stats.json",
 		"PrimaryBAM":      f"_temp.{ID}.primary.bam",
 		"FlagStat":        f"_temp.{ID}.flagstat.json",
@@ -20,15 +23,15 @@ def GenerateAlignFileNames(Unit, Meta):
 		"DuplessQSBAM":    f"_temp.{ID}.duplessqs.bam",
 		"DuplessMetrics":  f"_temp.{ID}.md_metrics.txt",
 		"CoverageStats":   f"_temp.{ID}.coverage.json",
-		"Contigs":         f"_temp.{ID}.contigs.json"
+		"Contigs":         f"_temp.{ID}.contigs.json",
+		"JooserStats":     f"_temp.{ID}.jstats.json"
 	}
 	FileNames = { Key: os.path.join(OutputDir, Value) for Key, Value in FileNames.items() }
 	FileNames["Cutadapt"] = { str(index): {
 		'FastQC':          f"{ID}.{index}.trimmed_fastqc.html",
 		'R1':              f"_temp.{ID}.{index}.R1.fastq.gz",
 		'R2':              f"_temp.{ID}.{index}.R2.fastq.gz",
-		'Stats':           f"_temp.{ID}.{index}.coverage.tsv",
-		'ActiveContigs':   f"_temp.{ID}.{index}.contigs.txt"
+		'Stats':           f"_temp.{ID}.{index}.coverage.tsv"
 		} for index in range(len(Unit['Input'])) if Unit['Input'][index]['Type'] == 'fastq' }
 	FileNames["Cutadapt"] = { Key: { Key2: os.path.join(OutputDir, Value2) for Key2, Value2 in Value.items() } for Key, Value in FileNames["Cutadapt"].items() }
 	FileNames["OutputDir"] = OutputDir
@@ -97,7 +100,6 @@ def BWAStage(Unit, Meta):
 					Reference = Meta["GenomeInfo"]['FASTA'],
 					RGHeader = RGtag,
 					OutputBAM = OutputBAM,
-					ActiveContigsTXT = Unit['FileNames']['Cutadapt'][index]['ActiveContigs'],
 					Threads = Meta["Threads"]
 				)
 				Shards += [ OutputBAM ]
@@ -116,8 +118,7 @@ def BWAStage(Unit, Meta):
 		FlagStat(InputBAM = Unit['FileNames']["PrimaryBAM"], OutputJSON = Unit['FileNames']["FlagStat"], Threads = Meta["Threads"])
 
 def GetActiveContigs(Unit, Meta):
-	Data = [ LoadContigList(item['ActiveContigs']) for item in Unit['FileNames']['Cutadapt'].values() ]
-	Data = list(set([item for sublist in Data for item in sublist]))
+	Data = LoadContigList(Unit["FileNames"]['Contigs'])
 	Chroms = pandas.read_csv(Meta['GenomeInfo']['CHROMSIZES'], sep='\t', header=None)[0].to_list()
 	SortedContigs = [item for item in Chroms if item in Data]
 	SaveJSON(SortedContigs, Unit["FileNames"]["Contigs"])
@@ -128,8 +129,9 @@ def MarkDuplicatesStage(Unit, Meta):
 	MarkDuplicates(
 		InputBAM = Unit['FileNames']["PrimaryBAM"],
 		OutputBAM = Unit['FileNames']["DuplessBAM"],
-		QuerySortedBAM = Unit['FileNames']["DuplessQSBAM"]
-		MetricsTXT = Unit['FileNames']["DuplessMetrics"]
+		QuerySortedBAM = Unit['FileNames']["DuplessQSBAM"],
+		MetricsTXT = Unit['FileNames']["DuplessMetrics"],
+		ActiveContigsTXT = Unit["FileNames"]['Contigs']
 	)
 
 def CoverageStatsStage(Unit, Meta):
@@ -145,13 +147,13 @@ def BaseRecalibrationStage(Unit, Meta):
 	BaseRecalibration(
 		InputBAM = Unit['FileNames']["DuplessBAM"],
 		OutputBAM = Unit['FileNames']["RecalBAM"],
-		dbSNP = None,
+		dbSNP = "/Data/Tools/exoclasma/databases/db/dbsnp151_BaseRecalibrator.vcf.gz",
 		Reference = Meta["GenomeInfo"]['FASTA'],
 		ActiveContigs = Unit['ActiveContigs'],
 		Threads = Meta["Threads"]
 	) 
 
-def DuplessAsFinal(Unit):
+def DuplessAsFinal(Unit, Meta):
 	BashSubprocess(
 		Name = f'DuplessAsFinal.Move',
 		Command = f'mv "{Unit["FileNames"]["DuplessBAM"]}" "{Unit["FileNames"]["RecalBAM"]}"'
@@ -167,6 +169,24 @@ def HaplotypeCallingStage(Unit, Meta):
 		Threads = Meta["Threads"]
 	)
 
+def MergedNoDupsStage(Unit, Meta):
+	JooserFunc(
+		InputFileSAM = Unit['FileNames']["DuplessQSBAM"],
+		OutputFileTXT = Unit['FileNames']["MergedNoDups"],
+		StatsTXT = Unit['FileNames']["JooserStats"],
+		RestrictionSiteFile = None if Unit["RS"] is None else Meta['GenomeInfo']["RS"][Unit["RS"]],
+		MinMAPQ = 0
+		)
+
+def MakeHiCMapStage(Unit, Meta):
+	MakeHiCMap(
+		MergedNoDups = Unit['FileNames']["MergedNoDups"],
+		OutputHIC = Unit['FileNames']["Inter30"],
+		GenomeInfo = Meta['GenomeInfo'],
+		RestrictionSite = Unit["RS"],
+		Threads = Meta["Threads"]
+		)
+
 def StatsSummaryStage(Unit, Meta):
 	Result = {
 		'RefseqName':      Meta['GenomeInfo']['NAME'],
@@ -176,6 +196,7 @@ def StatsSummaryStage(Unit, Meta):
 		'MarkDuplicates':  LoadMarkDuplicatesStat(Unit['FileNames']['DuplessMetrics']),
 		'CoverageStats':   LoadCoverageStats(Unit['FileNames']['CoverageStats'])
 		}
+	if Meta['HiC']: Result["JooserStats"] = LoadJSON(Unit['FileNames']["JooserStats"])
 	SaveJSON(Result, Unit['FileNames']['FullStats'])
 
 # ------======| ALIGN PIPELINE |======------
@@ -196,17 +217,18 @@ def AlignPipeline(UnitsFile, Verbosity = logging.INFO):
 		ConfigureLogger(Protocol["Units"][UnitIndex]['FileNames']['Log'], Verbosity)
 		StageAndBackup(Stage = "Cutadapt", Func = CutadaptStage, Parameters = Parameters)
 		StageAndBackup(Stage = "BWA", Func = BWAStage, Parameters = Parameters)
+		StageAndBackup(Stage = "MarkDuplicates", Func = MarkDuplicatesStage, Parameters = Parameters)
 		StageAndBackup(Stage = "GetActiveContigs", Func = GetActiveContigs, Parameters = Parameters)
 		Protocol["Units"][UnitIndex]['ActiveContigs'] = LoadJSON(Protocol["Units"][UnitIndex]["FileNames"]["Contigs"])
 		Parameters = { 'Unit': Protocol["Units"][UnitIndex], 'Meta': Protocol['Meta'] }
-		StageAndBackup(Stage = "MarkDuplicates", Func = MarkDuplicatesStage, Parameters = Parameters)
 		StageAndBackup(Stage = "CoverageStats", Func = CoverageStatsStage, Parameters = Parameters)
 		if Protocol['Meta']['Call']:
 			StageAndBackup(Stage = "BaseRecalibration", Func = BaseRecalibrationStage, Parameters = Parameters)
 			StageAndBackup(Stage = "HaplotypeCalling", Func = HaplotypeCallingStage, Parameters = Parameters)
-		else: DuplessAsFinal(Parameters['Unit'])
+		else: StageAndBackup(Stage = "DuplessAsFinal", Func = DuplessAsFinal, Parameters = Parameters)
 		if Protocol['Meta']['HiC']:
-			# TODO
+			StageAndBackup(Stage = "MergedNoDups", Func = MergedNoDupsStage, Parameters = Parameters)
+			StageAndBackup(Stage = "MakeHiCMap", Func = MakeHiCMapStage, Parameters = Parameters)
 		StageAndBackup(Stage = "StatsSummaryStage", Func = StatsSummaryStage, Parameters = Parameters)
 		if Protocol['Meta']['RemoveTempFiles']:
 			for t in glob.glob(os.path.join(Protocol["Units"][UnitIndex]['FileNames']["OutputDir"], '_temp.*')): os.remove(t)
