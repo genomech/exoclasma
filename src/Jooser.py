@@ -3,6 +3,7 @@ from .SharedFunctions import *
 # Based on aidenlab/juicer
 
 def LoadFragmentMap(RestrSitesMap):
+	logging.info('* entry point *')
 	StartTime = time.time()
 	FragmentMap = {}
 	with open(RestrSitesMap, 'rt') as MapFile:
@@ -21,7 +22,6 @@ def SortItems(Item1, Item2): return tuple([(item["ID"], item["Pos"]) for item in
 def GetDT(Record):
 	if not Record.is_duplicate: return False
 	return dict(Record.tags)['DT']
-		
 
 def ProcessQuery(Query, ChromSizes, MinMAPQ):
 	# Filter unmapped
@@ -80,18 +80,20 @@ def ProcessQuery(Query, ChromSizes, MinMAPQ):
 	# Other
 	return { "ReadBlock": Query["ReadBlock"], "Type": "ChimericAmbiguous" }
 
-def JooserFunc(InputFileSAM, OutputFileTXT, StatsTXT, RestrictionSiteFile = None, MinMAPQ = 0):
-	Input = pysam.AlignmentFile(InputFileSAM, 'r', check_sq=False)
-	SortCommand = f'sort -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n | gzip -c > "{OutputFileTXT}"'
+def JooserFunc(**kwargs):
+	logging.info('* entry point *')
+	N = RenderParameters(kwargs)
+	Input = pysam.AlignmentFile(N.Input_BAM, 'r', check_sq=False)
+	SortCommand = f'sort -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n | gzip -c > "{N.MergedNoDups_File}"'
 	Output = subprocess.Popen(SortCommand, shell=True, executable="/bin/bash", stdin=subprocess.PIPE)
-	if RestrictionSiteFile is not None: FragmentMap = LoadFragmentMap(RestrictionSiteFile)
+	if N.Restriction_Site_Map is not None: FragmentMap = LoadFragmentMap(N.Restriction_Site_Map)
 	ChromSizes = { Input.references[i]: Input.lengths[i] for i in range(Input.nreferences) }
 	Stats = { "SequencedReadPairs": 0, "NormalPaired": 0, "ChimericPaired": 0, "ChimericAmbiguous": 0, "MappingQualityFailed": 0, "PcrDuplicates": 0, "OpticalDuplicates": 0, "Unmapped": 0, "Ligation": { "Motif": None, "LineCount": 0, "PresentCount": 0 } }
 	Query = { "ReadName": None, "ReadBlock": [] }
 	def BlockProcess():
 		Stats["SequencedReadPairs"] += 1
 		Query["ReadBlock"] = list(enumerate(Query["ReadBlock"]))
-		Result = ProcessQuery(Query, ChromSizes, MinMAPQ)
+		Result = ProcessQuery(Query, ChromSizes, N.Min_MAPQ)
 		Stats[Result["Type"]] += 1
 		if Result["Type"] in ("ChimericPaired", "NormalPaired"):
 			Read1, Read2 = Result["Pair"]
@@ -99,11 +101,11 @@ def JooserFunc(InputFileSAM, OutputFileTXT, StatsTXT, RestrictionSiteFile = None
 				'16' if Read1["Read"].is_reverse else '0',
 				str(Read1["Read"].reference_name),
 				str(Read1["Pos"]),
-				'0' if RestrictionSiteFile is None else str(bisect.bisect(FragmentMap[Read1["Read"].reference_name], Read1["Pos"])),
+				'0' if N.Restriction_Site_Map is None else str(bisect.bisect(FragmentMap[Read1["Read"].reference_name], Read1["Pos"])),
 				'16' if Read2["Read"].is_reverse else '0',
 				str(Read2["Read"].reference_name),
 				str(Read2["Pos"]),
-				'1' if RestrictionSiteFile is None else str(bisect.bisect(FragmentMap[Read2["Read"].reference_name], Read2["Pos"])),
+				'1' if N.Restriction_Site_Map is None else str(bisect.bisect(FragmentMap[Read2["Read"].reference_name], Read2["Pos"])),
 				str(Read1["Read"].mapping_quality),
 				str(Read1["Read"].cigarstring),
 				str(Read1["Read"].seq.__str__()),
@@ -137,13 +139,13 @@ def JooserFunc(InputFileSAM, OutputFileTXT, StatsTXT, RestrictionSiteFile = None
 			for stat in ("ChimericPaired", "ChimericAmbiguous", "NormalPaired", "Unmapped", "Alignable", "MappingQualityFailed", "Duplicates", "PcrDuplicates", "OpticalDuplicates"): Stats[stat] = { "Count": Stats[stat], "%": Stats[stat] / Stats["SequencedReadPairs"] * 100 }
 			Stats["Ligation"]["%"] = Stats["Ligation"]["PresentCount"] / Stats["SequencedReadPairs"] * 100 # BUG WTF?
 			# TODO Postprocessing? Library Complexity?
-			json.dump(Stats, open(StatsTXT, 'wt'), indent=4, ensure_ascii=False)
+			json.dump(Stats, open(N.Jooser_Stats, 'wt'), indent=4, ensure_ascii=False)
 			logging.info(f'End processing')
 			break
 
-def MakeHiCMap(MergedNoDups, OutputHIC, GenomeInfo, RestrictionSite = None, Threads = multiprocessing.cpu_count()):
-	RSString = f'' if RestrictionSite is None else f'-f "{GenomeInfo["RS"][RestrictionSite]}"'
-	BashSubprocess(
-		Name = f'MakeHiCMap.JuicerTools',
-		Command = f'java -jar "{JUICERTOOLS_PATH}" pre -j {Threads} {RSString} "{MergedNoDups}" "{OutputHIC}" "{GenomeInfo["CHROMSIZES"]}"'
-		)
+def JuicerTools(**kwargs):
+	logging.info('* entry point *')
+	N = RenderParameters(kwargs)
+	RSString = f'' if N.Restriction_Site_Map is None else f'-f "{N.Restriction_Site_Map}"'
+	Command = f'java -jar "{JUICERTOOLS_PATH}" pre -j {N.Threads} {RSString} "{N.MergedNoDups_File}" "{N.Output_HIC_File}" "{N.ChromSizes_File}"'
+	BashSubprocess(Name = f'JuicerTools', Command = Command)

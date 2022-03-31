@@ -25,6 +25,7 @@ import sys
 import tabix
 import tempfile
 import time
+import types
 import vcf
 import warnings
 
@@ -45,6 +46,11 @@ def ConfigureLogger(LogFileName=os.devnull, Level=logging.DEBUG):
 	
 def Timestamp(TS): return str(datetime.timedelta(seconds=(time.time() - TS)))[:-7]
 
+def RenderParameters(Parameters):
+	for Key, Value in Parameters.items():
+		if type(Value) == list: Value = '; '.join(Value)
+		logging.info(f'{Key.replace("_", " ")}: {Value}')
+	return types.SimpleNamespace(**Parameters)
 
 ## ------======| I/O |======------
 
@@ -81,29 +87,29 @@ def RecursiveDict(PathDict):
 
 @contextlib.contextmanager
 def Threading(Name, Threads = multiprocessing.cpu_count()):
+	logging.info('* entry point *')
 	StartTime = time.time()
 	pool = multiprocessing.Pool(Threads)
 	yield pool
 	pool.close()
 	pool.join()
 	del pool
-	logging.info(f"Name: {Name}; threads: {Threads}; total time: {Timestamp(StartTime)}")
+	logging.info(f'{Name} finished on {Threads} threads - {Timestamp(StartTime)}')
 
 
 ## ------======| SUBPROCESS |======------
 
 def BashSubprocess(Name, Command, AllowedExitCodes = list()):
 	StartTime = time.time()
-	logging.debug(Command)
-	Shell = subprocess.Popen(Command, shell=True, executable="/bin/bash", stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	logging.debug(f'CMD: {Command}')
+	Shell = subprocess.Popen(Command, shell=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	Stdout, Stderr = Shell.communicate()
 	if (Shell.returncode != 0) and (Shell.returncode not in AllowedExitCodes):
-		logging.error(f"Name: {Name}; exit code: {Shell.returncode}; shell command: '{Command}'; details:\n{Stderr.decode('utf-8')}")
+		for Line in [f'{Name} finished with non-zero exit code: {Shell.returncode}', f'Shell command: "{Command}"', f'Details:\n{Stderr.decode("utf-8")}']: logging.error(Line)
 		raise RuntimeError
-	if Shell.returncode in AllowedExitCodes: logging.warning(f"Name: {Name}; exit code: {Shell.returncode} [ALLOWED]")
-	logging.info(f"Name: {Name}; total time: {Timestamp(StartTime)}")
+	if Shell.returncode in AllowedExitCodes: logging.warning(f'{Name} finished with ALLOWED non-zero exit code: {Shell.returncode}')
+	logging.info(f'{Name} finished - {Timestamp(StartTime)}')
 	return Stdout
-
 
 ## ------======| LOAD CONFIG |======------
 
@@ -116,3 +122,5 @@ CONFIG_ADAPTERS = LoadJSON(os.path.join(CurrentDir(), "..", "config", "Adapters.
 GATK_PATH = os.path.abspath(os.path.join(CurrentDir(), "..", "gatk", "gatk"))
 
 JUICERTOOLS_PATH = "/Data/Tools/juicer_tools_1.22.01.jar" # TODO
+
+GLOBAL_BACKUP = None

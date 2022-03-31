@@ -1,33 +1,40 @@
-{
-	"Meta": {
-		"Threads": 10,
-		"RemoveTempFiles": false,
-		"Call": true,
-		"HiC": true,
-		"FastQSampleSize": 1000000,
-		"GenomeInfo": "",
-		"CaptureInfo": "",
-		"PoolDir": ""
-	},
-	"Units": [
-		{
-			"ID": "",
-			"Input": [
-				{
-					"Type": "fastq",
+[
+	{
+		"ID": "",
+		"PoolDir": "",
+		"Input": [
+			{
+				"Type": "fastq|sra",
+				"Files": {
 					"R1": "",
 					"R2": "",
+					"Unpaired": "",
+					"SRA": ""
+				},
+				"RG": {
 					"Sample": "",
 					"Library": "",
-					"RS": null,
-					"Adapter": "illumina",
+					"Platform": "",
 					"Instrument": "",
 					"Lane": "",
-					"Platform": "ILLUMINA",
 					"Barcode": ""
-				}
-			],
-			"Stage": 0
-		}
-	]
-} 
+				},
+				"Adapter": ""
+			}
+		],
+		"Reference": {
+			"GenomeInfo": "",
+			"CaptureInfo": ""
+		},
+		"Config": {
+			"FastQSampleSize": 1000000,
+			"Threads": 10,
+			"MinMAPQ": 30,
+			"Call": true,
+			"HiC": true,
+			"RemoveTempFiles": false
+		},
+		"RS": null,
+		"Stage": []
+	}
+] 
