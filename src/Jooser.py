@@ -3,7 +3,7 @@ from .SharedFunctions import *
 # Based on aidenlab/juicer
 
 def LoadFragmentMap(RestrSitesMap):
-	logging.info('* entry point *')
+	logging.info('*')
 	StartTime = time.time()
 	FragmentMap = {}
 	with open(RestrSitesMap, 'rt') as MapFile:
@@ -81,8 +81,9 @@ def ProcessQuery(Query, ChromSizes, MinMAPQ):
 	return { "ReadBlock": Query["ReadBlock"], "Type": "ChimericAmbiguous" }
 
 def JooserFunc(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	Input = pysam.AlignmentFile(N.Input_BAM, 'r', check_sq=False)
 	SortCommand = f'sort -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n | gzip -c > "{N.MergedNoDups_File}"'
 	Output = subprocess.Popen(SortCommand, shell=True, executable="/bin/bash", stdin=subprocess.PIPE)
@@ -144,8 +145,9 @@ def JooserFunc(**kwargs):
 			break
 
 def JuicerTools(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	RSString = f'' if N.Restriction_Site_Map is None else f'-f "{N.Restriction_Site_Map}"'
 	Command = f'java -jar "{JUICERTOOLS_PATH}" pre -j {N.Threads} {RSString} "{N.MergedNoDups_File}" "{N.Output_HIC_File}" "{N.ChromSizes_File}"'
 	BashSubprocess(Name = f'JuicerTools', Command = Command)

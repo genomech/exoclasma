@@ -4,8 +4,9 @@ from .SharedFunctions import *
 ## ------======| FASTQC |======------
 
 def FastQC(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	with tempfile.TemporaryDirectory() as TempDir:
 		AnalyzeFilename = N.Input_FastQ
 		if 'Subsample_Size' in kwargs:
@@ -26,8 +27,9 @@ def FastQC(**kwargs):
 ## ------======| FLAGSTAT |======------
 
 def FlagStat(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	Command = f'samtools flagstat -@ {N.Threads} -O json "{N.Input_BAM}" > "{N.Samtools_Flagstats}"'
 	BashSubprocess(Name = f'FlagStat', Command = Command)
 
@@ -35,7 +37,7 @@ def FlagStat(**kwargs):
 ## ------======| MARK DUPLICATES STATS |======------
 
 def LoadMarkDuplicatesStat(StatTXT):
-	logging.info('* entry point *')
+	logging.info('*')
 	Data = ''.join(open(StatTXT, 'rt').readlines())
 	Stream = io.StringIO(Data.split('\n\n')[1])
 	Table = pandas.read_csv(Stream, sep='\t', comment='#').set_index('LIBRARY')
@@ -45,7 +47,7 @@ def LoadMarkDuplicatesStat(StatTXT):
 ## ------======| CUTADAPT STATS |======------
 
 def CutadaptStat(StatTXT):
-	logging.info('* entry point *')
+	logging.info('*')
 	Data = pandas.read_csv(StatTXT, sep='\t')
 	return Data.transpose()[0].to_dict()
 
@@ -53,8 +55,9 @@ def CutadaptStat(StatTXT):
 ## ------======| COVERAGE & ENRICHMENT STATS |======------
 
 def CoverageStats(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	LoadBedtoolsOutput = lambda FN: pandas.read_csv(FN, sep='\t', header=None, dtype={1: int, 4: float})[[1, 4]]
 	with tempfile.TemporaryDirectory() as TempDir:
 		CaptureTemp = os.path.join(TempDir, 'capture.csv')

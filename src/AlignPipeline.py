@@ -7,7 +7,7 @@ from .Jooser import *
 # ------======| PROTOCOL PREPARATION & BACKUP |======------
 
 def GenerateAlignFileNames(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	ID = Unit['ID']
 	OutputDir = os.path.join(Unit['PoolDir'], ID)
 	FileNames = {
@@ -40,13 +40,13 @@ def GenerateAlignFileNames(Unit):
 	return FileNames
 
 def AlignProtocolAndBackup(UnitsFile):
-	logging.info('* entry point *')
+	logging.info('*')
 	global GLOBAL_BACKUP
 	Backup = os.path.join(os.path.dirname(os.path.realpath(UnitsFile)), f'{UnitsFile}.align.backup')
 	GLOBAL_BACKUP = { 'Possible': True, 'FN': Backup }
 	if os.path.exists(Backup) and os.path.isfile(Backup):
 		Protocol = LoadJSON(Backup)
-		logging.warning(f'Resume process from backup "{Backup}"')
+		logging.warning(RenderParameters('Resume process', Backup))
 	else:
 		Protocol = LoadJSON(UnitsFile)
 		for index in range(len(Protocol)): 
@@ -64,11 +64,11 @@ def AlignProtocolAndBackup(UnitsFile):
 # ------======| STAGES |======------
 
 def MakeDirStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	os.mkdir(Unit['Output']['OutputDir'])
 
 def CutadaptStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	for index, item in enumerate(Unit['Input']):
 		index = str(index)
 		if item['Adapter'] is not None:
@@ -106,7 +106,7 @@ def CutadaptStage(Unit):
 				)
 
 def BWAStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	with tempfile.TemporaryDirectory() as TempDir:
 		Shards = []
 		for index, item in enumerate(Unit['Input']):
@@ -155,16 +155,16 @@ def BWAStage(Unit):
 		FlagStat(Input_BAM = Unit['Output']['PrimaryBAM'], Samtools_Flagstats = Unit['Output']['FlagStat'], Threads = Unit['Config']['Threads'])
 
 def GetActiveContigs(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	Data = [item for item in ''.join(open(Unit['Output']['Contigs'], 'rt').readlines())[:-1].split('\n') if item != '*']
 	Chroms = pandas.read_csv(Unit['Reference']['GenomeInfo']['CHROMSIZES'], sep = '\t', header = None)[0].to_list()
 	SortedContigs = [item for item in Chroms if item in Data]
 	SaveJSON(SortedContigs, Unit['Output']['Contigs'])
 	ContigsString = ', '.join(SortedContigs)
-	logging.info(f'Active Contigs: {ContigsString}')
+	logging.info(RenderParameters('Active Contigs', ContigsString))
 
 def MarkDuplicatesStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	MarkDuplicates(
 		Input_BAM = Unit['Output']['PrimaryBAM'],
 		Output_BAM = Unit['Output']['DuplessBAM'],
@@ -174,7 +174,7 @@ def MarkDuplicatesStage(Unit):
 		)
 
 def CoverageStatsStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	CoverageStats(
 		Input_BAM = Unit['Output']['DuplessBAM'],
 		Coverage_Stats = Unit['Output']['CoverageStats'],
@@ -184,7 +184,7 @@ def CoverageStatsStage(Unit):
 		)
 
 def BaseRecalibrationStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	BaseRecalibration(
 		Input_BAM = Unit['Output']['DuplessBAM'],
 		Output_BAM = Unit['Output']['RecalBAM'],
@@ -195,12 +195,12 @@ def BaseRecalibrationStage(Unit):
 		) 
 
 def DuplessAsFinal(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	Command = f'mv "{Unit["FileNames"]["DuplessBAM"]}" "{Unit["FileNames"]["RecalBAM"]}"'
 	BashSubprocess(Name = 'DuplessAsFinal', Command = Command)
 
 def HaplotypeCallingStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	HaplotypeCalling(
 		Input_BAM = Unit['Output']['RecalBAM'],
 		Output_VCF = Unit['Output']['VCF'],
@@ -211,7 +211,7 @@ def HaplotypeCallingStage(Unit):
 		)
 
 def MergedNoDupsStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	JooserFunc(
 		Input_BAM = Unit['Output']['DuplessQSBAM'],
 		MergedNoDups_File = Unit['Output']['MergedNoDups'],
@@ -221,7 +221,7 @@ def MergedNoDupsStage(Unit):
 		)
 
 def JuicerToolsStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	JuicerTools(
 		MergedNoDups_File = Unit['Output']['MergedNoDups'],
 		Output_HIC_File = Unit['Output']['Inter30'],
@@ -231,7 +231,7 @@ def JuicerToolsStage(Unit):
 		)
 
 def StatsSummaryStage(Unit):
-	logging.info('* entry point *')
+	logging.info('*')
 	Result = {
 		'RefseqName':      Unit['Reference']['GenomeInfo']['NAME'],
 		'CaptureName':     Unit['Reference']['CaptureInfo']['NAME'],

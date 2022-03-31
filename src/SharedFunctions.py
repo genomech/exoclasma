@@ -46,11 +46,7 @@ def ConfigureLogger(LogFileName=os.devnull, Level=logging.DEBUG):
 	
 def Timestamp(TS): return str(datetime.timedelta(seconds=(time.time() - TS)))[:-7]
 
-def RenderParameters(Parameters):
-	for Key, Value in Parameters.items():
-		if type(Value) == list: Value = '; '.join(Value)
-		logging.info(f'{Key.replace("_", " ")}: {Value}')
-	return types.SimpleNamespace(**Parameters)
+def RenderParameters(Key, Value): return f'{(Key.replace("_", " ") + ":").ljust(30)}{Value if type(Value) != list else ", ".join(Value)}'
 
 ## ------======| I/O |======------
 
@@ -87,28 +83,29 @@ def RecursiveDict(PathDict):
 
 @contextlib.contextmanager
 def Threading(Name, Threads = multiprocessing.cpu_count()):
-	logging.info('* entry point *')
+	logging.info('*')
 	StartTime = time.time()
 	pool = multiprocessing.Pool(Threads)
 	yield pool
 	pool.close()
 	pool.join()
 	del pool
-	logging.info(f'{Name} finished on {Threads} threads - {Timestamp(StartTime)}')
+	for Key, Value in { 'Name': Name, 'Threads': Threads, 'Total time': Timestamp(StartTime) }.items(): logging.info(RenderParameters(Key, Value))
 
 
 ## ------======| SUBPROCESS |======------
 
 def BashSubprocess(Name, Command, AllowedExitCodes = list()):
 	StartTime = time.time()
-	logging.debug(f'CMD: {Command}')
+	logging.debug(RenderParameters('Shell command', Command))
 	Shell = subprocess.Popen(Command, shell=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	Stdout, Stderr = Shell.communicate()
 	if (Shell.returncode != 0) and (Shell.returncode not in AllowedExitCodes):
-		for Line in [f'{Name} finished with non-zero exit code: {Shell.returncode}', f'Shell command: "{Command}"', f'Details:\n{Stderr.decode("utf-8")}']: logging.error(Line)
+		for Key, Value in {'Name': Name, 'Exit code': Shell.returncode, 'Shell command': Command, 'Details': Stderr.decode("utf-8")}.items(): logging.error(Line)
 		raise RuntimeError
-	if Shell.returncode in AllowedExitCodes: logging.warning(f'{Name} finished with ALLOWED non-zero exit code: {Shell.returncode}')
-	logging.info(f'{Name} finished - {Timestamp(StartTime)}')
+	if Shell.returncode in AllowedExitCodes:
+		for Key, Value in {'Name': Name, 'Exit code': Shell.returncode, 'Status': 'Allowed exit code' }.items(): logging.warning(RenderParameters(Key, Value))
+	for Key, Value in { 'Name': Name, 'Total time': Timestamp(StartTime) }.items(): logging.info(RenderParameters(Key, Value))
 	return Stdout
 
 ## ------======| LOAD CONFIG |======------

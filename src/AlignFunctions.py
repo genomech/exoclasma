@@ -6,7 +6,7 @@ from .SharedFunctions import *
 def MultipleTags(Tag, List, Quoted = True): return ' '.join([(f'{Tag} "{item}"' if Quoted else f'{Tag} {item}') for item in List])
 
 def RGTag(**kwargs):
-	logging.info('* entry point *')
+	logging.info('*')
 	N = types.SimpleNamespace(**kwargs)
 	ID = f'D-{N.Instrument}.L-{N.Lane}'
 	PL = N.Platform
@@ -18,14 +18,16 @@ def RGTag(**kwargs):
 ## ------======| TRIM & CONVERT FASTQ |======------
 
 def SolidToIllumina(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	Command = f'cutadapt -j {N.Threads} -c --format=sra-fastq --bwa --action=none -o "{N.Output_FastQ}" "{N.Input_FastQ}"'
 	BashSubprocess(Name = 'SolidToIllumina', Command = Command)
 	
 def Cutadapt(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	if N.Mode == 'Single-end':
 		Command = f'cutadapt --report minimal -j {N.Threads} -e 0.2 -m 8 -a {CONFIG_ADAPTERS[N.Adapter]["R1"]} -o "{N.Output_FastQ}" "{N.Input_FastQ}" > "{N.Cutadapt_Report}"'
 	if N.Mode == 'Paired-end':
@@ -36,8 +38,9 @@ def Cutadapt(**kwargs):
 ## ------======| ALIGN & MERGE BAM |======------
 
 def BWA(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	if N.Mode == 'Single-end':
 		Command = f'set -o pipefail; bwa mem -R "{N.RG_Header}" -t {N.Threads} -v 1 "{N.Reference_Fasta}" "{N.Input_FastQ}" | "{GATK_PATH}" --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --VERBOSITY ERROR -SO queryname -I "/dev/stdin" -O "{N.Output_BAM}"'
 	if N.Mode == 'Paired-end':
@@ -45,8 +48,9 @@ def BWA(**kwargs):
 	BashSubprocess(Name = 'BWA', Command = Command)
 
 def MergeSamFiles(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	TaggedBAMs = MultipleTags(Tag = '-I', List = N.BAM_List)
 	Command = f'"{GATK_PATH}" --java-options "{CONFIG_JAVA_OPTIONS["MergeSamFiles"]}" MergeSamFiles --VERBOSITY ERROR --USE_THREADING true -SO {N.Sort_Order} {TaggedBAMs} -O "{N.Output_BAM}"'
 	BashSubprocess(Name = 'MergeSamFiles', Command = Command)
@@ -55,8 +59,9 @@ def MergeSamFiles(**kwargs):
 ## ------======| MARK DUPLICATES |======------
 
 def MarkDuplicates(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	ActiveContigsCommand = f'samtools view -O SAM "/dev/stdin" | awk -F \'\\t\' \'{{ print $3 }}\' - | sort | uniq > "{N.Active_Contigs_File}";'
 	CommandMarkDuplicates = f'set -o pipefail; "{GATK_PATH}" --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES false --VERBOSITY ERROR --ADD_PG_TAG_TO_READS false --TAGGING_POLICY All --ASSUME_SORT_ORDER queryname -M "{N.MarkDuplicates_Metrics}" -I "{N.Input_BAM}" -O "{N.Query_Sorted_BAM}"'
 	CommandRemoveAndSort = f'samtools view -h -F 1024 "{N.Query_Sorted_BAM}" | tee >( {ActiveContigsCommand} ) | "{GATK_PATH}" --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --CREATE_INDEX true --VERBOSITY ERROR -SO coordinate -I "/dev/stdin" -O "{N.Output_BAM}"'
@@ -85,8 +90,9 @@ def ContigBaseRecalibration(Contig, **kwargs):
 	return OutputBAM
 
 def BaseRecalibration(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	with tempfile.TemporaryDirectory() as TempDir:
 		CommandBuildBamIndex = f'"{GATK_PATH}" BuildBamIndex -I "{N.Input_BAM}"'
 		BashSubprocess(Name = 'BaseRecalibration.BuildBamIndex', Command = CommandBuildBamIndex)
@@ -110,8 +116,9 @@ def ContigHaplotypeCalling(Contig, **kwargs):
 	return { 'VCF': OutputVCF, 'gVCF': OutputGVCF }
 
 def HaplotypeCalling(**kwargs):
-	logging.info('* entry point *')
-	N = RenderParameters(kwargs)
+	logging.info('*')
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
 	with tempfile.TemporaryDirectory() as TempDir:
 		with Threading('ContigHaplotypeCalling', N.Threads) as pool:
 			Shards = pool.map(functools.partial(ContigHaplotypeCalling, Input_BAM = N.Input_BAM, Temp_Directory = TempDir, Reference_Fasta = N.Reference_Fasta), N.Active_Contigs)
