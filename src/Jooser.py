@@ -3,7 +3,7 @@ from .SharedFunctions import *
 # Based on aidenlab/juicer
 
 def LoadFragmentMap(RestrSitesMap):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	StartTime = time.time()
 	FragmentMap = {}
 	with open(RestrSitesMap, 'rt') as MapFile:
@@ -81,7 +81,7 @@ def ProcessQuery(Query, ChromSizes, MinMAPQ):
 	return { "ReadBlock": Query["ReadBlock"], "Type": "ChimericAmbiguous" }
 
 def JooserFunc(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	Input = pysam.AlignmentFile(N.Input_BAM, 'r', check_sq=False)
@@ -145,7 +145,7 @@ def JooserFunc(**kwargs):
 			break
 
 def JuicerTools(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	RSString = f'' if N.Restriction_Site_Map is None else f'-f "{N.Restriction_Site_Map}"'

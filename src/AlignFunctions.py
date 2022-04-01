@@ -6,7 +6,8 @@ from .SharedFunctions import *
 def MultipleTags(Tag, List, Quoted = True): return ' '.join([(f'{Tag} "{item}"' if Quoted else f'{Tag} {item}') for item in List])
 
 def RGTag(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	ID = f'D-{N.Instrument}.L-{N.Lane}'
 	PL = N.Platform
@@ -17,15 +18,45 @@ def RGTag(**kwargs):
 
 ## ------======| TRIM & CONVERT FASTQ |======------
 
+def SraToFastq(**kwargs):
+	logging.info(RenderParameters('*', '*'))
+	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
+	N = types.SimpleNamespace(**kwargs)
+	with tempfile.TemporaryDirectory() as TempDir:
+		print(TempDir)
+		BaseName = os.path.basename(N.SRA_Dataset)
+		TempR1 = os.path.join(TempDir, f'{BaseName}_1.fastq')
+		TempR1GZ = f'{TempR1}.gz'
+		TempR2 = os.path.join(TempDir, f'{BaseName}_2.fastq')
+		TempR2GZ = f'{TempR2}.gz'
+		TempUnpaired = os.path.join(TempDir, f'{BaseName}.fastq')
+		TempUnpairedGZ = f'{TempUnpaired}.gz'
+		CommandFastQDump = f'set -o pipefail; mkfifo "{TempR1}"; mkfifo "{TempR2}"; mkfifo "{TempUnpaired}"; ( cat "{TempR1}" | gzip -c > "{TempR1GZ}"; ) & ( cat "{TempR2}" | gzip -c > "{TempR2GZ}"; ) & ( cat "{TempUnpaired}" | gzip -c > "{TempUnpairedGZ}"; ) & ( fastq-dump --split-3 -O "{TempDir}" "{N.SRA_Dataset}"; echo > "{TempR1}"; echo > "{TempR2}"; echo > "{TempUnpaired}"; ); wait; '
+		BashSubprocess(Name = 'SraToFastq.FastQDump', Command = CommandFastQDump)
+		Result = {'R1': (TempR1GZ, N.SRA_FastQ_R1), 'R2': (TempR2GZ, N.SRA_FastQ_R2), 'Unpaired': (TempUnpairedGZ, N.SRA_FastQ_Unpaired)}
+		for Index, File in Result.items():
+			if os.path.exists(File[0]) and (os.path.getsize(File[0]) > 1024): 
+				CommandMove = f'mv "{File[0]}" "{File[1]}"'
+				BashSubprocess(Name = f'SraToFastq.Move.{Index}', Command = CommandMove)
+				Result[Index] = File[1]
+			else: Result[Index] = None
+		if (Result['R1'] is None) != (Result['R2'] is None):
+			logging.error(RenderParameters('RuntimeError', 'SRA paired output is malformed!'))
+			raise RuntimeError
+		if (Result['R1'] is None) and (Result['R2'] is None) and (Result['Unpaired'] is None):
+			logging.error(RenderParameters('RuntimeError', 'SRA output is empty!'))
+			raise RuntimeError
+	return Result
+
 def SolidToIllumina(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	Command = f'cutadapt -j {N.Threads} -c --format=sra-fastq --bwa --action=none -o "{N.Output_FastQ}" "{N.Input_FastQ}"'
 	BashSubprocess(Name = 'SolidToIllumina', Command = Command)
 	
 def Cutadapt(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	if N.Mode == 'Single-end':
@@ -38,7 +69,7 @@ def Cutadapt(**kwargs):
 ## ------======| ALIGN & MERGE BAM |======------
 
 def BWA(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	if N.Mode == 'Single-end':
@@ -48,7 +79,7 @@ def BWA(**kwargs):
 	BashSubprocess(Name = 'BWA', Command = Command)
 
 def MergeSamFiles(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	TaggedBAMs = MultipleTags(Tag = '-I', List = N.BAM_List)
@@ -59,11 +90,11 @@ def MergeSamFiles(**kwargs):
 ## ------======| MARK DUPLICATES |======------
 
 def MarkDuplicates(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	ActiveContigsCommand = f'samtools view -O SAM "/dev/stdin" | awk -F \'\\t\' \'{{ print $3 }}\' - | sort | uniq > "{N.Active_Contigs_File}";'
-	CommandMarkDuplicates = f'set -o pipefail; "{GATK_PATH}" --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES false --VERBOSITY ERROR --ADD_PG_TAG_TO_READS false --TAGGING_POLICY All --ASSUME_SORT_ORDER queryname -M "{N.MarkDuplicates_Metrics}" -I "{N.Input_BAM}" -O "{N.Query_Sorted_BAM}"'
+	CommandMarkDuplicates = f'set -o pipefail; "{GATK_PATH}" --java-options "{CONFIG_JAVA_OPTIONS["MarkDuplicates"]}" MarkDuplicates --REMOVE_DUPLICATES false --VERBOSITY ERROR --ADD_PG_TAG_TO_READS false --TAGGING_POLICY All --ASSUME_SORT_ORDER queryname -M "{N.MarkDup_Metrics}" -I "{N.Input_BAM}" -O "{N.Query_Sorted_BAM}"'
 	CommandRemoveAndSort = f'samtools view -h -F 1024 "{N.Query_Sorted_BAM}" | tee >( {ActiveContigsCommand} ) | "{GATK_PATH}" --java-options "{CONFIG_JAVA_OPTIONS["SortSam"]}" SortSam --CREATE_INDEX true --VERBOSITY ERROR -SO coordinate -I "/dev/stdin" -O "{N.Output_BAM}"'
 	BashSubprocess(Name = 'MarkDuplicates.MarkDups', Command = CommandMarkDuplicates)
 	BashSubprocess(Name = 'MarkDuplicates.RemoveDupsAndSortSam', Command = CommandRemoveAndSort)
@@ -90,7 +121,7 @@ def ContigBaseRecalibration(Contig, **kwargs):
 	return OutputBAM
 
 def BaseRecalibration(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	with tempfile.TemporaryDirectory() as TempDir:
@@ -116,7 +147,7 @@ def ContigHaplotypeCalling(Contig, **kwargs):
 	return { 'VCF': OutputVCF, 'gVCF': OutputGVCF }
 
 def HaplotypeCalling(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	with tempfile.TemporaryDirectory() as TempDir:

@@ -4,7 +4,7 @@ from .SharedFunctions import *
 ## ------======| FASTQC |======------
 
 def FastQC(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	with tempfile.TemporaryDirectory() as TempDir:
@@ -27,7 +27,7 @@ def FastQC(**kwargs):
 ## ------======| FLAGSTAT |======------
 
 def FlagStat(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	Command = f'samtools flagstat -@ {N.Threads} -O json "{N.Input_BAM}" > "{N.Samtools_Flagstats}"'
@@ -37,7 +37,7 @@ def FlagStat(**kwargs):
 ## ------======| MARK DUPLICATES STATS |======------
 
 def LoadMarkDuplicatesStat(StatTXT):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	Data = ''.join(open(StatTXT, 'rt').readlines())
 	Stream = io.StringIO(Data.split('\n\n')[1])
 	Table = pandas.read_csv(Stream, sep='\t', comment='#').set_index('LIBRARY')
@@ -47,7 +47,7 @@ def LoadMarkDuplicatesStat(StatTXT):
 ## ------======| CUTADAPT STATS |======------
 
 def CutadaptStat(StatTXT):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	Data = pandas.read_csv(StatTXT, sep='\t')
 	return Data.transpose()[0].to_dict()
 
@@ -55,7 +55,7 @@ def CutadaptStat(StatTXT):
 ## ------======| COVERAGE & ENRICHMENT STATS |======------
 
 def CoverageStats(**kwargs):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	LoadBedtoolsOutput = lambda FN: pandas.read_csv(FN, sep='\t', header=None, dtype={1: int, 4: float})[[1, 4]]

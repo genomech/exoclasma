@@ -7,7 +7,7 @@ from .Jooser import *
 # ------======| PROTOCOL PREPARATION & BACKUP |======------
 
 def GenerateAlignFileNames(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	ID = Unit['ID']
 	OutputDir = os.path.join(Unit['PoolDir'], ID)
 	FileNames = {
@@ -29,10 +29,13 @@ def GenerateAlignFileNames(Unit):
 	}
 	FileNames = { Key: os.path.join(OutputDir, Value) for Key, Value in FileNames.items() }
 	FileNames['Cutadapt'] = { str(index): {
+		'R1':               f'{ID}.{index}.R1.fastq.gz',
+		'R2':               f'{ID}.{index}.R2.fastq.gz',
+		'Unpaired':         f'{ID}.{index}.unpaired.fastq.gz',
 		'FastQC':           f'{ID}.{index}.fastqc.html',
 		'CutadaptR1':       f'_temp.{ID}.{index}.R1.cutadapt.fastq.gz',
 		'CutadaptR2':       f'_temp.{ID}.{index}.R2.cutadapt.fastq.gz',
-		'CutadaptUnpaired': f'_temp.{ID}.{index}.unpaired.fastq.gz',
+		'CutadaptUnpaired': f'_temp.{ID}.{index}.unpaired.cutadapt.fastq.gz',
 		'Stats':            f'_temp.{ID}.{index}.cutstats.tsv'
 		} for index in range(len(Unit['Input'])) }
 	FileNames['Cutadapt'] = { Key: { Key2: os.path.join(OutputDir, Value2) for Key2, Value2 in Value.items() } for Key, Value in FileNames['Cutadapt'].items() }
@@ -40,7 +43,7 @@ def GenerateAlignFileNames(Unit):
 	return FileNames
 
 def AlignProtocolAndBackup(UnitsFile):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	global GLOBAL_BACKUP
 	Backup = os.path.join(os.path.dirname(os.path.realpath(UnitsFile)), f'{UnitsFile}.align.backup')
 	GLOBAL_BACKUP = { 'Possible': True, 'FN': Backup }
@@ -64,11 +67,25 @@ def AlignProtocolAndBackup(UnitsFile):
 # ------======| STAGES |======------
 
 def MakeDirStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	os.mkdir(Unit['Output']['OutputDir'])
 
+def SraToFastQStage(Unit):
+	logging.info(RenderParameters('*', '*'))
+	Info = {}
+	for index, item in enumerate(Unit['Input']):
+		index = str(index)
+		if item['Type'] == 'sra':
+			Info[int(index)] = SraToFastq(
+				SRA_Dataset = item['Files']['SRA'],
+				SRA_FastQ_R1 = Unit['Output']['Cutadapt'][index]['R1'],
+				SRA_FastQ_R2 = Unit['Output']['Cutadapt'][index]['R2'],
+				SRA_FastQ_Unpaired = Unit['Output']['Cutadapt'][index]['Unpaired']
+				)
+	return Info
+
 def CutadaptStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	for index, item in enumerate(Unit['Input']):
 		index = str(index)
 		if item['Adapter'] is not None:
@@ -106,7 +123,7 @@ def CutadaptStage(Unit):
 				)
 
 def BWAStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	with tempfile.TemporaryDirectory() as TempDir:
 		Shards = []
 		for index, item in enumerate(Unit['Input']):
@@ -155,7 +172,7 @@ def BWAStage(Unit):
 		FlagStat(Input_BAM = Unit['Output']['PrimaryBAM'], Samtools_Flagstats = Unit['Output']['FlagStat'], Threads = Unit['Config']['Threads'])
 
 def GetActiveContigs(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	Data = [item for item in ''.join(open(Unit['Output']['Contigs'], 'rt').readlines())[:-1].split('\n') if item != '*']
 	Chroms = pandas.read_csv(Unit['Reference']['GenomeInfo']['CHROMSIZES'], sep = '\t', header = None)[0].to_list()
 	SortedContigs = [item for item in Chroms if item in Data]
@@ -164,17 +181,17 @@ def GetActiveContigs(Unit):
 	logging.info(RenderParameters('Active Contigs', ContigsString))
 
 def MarkDuplicatesStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	MarkDuplicates(
 		Input_BAM = Unit['Output']['PrimaryBAM'],
 		Output_BAM = Unit['Output']['DuplessBAM'],
 		Query_Sorted_BAM = Unit['Output']['DuplessQSBAM'],
-		MarkDuplicates_Metrics = Unit['Output']['DuplessMetrics'],
+		MarkDup_Metrics = Unit['Output']['DuplessMetrics'],
 		Active_Contigs_File = Unit['Output']['Contigs']
 		)
 
 def CoverageStatsStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	CoverageStats(
 		Input_BAM = Unit['Output']['DuplessBAM'],
 		Coverage_Stats = Unit['Output']['CoverageStats'],
@@ -184,7 +201,7 @@ def CoverageStatsStage(Unit):
 		)
 
 def BaseRecalibrationStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	BaseRecalibration(
 		Input_BAM = Unit['Output']['DuplessBAM'],
 		Output_BAM = Unit['Output']['RecalBAM'],
@@ -195,12 +212,12 @@ def BaseRecalibrationStage(Unit):
 		) 
 
 def DuplessAsFinal(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	Command = f'mv "{Unit["FileNames"]["DuplessBAM"]}" "{Unit["FileNames"]["RecalBAM"]}"'
 	BashSubprocess(Name = 'DuplessAsFinal', Command = Command)
 
 def HaplotypeCallingStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	HaplotypeCalling(
 		Input_BAM = Unit['Output']['RecalBAM'],
 		Output_VCF = Unit['Output']['VCF'],
@@ -211,7 +228,7 @@ def HaplotypeCallingStage(Unit):
 		)
 
 def MergedNoDupsStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	JooserFunc(
 		Input_BAM = Unit['Output']['DuplessQSBAM'],
 		MergedNoDups_File = Unit['Output']['MergedNoDups'],
@@ -221,7 +238,7 @@ def MergedNoDupsStage(Unit):
 		)
 
 def JuicerToolsStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	JuicerTools(
 		MergedNoDups_File = Unit['Output']['MergedNoDups'],
 		Output_HIC_File = Unit['Output']['Inter30'],
@@ -231,7 +248,7 @@ def JuicerToolsStage(Unit):
 		)
 
 def StatsSummaryStage(Unit):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	Result = {
 		'RefseqName':      Unit['Reference']['GenomeInfo']['NAME'],
 		'CaptureName':     Unit['Reference']['CaptureInfo']['NAME'],
@@ -254,12 +271,17 @@ def AlignPipeline(UnitsFile, Verbosity = logging.INFO):
 			nonlocal UnitIndex
 			global GLOBAL_BACKUP
 			if Stage not in Protocol[UnitIndex]['Stage']:
-				Func(Protocol[UnitIndex])
+				TechInfo = Func(Protocol[UnitIndex])
 				Protocol[UnitIndex]['Stage'].append(Stage)
 				if GLOBAL_BACKUP['Possible']: SaveJSON(Protocol, GLOBAL_BACKUP['FN'])
+				return TechInfo
+			return {}
 		StartTime = time.time()
 		StageAndBackup(Stage = 'MakeDir', Func = MakeDirStage)
 		ConfigureLogger(Protocol[UnitIndex]['Output']['Log'], Verbosity)
+		SRAInfo = StageAndBackup(Stage = 'SraToFastQ', Func = SraToFastQStage)
+		for Index, Item in SRAInfo.items(): Protocol[UnitIndex]['Input'][Index]['Files'] = Item
+		if GLOBAL_BACKUP['Possible']: SaveJSON(Protocol, GLOBAL_BACKUP['FN'])
 		StageAndBackup(Stage = 'Cutadapt', Func = CutadaptStage)
 		StageAndBackup(Stage = 'BWA', Func = BWAStage)
 		StageAndBackup(Stage = 'MarkDuplicates', Func = MarkDuplicatesStage)

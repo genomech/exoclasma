@@ -34,7 +34,7 @@ import warnings
 
 VERBOSITY_LEVELS = {'debug': 10, 'info': 20, 'warning': 30, 'error': 40}
 
-def ExceptionHook(Type, Value, Traceback): logging.exception(f"{Type.__name__}: {Value}", exc_info=(Type, Value, Traceback))
+def ExceptionHook(Type, Value, Traceback): logging.exception(RenderParameters(Type.__name__, Value), exc_info=(Type, Value, Traceback))
 
 def ConfigureLogger(LogFileName=os.devnull, Level=logging.DEBUG):
 	Formatter = "%(asctime)-30s%(levelname)-13s%(funcName)-35s%(message)s"
@@ -46,7 +46,7 @@ def ConfigureLogger(LogFileName=os.devnull, Level=logging.DEBUG):
 	
 def Timestamp(TS): return str(datetime.timedelta(seconds=(time.time() - TS)))[:-7]
 
-def RenderParameters(Key, Value): return f'{(Key.replace("_", " ") + ":").ljust(30)}{Value if type(Value) != list else ", ".join(Value)}'
+def RenderParameters(Key, Value): return f'{Key.replace("_", " ").ljust(20)} {Value if type(Value) != list else ", ".join(Value)}'
 
 ## ------======| I/O |======------
 
@@ -83,7 +83,7 @@ def RecursiveDict(PathDict):
 
 @contextlib.contextmanager
 def Threading(Name, Threads = multiprocessing.cpu_count()):
-	logging.info('*')
+	logging.info(RenderParameters('*', '*'))
 	StartTime = time.time()
 	pool = multiprocessing.Pool(Threads)
 	yield pool
@@ -101,7 +101,7 @@ def BashSubprocess(Name, Command, AllowedExitCodes = list()):
 	Shell = subprocess.Popen(Command, shell=True, executable='/bin/bash', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	Stdout, Stderr = Shell.communicate()
 	if (Shell.returncode != 0) and (Shell.returncode not in AllowedExitCodes):
-		for Key, Value in {'Name': Name, 'Exit code': Shell.returncode, 'Shell command': Command, 'Details': Stderr.decode("utf-8")}.items(): logging.error(Line)
+		for Key, Value in {'Name': Name, 'Exit code': Shell.returncode, 'Shell command': Command, 'Details': Stderr.decode("utf-8")}.items(): logging.error(RenderParameters(Key, Value))
 		raise RuntimeError
 	if Shell.returncode in AllowedExitCodes:
 		for Key, Value in {'Name': Name, 'Exit code': Shell.returncode, 'Status': 'Allowed exit code' }.items(): logging.warning(RenderParameters(Key, Value))
