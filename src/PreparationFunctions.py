@@ -27,8 +27,7 @@ def RefseqPreparation(FastaPath, GenomeName, ParentDir):
 	logging.info(f'Directory created: "{OutputDir}"')
 	Fasta = SeqIO.parse(OpenAnyway(FastaPath, "rt"), "fasta")
 	logging.info(f'FASTA opened: "{FastaPath}"')
-	MakeRegExp = lambda x: re.compile("|".join([f"({SeriesReplace(item, CONFIG_RESTRICTION_ENZYMES['WildCards'])})" for item in x]))
-	SearchQueries = { name: MakeRegExp(sequences) for name, sequences in CONFIG_RESTRICTION_ENZYMES["Enzymes"].items() }
+	SearchQueries = { name: re.compile(sequences) for name, sequences in CONFIG_RESTRICTION_ENZYMES["Enzymes"].items() }
 	with tempfile.TemporaryDirectory() as TempDir:
 		FNdict = CreateGenomeInfo(GenomeName, TempDir)
 		with open(FNdict['FASTA'], "w") as NewFasta, open(FNdict['CHROMSIZES'], "w") as ChromSizes:

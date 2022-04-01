@@ -1,22 +1,16 @@
 {
 	"Enzymes": {
-		"HindIII": [ "AAGCTT" ],
-		"DpnII": [ "GATC" ],
-		"MboI": [ "GATC" ],
-		"Sau3AI": [ "GATC" ],
-		"Arima": [ "GATC", "GANTC" ]
+		"HindIII": "AAGCTT",
+		"DpnII": "GATC",
+		"MboI": "GATC",
+		"Sau3AI": "GATC",
+		"Arima": "GA[ACGT]?TC"
 	},
-	"WildCards": {
-		"N": "[ACGT]",
-		"M": "[AC]",
-		"R": "[AG]",
-		"W": "[AT]",
-		"Y": "[CT]",
-		"S": "[CG]",
-		"K": "[GT]",
-		"H": "[ACT]",
-		"B": "[CGT]",
-		"V": "[ACG]",
-		"D": "[AGT]"
-	}
+	"Ligations": {
+		"HindIII": "AAGCTAGCTT",
+		"DpnII": "GATCGATC",
+		"MboI": "GATCGATC",
+		"Sau3AI": "GATCGATC",
+		"Arima": "GA(([ACGT]T)|(TC))((A[ACGT])|(GA))TC"
+	},
 } 
