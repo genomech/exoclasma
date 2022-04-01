@@ -12,16 +12,16 @@ def FastQC(**kwargs):
 		if 'Subsample_Size' in kwargs:
 			SampleFilename = os.path.join(TempDir, 'sample.fastq.gz')
 			CommandSampling = f'zcat -q "{N.Input_FastQ}" | head -{N.Subsample_Size * 4} | gzip -c > "{SampleFilename}"'
-			BashSubprocess(Name = f'FastQC.Sampling', Command = CommandSampling)
+			BashSubprocess(Name = 'FastQC.Sampling', Command = CommandSampling)
 			AnalyzeFilename = SampleFilename
 		CommandAnalysis = f'fastqc -o "{TempDir}" -t {N.Threads} "{AnalyzeFilename}"'
-		BashSubprocess(Name = f'FastQC.Analysis', Command = CommandAnalysis)
+		BashSubprocess(Name = 'FastQC.Analysis', Command = CommandAnalysis)
 		HTMLTemp = glob.glob(os.path.join(TempDir, '*.html'))
 		if len(HTMLTemp) != 1:
-			logging.error(f'Error processing file "{N.Input_FastQ}"')
+			logging.error(RenderParameters('RuntimeError', f'Error processing file "{N.Input_FastQ}"'))
 			raise RuntimeError
 		CommandMove = f'mv "{HTMLTemp[0]}" "{N.Output_HTML}"'
-		BashSubprocess(Name = f'FastQC.Move', Command = CommandMove) 
+		BashSubprocess(Name = 'FastQC.Move', Command = CommandMove) 
 
 
 ## ------======| FLAGSTAT |======------
@@ -31,7 +31,7 @@ def FlagStat(**kwargs):
 	for Key, Value in kwargs.items(): logging.info(RenderParameters(Key, Value))
 	N = types.SimpleNamespace(**kwargs)
 	Command = f'samtools flagstat -@ {N.Threads} -O json "{N.Input_BAM}" > "{N.Samtools_Flagstats}"'
-	BashSubprocess(Name = f'FlagStat', Command = Command)
+	BashSubprocess(Name = 'FlagStat', Command = Command)
 
 
 ## ------======| MARK DUPLICATES STATS |======------

@@ -233,6 +233,7 @@ def MergedNoDupsStage(Unit):
 		Input_BAM = Unit['Output']['DuplessQSBAM'],
 		MergedNoDups_File = Unit['Output']['MergedNoDups'],
 		Jooser_Stats = Unit['Output']['JooserStats'],
+		Restriction_Site = Unit['RS'],
 		Restriction_Site_Map = None if Unit['RS'] is None else Unit['Reference']['GenomeInfo']['RS'][Unit['RS']],
 		Min_MAPQ = Unit['Config']['MinMAPQ']
 		)

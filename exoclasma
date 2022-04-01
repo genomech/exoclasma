@@ -41,11 +41,11 @@ if __name__ == '__main__':
 	if Namespace.command == "RefseqPreparation":
 		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
 		Fasta, Name, Parent = os.path.abspath(Namespace.fasta), Namespace.name, os.path.abspath(Namespace.parent)
-		RefseqPreparation(FastaPath = Fasta, GenomeName = Name, ParentDir = Parent)
+		RefseqPreparation(Fasta_Path = Fasta, Genome_Name = Name, Parent_Dir = Parent)
 	elif Namespace.command == "CapturePreparation":
 		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
 		Bed, Name, Parent, GenomeInfo = os.path.abspath(Namespace.bed), Namespace.name, os.path.abspath(Namespace.parent), os.path.abspath(Namespace.genomeinfo)
-		CapturePreparation(InputBED = Bed, CaptureName = Name, ParentDir = Parent, GenomeInfoJSON = GenomeInfo)
+		CapturePreparation(Input_BED = Bed, Capture_Name = Name, Parent_Dir = Parent, Genome_Info_JSON = GenomeInfo)
 	elif Namespace.command == "AlignPipeline":
 		ConfigureLogger(Level = VERBOSITY_LEVELS[Namespace.verbosity])
 		Units, Verbosity = os.path.abspath(Namespace.units), VERBOSITY_LEVELS[Namespace.verbosity]
