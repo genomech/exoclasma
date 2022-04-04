@@ -43,18 +43,18 @@ def RefseqPreparation(**kwargs):
 					FileWrapper.write(' '.join([contig.name] + [str(match.start() + 1) for match in query.finditer(Seq)] + [str(SeqLength)]) + '\n')
 					FileWrapper.close()
 				logging.info(RenderParameters('Contig ready', contig.name))
-		for Key, Value in {'File ready': 'Fasta', 'File ready': 'ChromSizes', 'Files ready': 'RestrictionSites'}.items(): logging.info(RenderParameters(Key, Value))
+		for Key, Value in (('File ready', 'Fasta'), ('File ready', 'ChromSizes'), ('Files ready', 'RestrictionSites')): logging.info(RenderParameters(Key, Value))
 		CommandSamtoolsIndex = f'samtools faidx "{FNdict["FASTA"]}"'
 		CommandBwaIndex = f'bwa index "{FNdict["FASTA"]}"'
 		CommandGATKIndex = f'"{GATK_PATH}" CreateSequenceDictionary --VERBOSITY ERROR -R "{FNdict["FASTA"]}"'
 		CommandGenomeBED = f'awk \'BEGIN {{ FS = "\\t" }}; {{ print $1 FS "0" FS $2 }}\' "{FNdict["FAI"]}" > "{FNdict["BED"]}"'
-		CommandCopy = f'mv {os.path.join(TempDir, "*")} "{OutputDir}"'
+		CommandCopy = f'cp -r {os.path.join(TempDir, ".")} "{OutputDir}"'
 		BashSubprocess(Name = 'RefseqPreparation.SAMtoolsIndex', Command = CommandSamtoolsIndex)
 		BashSubprocess(Name = 'RefseqPreparation.BWAIndex', Command = CommandBwaIndex)
 		BashSubprocess(Name = 'RefseqPreparation.GATKIndex', Command = CommandGATKIndex)
 		BashSubprocess(Name = 'RefseqPreparation.GenomeBED', Command = CommandGenomeBED)
 		JsonFN = os.path.join(TempDir, f'{N.Genome_Name}.info.json')
-		ConfigJson = CreateGenomeInfo(N.GenomeName, OutputDir)
+		ConfigJson = CreateGenomeInfo(N.Genome_Name, OutputDir)
 		SaveJSON(ConfigJson, JsonFN)
 		BashSubprocess(Name = 'RefseqPreparation.Copy', Command = CommandCopy)
 
@@ -84,7 +84,7 @@ def CapturePreparation(**kwargs):
 		FNdict = CreateCaptureInfo(N.Capture_Name, TempDir)
 		CommandFilterAndSort = f'set -o pipefail; bedtools intersect -a "{GenomeInfo["BED"]}" -b "{N.Input_BED}" | bedtools sort -faidx "{GenomeInfo["FAI"]}" | sed -e \'s/$/\\t\\./\' > "{FNdict["CAP"]}"'
 		CommandNotCapture = f'bedtools subtract -a "{GenomeInfo["BED"]}" -b "{FNdict["CAP"]}" | sed -e \'s/$/\\t\\./\' > "{FNdict["NOTCAP"]}"'
-		CommandCopy = f'mv {os.path.join(TempDir, "*")} "{OutputDir}"'
+		CommandCopy = f'cp -r {os.path.join(TempDir, ".")} "{OutputDir}"'
 		BashSubprocess(Name = 'CapturePreparation.FilterSort', Command = CommandFilterAndSort)
 		BashSubprocess(Name = 'CapturePreparation.NotCapture', Command = CommandNotCapture)
 		JsonFN = os.path.join(TempDir, f'{N.Capture_Name}.info.json')

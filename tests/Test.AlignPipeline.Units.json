@@ -1,0 +1,45 @@
+[
+	{
+		"ID": ".test.AlignPipeline",
+		"PoolDir": "./",
+		"Input": [
+			{
+				"Type": "fastq",
+				"Files": {
+					"R1": "./testdata/Test_Raw_Input_R1.fastq.gz",
+					"R2": "./testdata/Test_Raw_Input_R2.fastq.gz",
+					"Unpaired": null
+				},
+				"RG": {
+					"Sample": "S.cerevisiae_WT12_HiC_2",
+					"Library": "SRR5124316",
+					"Platform": "ILLUMINA",
+					"Instrument": "Unknown_IlluminaHiSeq2500",
+					"Lane": "1",
+					"Barcode": "NNNNNN"
+				},
+				"Adapter": "illumina"
+			}
+		],
+		"Reference": {
+			"GenomeInfo": "./.test.RefseqPreparation/.test.RefseqPreparation.info.json",
+			"CaptureInfo": "./.test.CapturePreparation/.test.CapturePreparation.info.json"
+		},
+		"Config": {
+			"FastQSampleSize": 100000,
+			"Threads": 10,
+			"MinMAPQ": 30,
+			"Call": true,
+			"HiC": true,
+			"RemoveTempFiles": false
+		},
+		"RS": "HindIII",
+		"Stage": [],
+		
+		"Source": {
+			"Study": "Regulation of yeast chromosome III architecture and mating-type switching by a Sir2/condensin-bound region of the recombination enhancer [HiC-Seq]",
+			"DOI": "https://dx.doi.org/10.1371%2Fjournal.pgen.1008339",
+			"Abstract": "Saccharomyces cerevisiae switches its mating type (MATa or MATalpha) through gene conversion using one of two possible donors, HMLalpha or HMRa, both of which are maintained by the SIR silencing complex as heterochromatic cassettes on opposing ends of chromosome III. In MATa cells, HMLalpha on the left arm is preferentially chosen as the donor through a mechanism requiring a cis-acting sequence called the recombination enhancer (RE). The left half of the RE is required for this donor preference activity, whereas the right half has been implicated in regulating chromosome III structure. In this study we have identified a MATa-specific Sir2 and condensin binding site within the right half of the RE that maintains chromosome III in a switching-competent conformation by preventing MATa from interacting with the default HMRa donor on the right arm. Within the RE, Sir2 strongly represses transcription of a small MATa-specific gene of unknown function (RDT1). Upon expression of HO endonuclease to induce the switching process, Sir2 redistributes from the RE to the double-stranded DNA break site at MATa, thus derepressing RDT1 transcription to coincide with the timing of mating-type switching. Condensin is also displaced from the RE in response to the HO-induced break, likely contributing to the transient change in chromosome III conformation required for effective switching without disruption of HML and HMR heterochromatin. Overall design: S. cerevisiae HiC data for WT, SIR2?, and a 100bp? of RDT1 promoter region strains.",
+			"Protocol": "DNA was extracted by pestle and mortar liquid Nitrogen grinding and SDS solubilization. Triton X-100 was used to quench the SDS before O/N digestion with HindIII. Digested DNA ends were then biotinylated and blunt-end ligated under dilute conditions. Unligated biotinylated ends were removed with T4 DNA Polymerase and crosslinks were reversed. The DNA was concentrated using a Zymogen Clean and Concentrate Kit-5 and sonicated in a Diagenode Bioruptor. Biotinylated ligation junctions were capture by Streptavidin coupled Dynabeads and libraries were constructed on the beads using Nextera Mate Pair Reagents (Illumina)."}
+	}
+] 

@@ -6,11 +6,11 @@
 		"Sau3AI": "GATC",
 		"Arima": "GA[ACGT]?TC"
 	},
-	"Ligations": {
+	"Ligation": {
 		"HindIII": "AAGCTAGCTT",
 		"DpnII": "GATCGATC",
 		"MboI": "GATCGATC",
 		"Sau3AI": "GATCGATC",
 		"Arima": "GA(([ACGT]T)|(TC))((A[ACGT])|(GA))TC"
-	},
+	}
 } 
